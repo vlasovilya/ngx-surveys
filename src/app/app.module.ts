@@ -6,7 +6,6 @@ import { NgxSurveyModule } from '../lib/public_api';
 
 import { AppComponent } from './app.component';
 import { DemoComponent } from './demo/demo.component';
-import { DemoCdrComponent } from './demo-cdr/demo-cdr.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { GithubLinkComponent } from './github-link/github-link.component';
@@ -22,7 +21,6 @@ import { MatTabsModule } from '@angular/material/tabs';
   declarations: [
     AppComponent,
     DemoComponent,
-    DemoCdrComponent,
     FooterComponent,
     HeaderComponent,
     GithubLinkComponent,

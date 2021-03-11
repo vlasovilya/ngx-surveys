@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { demoForm } from '../demoform';
-console.log(demoForm);
+import { NgxSurveyComponent } from '../../lib/public_api'
 
 @Component({
   selector: 'app-demo',
@@ -19,10 +19,16 @@ console.log(demoForm);
         padding: 30px;
         border: 1px solid #ccc;
       }
+      .submit-button {
+        width:100%;
+        margin-top:10px;
+      }
     `,
   ],
 })
 export class DemoComponent implements OnInit {
+
+    @ViewChild('survey', { static: false }) public survey:NgxSurveyComponent;
 
     public form=demoForm;
     public model={};
@@ -31,8 +37,9 @@ export class DemoComponent implements OnInit {
 
     ngOnInit() {}
 
-    onFormSubmit(event: any) {
-
+    onFormSubmit(value) {
+        console.log(value);
+        alert (JSON.stringify(value, null, 2));
     }
 
     onChange(value) {

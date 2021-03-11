@@ -32,7 +32,7 @@ export const demoForm = [
                         }
                     ]
                 },
-                "name": "canClaim",
+                "name": "canYouDoThis",
                 "type": "segments",
                 "value": "YES",
                 "position": 0
@@ -123,7 +123,7 @@ export const demoForm = [
                         }
                     ]
                 },
-                "name": "practiceChanges",
+                "name": "description",
                 "type": "text",
                 "label": "Type your comments here…",
                 "position": 0

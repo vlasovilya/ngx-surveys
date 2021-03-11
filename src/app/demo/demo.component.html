@@ -7,12 +7,13 @@
     </ngx-survey-form-builder>
   </mat-tab>
   <mat-tab label="Preview">
-    <ngx-survey
+    <ngx-survey #survey
         [form]="form"
         [(value)]="model"
         (submit)="onFormSubmit($event)"
     >
     </ngx-survey>
+    <button mat-raised-button color="primary" class="submit-button" (click)="survey.submitForm()">Submit</button>
   </mat-tab>
   <mat-tab label="Model">
     <pre>{{ form | json }}</pre>

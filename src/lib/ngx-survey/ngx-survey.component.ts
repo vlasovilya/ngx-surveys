@@ -33,16 +33,13 @@ export class NgxSurveyComponent implements OnInit {
 
     onItemChanges(item) {
         item.errors=this.service.getErrors(item);
-        console.log(item);
         const formValue=this.service.getValue(this.form, false);
-        console.log(formValue);
         this.valueChange.emit(formValue.value);
     }
 
     submitForm(){
 
         const {valid, value, firstError}=this.service.getValue(this.form, true);
-        console.log(value, firstError);
         if (valid){
             this.submit.emit(value);
         }

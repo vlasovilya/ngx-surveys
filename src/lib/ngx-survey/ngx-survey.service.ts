@@ -21,7 +21,7 @@ export class NgxSurveyService {
     };
 
     public initForm(form, formValues) {
-        console.log(form, formValues);
+        //console.log(form, formValues);
         form.forEach(section=>{
             if (section.name) {
                 const groupedItems = _.groupBy(_.filter(section.items, item=>!item.name), item=>item.type);
@@ -96,7 +96,7 @@ export class NgxSurveyService {
                 section.subtitle = section.subtitle.replace(new RegExp('\n', 'g'), '<br />');
             }
         });
-        console.log(form);
+        //console.log(form);
         return form;
     }
 
