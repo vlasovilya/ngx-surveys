@@ -9,7 +9,7 @@
             [disabled]="!editable"
             (click)="editable ? onSelectionChange(segment.optionValue) : false"
             [value]="segment.value"
-            [ngClass]="{'btn-primary': segment.optionValue===item.value}"
+            [checked]="segment.optionValue===item.value"
             >{{segment.label}}
         </mat-button-toggle>
     </mat-button-toggle-group>
