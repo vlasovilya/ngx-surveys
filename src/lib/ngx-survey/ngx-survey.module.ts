@@ -36,7 +36,7 @@ import { FormItemOptionsEditorComponent } from './form-item/form-item-options-ed
 import { FormItemCheckboxComponent } from './form-item/form-item-checkbox/form-item-checkbox.component';
 
 import { FormBuilderComponent } from './form-builder/form-builder.component';
-import { DialogSectionEdit, DialogItemEdit, DialogItemVisibility } from './dialogs';
+import { DialogSectionEdit, DialogItemEdit, DialogItemVisibility } from './dialogs/index';
 import { NgxSurveyComponent } from './ngx-survey.component';
 import { NgxSurveyService } from './ngx-survey.service';
 

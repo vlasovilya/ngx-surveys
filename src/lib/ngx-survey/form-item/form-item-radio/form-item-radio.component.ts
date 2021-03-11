@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewChild } from '@angular/core';
 import { MatSelectionList } from '@angular/material/list';
-import { FormItem, FormItemOptionItem, FormItemWidget } from '../';
+import { FormItem, FormItemOptionItem, FormItemWidget } from '../form-item';
 
 export class FormItemRadio extends FormItem {
     items: FormItemOptionItem[];

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { SurveyErrorStateMatcher } from '../error-state.matcher';
-import { FormItem, FormItemWidget } from '../';
+import { FormItem, FormItemWidget } from '../form-item';
 
 export class FormItemCheckbox extends FormItem {
     value: boolean;

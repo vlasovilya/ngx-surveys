@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { FormItem, FormItemOptionItem, FormItemWidget } from '../';
+import { FormItem, FormItemOptionItem, FormItemWidget } from '../form-item';
 
 export class FormItemSegments extends FormItem {
     segments: FormItemOptionItem[];

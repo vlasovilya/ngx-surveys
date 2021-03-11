@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { FormItem, SurveyErrorStateMatcher, FormItemWidget } from '../';
+import { FormItem, SurveyErrorStateMatcher, FormItemWidget } from '../index';
 
 export class FormItemDate extends FormItem {
 

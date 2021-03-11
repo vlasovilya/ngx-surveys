@@ -6,8 +6,8 @@ import * as moment from 'moment';
 
 import { MatDialog } from '@angular/material/dialog';
 
-import { DialogSectionEdit, DialogItemEdit, DialogItemVisibility } from '../dialogs';
-import { FormItem, FormSection, buildField } from '../form-item/';
+import { DialogSectionEdit, DialogItemEdit, DialogItemVisibility } from '../dialogs/index';
+import { FormItem, FormSection, buildField } from '../form-item/index';
 
 
 @Component({

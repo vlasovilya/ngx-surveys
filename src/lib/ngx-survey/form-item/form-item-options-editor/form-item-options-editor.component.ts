@@ -4,7 +4,7 @@ import {
 } from '@angular/material/table';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ItemOptionStateMatcher } from '../error-state.matcher';
-import { FormItem, FormItemOptionItem, FormItemWidget, FormItemValidation, FormItemValidationRules } from '../';
+import { FormItem, FormItemOptionItem, FormItemWidget, FormItemValidation, FormItemValidationRules } from '../form-item';
 
 export class FormItemOptionsEditor extends FormItem {
     value: FormItemOptionItem[];

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormItem, SurveyErrorStateMatcher, FormItemWidget } from '../';
+import { FormItem, SurveyErrorStateMatcher, FormItemWidget } from '../index';
 
 export class FormItemText extends FormItem {
     hint: string;

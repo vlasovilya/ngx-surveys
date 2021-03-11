@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { SurveyErrorStateMatcher } from '../error-state.matcher';
-import { FormItem, FormItemOptionItem, FormItemWidget } from '../';
+import { FormItem, FormItemOptionItem, FormItemWidget } from '../form-item';
 
 export class FormItemSelect extends FormItem {
     items: FormItemOptionItem[];

@@ -21,9 +21,9 @@
     "form-builder",
     "surveys"
   ],
-  "main": "./surveys.umd.js",
-  "module": "./surveys.es5.js",
-  "es2015": "./surveys.es2015.js",
+  "main": "./ngx-survey.umd.js",
+  "module": "./ngx-survey.es5.js",
+  "es2015": "./ngx-survey.es2015.js",
   "typings": "./index.d.ts",
   "peerDependencies": {
     "@angular/core": ">=8.0.0 <11.0.0",

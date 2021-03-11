@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { FormItem, FormItemWidget } from '../';
+import { FormItem, FormItemWidget } from '../form-item';
 
 export class FormItemNumericRating extends FormItem {
     value: number;

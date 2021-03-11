@@ -16,9 +16,9 @@ import * as sourcemaps from 'rollup-plugin-sourcemaps';
 
 const pkg = require(`${process.cwd()}/package.json`);
 const cssProcessConfig = {
-  inputPath: `${process.cwd()}/src/lib/surveys/`,
+  inputPath: `${process.cwd()}/src/lib/ngx-survey/`,
   outputPath: `${process.cwd()}/dist/packages-dist/`,
-  filename: 'surveys.component',
+  filename: 'ngx-survey.component',
 };
 
 // Rollup globals
@@ -84,7 +84,7 @@ function createUmd(globals) {
   const entry = `${process.cwd()}/dist/es5/index.js`;
   return generateBundle(
     entry,
-    `${process.cwd()}/dist/packages-dist/surveys.umd.js`,
+    `${process.cwd()}/dist/packages-dist/ngx-survey.umd.js`,
     globals,
     name,
     'umd'
@@ -96,7 +96,7 @@ function createEs(globals, target) {
   const entry = `${process.cwd()}/dist/${target}/index.js`;
   return generateBundle(
     entry,
-    `${process.cwd()}/dist/packages-dist/surveys.${target}.js`,
+    `${process.cwd()}/dist/packages-dist/ngx-survey.${target}.js`,
     globals,
     name,
     'es'
@@ -119,7 +119,7 @@ function verifyVersions() {
 }
 
 function buildModule() {
-  console.log('building modules');
+  console.log('building modules', NGC, TSC_ARGS());
   const es2015$ = spawnObservable(NGC, TSC_ARGS());
   const esm$ = spawnObservable(NGC, TSC_ARGS('esm'));
   return observableForkJoin([es2015$, esm$]);
