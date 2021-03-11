@@ -15,6 +15,6 @@
     "strictMetadataEmit": true,
     "enableSummariesForJit": true,
     "flatModuleOutFile": "index.js",
-    "flatModuleId": "ngx-ui-switch"
+    "flatModuleId": "ngx-surveys"
   }
 }
