@@ -2,7 +2,8 @@ import { Component, Inject, ViewChild } from '@angular/core';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgxSurveyComponent } from '../../ngx-survey.component'
-import { FormItem, FormItemTypes, FormItemOptionItem, buildOption, buildField } from '../../form-item/index';
+import { FormItem, FormItemOptionItem } from '../../form-item/form-item';
+import { buildField, buildOption, FormItemTypes } from '../../form-item/form-item.component';
 
 const allFieldTypeOptions=<FormItemOptionItem[]>[];
 Object.keys(FormItemTypes).forEach(key=>{

@@ -2,7 +2,8 @@ import { Component, Inject, ViewChild } from '@angular/core';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgxSurveyComponent } from '../../ngx-survey.component'
-import { FormItem, FormSection, buildField } from '../../form-item/index';
+import { FormItem, FormSection } from '../../form-item/form-item';
+import { buildField } from '../../form-item/form-item.component';
 
 
 @Component({

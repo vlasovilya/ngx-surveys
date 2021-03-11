@@ -119,8 +119,7 @@ function verifyVersions() {
 }
 
 function buildModule() {
-  console.log('building modules', NGC, TSC_ARGS());
-  const es2015$ = spawnObservable(NGC, TSC_ARGS());
+  const es2015$ = spawnObservable(NGC, TSC_ARGS())
   const esm$ = spawnObservable(NGC, TSC_ARGS('esm'));
   return observableForkJoin([es2015$, esm$]);
 }
@@ -143,9 +142,10 @@ function copyFiles() {
     observableFrom(
       copy(`${process.cwd()}/README.md`, `${process.cwd()}/dist/packages-dist/README.md`)
     ),
+    /*
     observableFrom(
       copy(`${process.cwd()}/logo.png`, `${process.cwd()}/dist/packages-dist/logo.png`)
-    ),
+    ),*/
     observableFrom(
       copy(
         `${process.cwd()}/src/lib/package.json`,

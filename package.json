@@ -45,7 +45,7 @@
     "@angular/animations": "^10.0.0",
     "@angular/cdk": "^10.0.0",
     "@angular/common": "^10.0.0",
-    "@angular/compiler": "^11.2.5",
+    "@angular/compiler": "^10.0.0",
     "@angular/core": "^10.0.0",
     "@angular/forms": "^10.0.0",
     "@angular/material": "^10.0.0",
@@ -94,5 +94,10 @@
     "typescript": "~3.9.5"
   },
   "angular-cli": {},
-  "bundlewatch": []
+  "bundlewatch": [
+    {
+      "path": "./dist/packages-dist/ngx-survey.umd.js",
+      "maxSize": "8 kB"
+    }
+  ]
 }
