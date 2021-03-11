@@ -37,7 +37,7 @@ export class AppModule {}
 
 ```html
 <ngx-survey
-    [form]="sections"
+    [form]="form"
     [(value)]="model"
     (submit)="onFormSubmit($event)"
 >
@@ -49,7 +49,7 @@ export class AppModule {}
 
 ```html
 <ngx-survey-form-builder
-    [form]="sections"
+    [form]="form"
     (changes)="onChange($event)"
 >
 </ngx-survey-form-builder>

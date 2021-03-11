@@ -1,51 +1,50 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { demoForm } from '../demoform';
+console.log(demoForm);
 
 @Component({
   selector: 'app-demo',
   templateUrl: './demo.component.html',
+  styles: [
+    `
+      :host {
+        width: 80%;
+        display: block;
+        margin: 0 auto;
+        margin-top: 50px;
+        margin-bottom: 40px;
+      }
+      pre {
+        background-color: white;
+        padding: 30px;
+        border: 1px solid #ccc;
+      }
+    `,
+  ],
 })
 export class DemoComponent implements OnInit {
-  submitted = false;
-  enable = true;
-  enableFeature = false;
-  count = 0;
-  change = false;
-  valueChange = false;
-  changeEvent: MouseEvent;
-  isLoading = false;
-  fakeAsync: Observable<boolean> = new Observable(observer => {
-    this.isLoading = true;
-    const timeout = setTimeout(() => {
-      this.isLoading = false;
-      observer.next(true);
-    }, 2000);
-    return () => clearTimeout(timeout);
-  });
 
-  @ViewChild('demoForm') demoForm: NgForm;
+    public form=demoForm;
+    public model={};
 
-  constructor() {}
+    constructor() {}
 
-  ngOnInit() {}
+    ngOnInit() {}
 
-  onSubmit(event: any) {
-    this.submitted = true;
-  }
+    onFormSubmit(event: any) {
 
-  onChange(value: boolean) {
-    this.count++;
-    this.change = value;
-  }
+    }
 
-  onChangeEvent(event: MouseEvent) {
-    console.log(event, event.toString(), JSON.stringify(event));
-    this.changeEvent = event;
-  }
+    onChange(value) {
+        console.log(value);
+    }
 
-  onValueChange(value: boolean) {
-    this.valueChange = value;
-  }
+    onChangeEvent(event: MouseEvent) {
+        console.log(event, event.toString(), JSON.stringify(event));
+
+    }
+
+    onValueChange(value: boolean) {
+        console.log(value);
+    }
 }

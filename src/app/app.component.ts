@@ -1,24 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
 
 import json from '../lib/package.json';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styles: [
-    `
-      :host {
-        width: 80%;
-        display: block;
-        margin: 0 auto;
-        height: 600px;
-      }
-    `,
-  ],
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private t: Title) {
+  constructor(private t: Title, private breakpointObserver: BreakpointObserver) {
     const title = [this.t.getTitle()];
     if (json) {
       title.push(`${json.version} Demo`);
@@ -27,4 +21,11 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
+
 }

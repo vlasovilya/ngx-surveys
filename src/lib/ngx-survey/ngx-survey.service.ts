@@ -21,7 +21,7 @@ export class NgxSurveyService {
     };
 
     public initForm(form, formValues) {
-        console.log(formValues);
+        console.log(form, formValues);
         form.forEach(section=>{
             if (section.name) {
                 const groupedItems = _.groupBy(_.filter(section.items, item=>!item.name), item=>item.type);

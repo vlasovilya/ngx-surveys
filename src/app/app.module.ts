@@ -10,6 +10,13 @@ import { DemoCdrComponent } from './demo-cdr/demo-cdr.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { GithubLinkComponent } from './github-link/github-link.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -20,7 +27,7 @@ import { GithubLinkComponent } from './github-link/github-link.component';
     HeaderComponent,
     GithubLinkComponent,
   ],
-  imports: [BrowserModule, BrowserAnimationsModule, NgxSurveyModule],
+  imports: [BrowserModule, BrowserAnimationsModule, NgxSurveyModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatTabsModule],
   entryComponents: [],
   providers: [],
   bootstrap: [AppComponent],
