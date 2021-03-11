@@ -3,14 +3,13 @@
 }
 
 .mat-button-toggle {
-    flex: 1;
-    &.btn-primary{
-        color: #fff;
-    }
+	flex: 1;
+}
 
-    &.mat-button-toggle-disabled {
-        &.btn-primary {
-            background-color: blue;
-        }
-    }
+.mat-button-toggle.btn-primary {
+	color: #fff;
+}
+
+.mat-button-toggle.mat-button-toggle-disabled.btn-primary {
+	background-color: blue;
 }

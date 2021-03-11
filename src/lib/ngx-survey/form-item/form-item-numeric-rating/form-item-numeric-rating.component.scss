@@ -17,8 +17,9 @@
 :host ::ng-deep {
     button.mat-button {
         margin-bottom: 4px;
-        &:not(:last-child) {
-            margin-right: 4px;
-        }
+    }
+
+    button.mat-button:not(:last-child) {
+        margin-right: 4px;
     }
 }

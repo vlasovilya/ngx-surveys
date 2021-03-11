@@ -2,18 +2,22 @@
     display: block;
 }
 ::ng-deep .mat-table {
-    box-shadow: none;
-    width: 100%;
-    .mat-cell{
-        cursor:move;
-        .mat-form-field-infix {
-            width: 100%;
-        }
-    }
-    .mat-input-element {
-        width: 95%;
-    }
-    .mat-column-optionValue {
-        padding-right: 10px;
-    }
+	box-shadow: none;
+	width: 100%;
+}
+
+::ng-deep .mat-table .mat-cell {
+	cursor: move;
+}
+
+::ng-deep .mat-table .mat-cell .mat-form-field-infix {
+	width: 100%;
+}
+
+::ng-deep .mat-table .mat-input-element {
+	width: 95%;
+}
+
+::ng-deep .mat-table .mat-column-optionValue {
+	padding-right: 10px;
 }
