@@ -1,0 +1,11 @@
+<section class="example-section">
+    <mat-checkbox class="example-margin"
+        [(ngModel)]="item.value"
+        (ngModelChanges)="onChange($event)"
+    >{{item.label}}</mat-checkbox>
+</section>
+<mat-error *ngIf="item.errors && item.errors.length">
+    <div *ngFor="let error of item.errors">{{error.message}}</div>
+</mat-error>
+<mat-hint align="start" *ngIf="!(item.errors && item.errors.length)"><strong>{{item.hint}}</strong> </mat-hint>
+

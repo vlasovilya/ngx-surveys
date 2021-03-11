@@ -1,0 +1,17 @@
+<mat-label *ngIf="item.label">{{item.label}}</mat-label>
+<mat-selection-list #selectedOptions *ngIf="item.items && item.items.length"
+    (selectionChange)="onSelectionChange($event)"
+    [disabled]="!editable"
+>
+    <mat-list-option *ngFor="let option of item.items"
+        [value]="option.optionValue"
+        [selected]="isOptionSelected(option)"
+    >
+        {{option.label}}
+    </mat-list-option>
+</mat-selection-list>
+
+<mat-error *ngIf="item.errors && item.errors.length">
+    <div *ngFor="let error of item.errors">{{error.message}}</div>
+</mat-error>
+<mat-hint align="start" *ngIf="!(item.errors && item.errors.length)"><strong>{{item.hint}}</strong> </mat-hint>

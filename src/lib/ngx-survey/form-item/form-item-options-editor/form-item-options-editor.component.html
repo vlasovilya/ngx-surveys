@@ -1,0 +1,65 @@
+<div>
+    <mat-label>{{item.label}}</mat-label>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"
+        cdkDropList
+        [cdkDropListData]="dataSource"
+        (cdkDropListDropped)="onListDropped($event)"
+    >
+
+
+        <ng-container matColumnDef="optionValue">
+            <th mat-header-cell *matHeaderCellDef> Value </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-form-field class="example-full-width">
+                    <input #inputField
+                        matInput
+                        [(ngModel)]="element.optionValue"
+                        [errorStateMatcher]="matcher"
+                    >
+                </mat-form-field>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="label">
+            <th mat-header-cell *matHeaderCellDef> Label </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-form-field class="example-full-width">
+                    <input #inputField
+                        matInput
+                        [(ngModel)]="element.label"
+                        [errorStateMatcher]="matcher"
+                    >
+                </mat-form-field>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button class="form-item-actions-button" aria-label="Remove Option" (click)="removeOption(element)" type="button"
+                    matTooltip="Remove Option"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row *matRowDef="let row; columns: columns;"
+            cdkDrag
+            [cdkDragData]=row
+        ></tr>
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="3">No options</td>
+        </tr>
+    </table>
+    <mat-error *ngIf="item.errors && item.errors.length">
+        <div *ngFor="let error of item.errors">{{error.message}}</div>
+    </mat-error>
+    <mat-hint align="start" *ngIf="!(item.errors && item.errors.length)"><strong>{{item.hint}}</strong> </mat-hint>
+    <button mat-mini-fab color="primary" aria-label="Add Option" (click)="addOption()" type="button" matTooltip="Add Option">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+
+

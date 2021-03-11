@@ -1,0 +1,49 @@
+:host ::ng-deep {
+
+    .mat-list-item {
+        &:not(:last-of-type) {
+            border-bottom: 1px solid #eaeaea;
+        }
+    }
+
+    .mat-list-text {
+        font-weight: 600;
+    }
+
+    .mat-pseudo-checkbox {
+        color: transparent;
+        &:after {
+            width: 13px;
+            height: 13px;
+            transform: none;
+            border: 0;
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000'%3E%3Cpath fill='%23631' d='M980.436,280.526L514.811,746.152l-87.483,87.484c-11.575,11.582-27.654,18.004-43.742,18.004 c-16.071,0-32.16-6.422-43.733-18.004l-87.484-87.484L19.554,513.338C7.98,501.756,1.559,485.667,1.559,469.596 c0-16.069,6.421-32.159,17.995-43.741l24.408-24.408c11.575-11.564,27.663-17.985,32.732-17.985c16.09,0,32.168,6.421,43.742,17.985 L381.297,651.98l484.959-485.599c11.584-11.583,27.664-18.021,43.742-18.021c16.09,0,32.16,6.438,43.742,18.021l26.695,26.677 c11.574,11.565,18.006,27.638,18.006,43.727C998.442,252.873,992.01,268.944,980.436,280.526z'/%3E%3C/svg%3E");
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0;
+        }
+    }
+
+    .mat-pseudo-checkbox-checked {
+        color: transparent;
+        background: transparent;
+        &:after {
+            opacity: 1;
+        }
+    }
+
+    .mat-error {
+        padding: .54167em;
+        border-top: 1px solid red;
+        font-size: 75%;
+        text-align: center;
+    }
+}
+
+
+.mat-list,
+.mat-selection-list {
+    padding-top: 0;
+}
+

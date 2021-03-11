@@ -1,0 +1,20 @@
+<div class="form-group">
+    <mat-label *ngIf="item.label">{{item.label}}</mat-label>
+    <mat-button-toggle-group
+        aria-label="type of credits"
+        [ngClass]="{'has-error':item.errors && item.errors.length}"
+        value="{{item.value}}">
+        <mat-button-toggle
+            *ngFor="let segment of item.segments"
+            [disabled]="!editable"
+            (click)="editable ? onSelectionChange(segment.optionValue) : false"
+            [value]="segment.value"
+            [ngClass]="{'btn-primary': segment.optionValue===item.value}"
+            >{{segment.label}}
+        </mat-button-toggle>
+    </mat-button-toggle-group>
+    <mat-error *ngIf="item.errors && item.errors.length">
+      <div *ngFor="let error of item.errors">{{error.message}}</div>
+    </mat-error>
+    <mat-hint align="start" *ngIf="!(item.errors && item.errors.length)"><strong>{{item.hint}}</strong> </mat-hint>
+</div>

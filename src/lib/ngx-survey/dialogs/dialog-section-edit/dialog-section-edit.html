@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Edit section</h1>
+<div mat-dialog-content>
+    <ngx-survey #survey
+        [form]="sectionEditForm"
+        [value]="data"
+        (submit)="onFormSubmit($event)"
+    ></ngx-survey>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onOkClick()" cdkFocusInitial>Ok</button>
+</div>

@@ -1,0 +1,22 @@
+<form name="surveyForm">
+    <fieldset class="form-fieldset" *ngFor="let section of form">
+        <ng-container *ngIf="service.isSectionVisible(form, section)">
+            <legend class="form-legend" *ngIf="section.title || section.subtitle">
+                <span [ngClass]="'section-style-'+section.sectionStyle">{{section.title}}</span>
+                <span *ngIf="section.subtitle"><br /><small [innerHtml]="section.subtitle"></small></span>
+            </legend>
+
+            <div class="form-fieldset-content">
+                <div *ngFor="let item of section.items" [attr.id]="'form_item_'+item.name">
+                    <ngx-survey-form-item
+                        *ngIf="service.isItemVisible(form, section, item)"
+                        [type]="item.type"
+                        [item]="item"
+                        [editable]="editable"
+                        (changes)="onItemChanges($event)"
+                    ></ngx-survey-form-item>
+                </div>
+            </div>
+        </ng-container>
+    </fieldset>
+</form>

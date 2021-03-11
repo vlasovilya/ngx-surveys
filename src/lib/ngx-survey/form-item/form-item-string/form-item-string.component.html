@@ -1,0 +1,19 @@
+
+<mat-form-field>
+    <input #inputField
+        matInput
+        [disabled]="!editable"
+        [attr.id]="item.name"
+        [placeholder]="item.label"
+        [(ngModel)]="item.value"
+        [minlength]="item.fieldValidation ? item.fieldValidation.minLength : undefined "
+        (ngModelChange)="onValueChanges(item)"
+        [errorStateMatcher]="matcher"
+    >
+    <mat-error *ngIf="item.errors && item.errors.length">
+      <div *ngFor="let error of item.errors">{{error.message}}</div>
+    </mat-error>
+    <mat-hint align="start" *ngIf="!(item.errors && item.errors.length)"><strong>{{item.hint}}</strong> </mat-hint>
+
+</mat-form-field>
+

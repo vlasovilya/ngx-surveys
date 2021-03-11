@@ -1,0 +1,19 @@
+.rating-set {
+    display: block;
+    padding: 20;
+    text-align: center;
+}
+
+.rating-set-title {
+    font-size: .875rem;
+}
+
+.rating-set-stars {
+
+}
+
+:host ::ng-deep {
+    button.mat-icon-button {
+        height: auto;
+    }
+}

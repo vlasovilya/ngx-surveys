@@ -1,0 +1,19 @@
+.mat-form-field {
+    display: block;
+}
+::ng-deep .mat-table {
+    box-shadow: none;
+    width: 100%;
+    .mat-cell{
+        cursor:move;
+        .mat-form-field-infix {
+            width: 100%;
+        }
+    }
+    .mat-input-element {
+        width: 95%;
+    }
+    .mat-column-optionValue {
+        padding-right: 10px;
+    }
+}

@@ -1,0 +1,96 @@
+<form name="surveyForm"
+    cdkDropList
+    [cdkDropListData]="form"
+    (cdkDropListDropped)="onSectionDropped($event)"
+>
+    <mat-card *ngFor="let section of form"
+        cdkDrag
+        [cdkDragData]=section
+    >
+        <div class="section-drag-placeholder" *cdkDragPlaceholder></div>
+        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+         <mat-card-header>
+          <mat-card-title>
+            <span [ngClass]="'section-style-'+section.sectionStyle">{{section.title}}</span>
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item (click)="openSectionDialog(section)">Edit Section</button>
+              <button mat-menu-item (click)="removeSection(section)">Remove</button>
+            </mat-menu>
+          </mat-card-title>
+          <mat-card-subtitle>
+            <span *ngIf="section.subtitle"><small [innerHtml]="section.subtitle"></small></span>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <div *ngIf="service.isSectionVisible(form, section)">
+                <div cdkDropList
+                    [cdkDropListData]="section.items"
+                    (cdkDropListDropped)="onItemDropped($event, section)"
+                    class="form-items-list"
+                >
+                    <div *ngFor="let item of section.items" [attr.id]="'form_item_'+item.name" class="form-item"
+                        cdkDrag
+                        [cdkDragData]=item
+                    >
+                        <div class="item-drag-placeholder" *cdkDragPlaceholder></div>
+                        <div class="form-item-actions">
+                            <small>{{item.name}}</small>
+                            <button mat-icon-button class="form-item-actions-button" aria-label="Toggle menu"
+                                matTooltip="Delete"
+                                matTooltipPosition="above"
+                                (click)="removeField(item, section)"
+                            >
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                            <button mat-icon-button class="form-item-actions-button" aria-label="Toggle menu"
+                                matTooltip="Edit"
+                                matTooltipPosition="above"
+                                (click)="openItemDialog(item)"
+                            >
+                              <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button class="form-item-actions-button" aria-label="Visibility" *ngIf="getSectionValueItemsForItem(item, section).length"
+                                matTooltip="Visibility"
+                                matTooltipPosition="above"
+                                (click)="openItemVisibilityDialog(item, section)"
+                            >
+                                <mat-icon>visibility</mat-icon>
+                            </button>
+                        </div>
+                        <ngx-survey-form-item
+                            *ngIf="service.isItemVisible(form, section, item)"
+                            [type]="item.type"
+                            [item]="item"
+                            [editable]="editable"
+                            (changes)="onItemChanges($event)"
+                        ></ngx-survey-form-item>
+                    </div>
+                </div>
+            </div>
+        <div class="add-item-button"
+            matTooltip="Add Field"
+            matTooltipPosition="above"
+        >
+            <button mat-mini-fab color="primary" aria-label="Add Field" (click)="addFeild(section)">
+              <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <!--
+            <button mat-icon-button class="add-item-button" aria-label="Toggle menu">
+          <mat-icon>add_circle</mat-icon>
+        </button>
+        -->
+        </mat-card-content>
+    </mat-card>
+    <div class="add-item-button"
+        matTooltip="Add Section"
+        matTooltipPosition="above"
+    >
+        <button mat-mini-fab color="primary" aria-label="Add Section" (click)="addSection()">
+          <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</form>

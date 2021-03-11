@@ -1,0 +1,16 @@
+.mat-button-toggle-group {
+    display: flex;
+}
+
+.mat-button-toggle {
+    flex: 1;
+    &.btn-primary{
+        color: #fff;
+    }
+
+    &.mat-button-toggle-disabled {
+        &.btn-primary {
+            background-color: blue;
+        }
+    }
+}
