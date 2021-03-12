@@ -26,9 +26,9 @@
   "es2015": "./ngx-survey.es2015.js",
   "typings": "./index.d.ts",
   "peerDependencies": {
-    "@angular/core": ">=8.0.0 <11.0.0",
-    "@angular/common": ">=8.0.0 <11.0.0",
-    "@angular/forms": ">=8.0.0 <11.0.0",
-    "@angular/material": ">=8.0.0 <11.0.0"
+    "@angular/core": ">=8.0.0 <=11.0.0",
+    "@angular/common": ">=8.0.0 <=11.0.0",
+    "@angular/forms": ">=8.0.0 <=11.0.0",
+    "@angular/material": ">=8.0.0 <=11.0.0"
   }
 }
