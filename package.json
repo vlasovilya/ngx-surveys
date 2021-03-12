@@ -62,9 +62,8 @@
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.1102.4",
     "@angular/cli": "^10.0.0",
-    "@angular/compiler-cli": "^10.0.0",
+    "@angular/compiler-cli": "^11.2.5",
     "@angular/language-service": "^10.0.0",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
@@ -88,7 +87,6 @@
     "rollup-plugin-filesize": "^1.4.2",
     "rollup-plugin-sourcemaps": "^0.4.2",
     "ts-node": "^9.1.1",
-    "tsickle": "^0.39.1",
     "tslint": "~6.1.0",
     "typedoc": "^0.14.2",
     "typescript": "~3.9.5"
