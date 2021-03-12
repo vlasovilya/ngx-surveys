@@ -20,7 +20,7 @@
     "public_api.ts"
   ],
   "angularCompilerOptions": {
-    "enableIvy": false,
+    "enableIvy": true,
     "enableResourceInlining": true,
     "annotateForClosureCompiler": true,
     "skipTemplateCodegen": true,
