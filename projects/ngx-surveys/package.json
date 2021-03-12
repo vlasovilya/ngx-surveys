@@ -1,6 +1,6 @@
 {
   "name": "ngx-surveys",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Angular 8+ survey / form builder",
   "bugs": "https://github.com/vlasovilya/ngx-surveys/issues",
   "homepage": "https://github.com/vlasovilya/ngx-surveys#readme",
@@ -21,10 +21,6 @@
     "form-builder",
     "surveys"
   ],
-  "main": "./ngx-survey.umd.js",
-  "module": "./ngx-survey.es5.js",
-  "es2015": "./ngx-survey.es2015.js",
-  "typings": "./index.d.ts",
   "peerDependencies": {
     "@angular/core": ">=8.0.0 <=11.0.0",
     "@angular/common": ">=8.0.0 <=11.0.0",

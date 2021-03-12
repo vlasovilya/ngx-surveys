@@ -1,24 +1,80 @@
-# NgxSurveys
+# Angular Surveys
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
+## Description
 
-## Code scaffolding
+Angular survey / form builder for [Angular](https://angular.io).
 
-Run `ng generate component component-name --project ngx-surveys` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-surveys`.
-> Note: Don't forget to add `--project ngx-surveys` or else it will be added to the default project in your `angular.json` file. 
+Live [demo](https://vlasovilya.github.io/ngx-surveys/demo/)
 
-## Build
+A [stackblitz](https://stackblitz.com) is also available [here](https://stackblitz.com/edit/ngx-surveys)
 
-Run `ng build ngx-surveys` to build the project. The build artifacts will be stored in the `dist/` directory.
+Inspired by Google Forms and [angular-surveys](https://github.com/mwasiluk/angular-surveys) for AngularJS.
 
-## Publishing
+## Installation
 
-After building your library with `ng build ngx-surveys`, go to the dist folder `cd dist/ngx-surveys` and run `npm publish`.
+npm: `npm install ngx-surveys --save`
 
-## Running unit tests
+yarn: `yarn add ngx-surveys`
 
-Run `ng test ngx-surveys` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Usage
 
-## Further help
+- Import into a module (`AppModule` example below)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```javascript
+// app.module.ts
+import { NgxSurveyModule } from 'ngx-surveys';
+import { AppComponent } from './app.component';
+
+@NgModule({
+  imports: [BrowserModule, NgxSurveyModule],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
+
+# Form
+
+```html
+<ngx-survey
+    [form]="form"
+    [(value)]="model"
+    (submit)="onFormSubmit($event)"
+>
+</ngx-survey>
+
+```
+
+# Form Builder
+
+```html
+<ngx-survey-form-builder
+    [form]="form"
+    (changes)="onChange($event)"
+>
+</ngx-survey-form-builder>
+
+```
+
+## Development
+
+### Setup
+
+```sh
+yarn install
+```
+
+### Demo
+
+Edit files in `src/app` to add to the demo or try changes to the library.
+
+### Build library
+
+*First, edit version in `package.json` and `src/lib/package.json` to publish a new version to npmjs.org*
+
+```sh
+# Build the library into dist/{es5,es2015}
+yarn build
+# Publish to npm
+yarn release
+```

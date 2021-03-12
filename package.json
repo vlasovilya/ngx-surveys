@@ -1,6 +1,6 @@
 {
   "name": "ngx-surveys",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Angular 8+ survey / form builder",
   "bugs": "https://github.com/vlasovilya/ngx-surveys/issues",
   "homepage": "https://github.com/vlasovilya/ngx-surveys#readme",
@@ -28,9 +28,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "rimraf dist && ts-node -P tsconfig.build.json build.ts",
-    "build:demo": "rimraf demo && ng build --prod --base-href=/ngx-surveys/demo/ --output-path=demo",
-    "release": "cd dist/packages-dist && yarn publish",
+    "build": "rimraf dist/ngx-surveys && ng build ngx-surveys --prod",
+    "build:demo": "rimraf dist/demo && ng build --prod --base-href=/ngx-surveys/demo/ --output-path=dist/demo",
+    "release": "cd dist/ngx-surveys && yarn publish",
     "bundlewatch": "bundlewatch",
     "test": "ng test",
     "test:ci": "ng test --browsers=ChromeHeadless --watch=false",
