@@ -9,6 +9,14 @@
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
+    "paths": {
+      "ngx-surveys": [
+        "dist/ngx-surveys/ngx-surveys",
+        "dist/ngx-surveys",
+        "dist/ngx-surveys/ngx-surveys",
+        "dist/ngx-surveys"
+      ]
+    },
     "experimentalDecorators": true,
     "noUnusedLocals": true,
     "target": "es2015",

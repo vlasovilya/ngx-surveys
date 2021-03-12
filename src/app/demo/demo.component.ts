@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { demoForm } from '../demoform';
-import { NgxSurveyComponent } from '../../lib/public_api'
+import { NgxSurveyComponent } from '../../../projects/ngx-surveys/src/public-api'
 
 @Component({
   selector: 'app-demo',

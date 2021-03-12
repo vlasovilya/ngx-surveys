@@ -4,7 +4,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
-import json from '../lib/package.json';
+import json from '../../projects/ngx-surveys/package.json';
 
 @Component({
   selector: 'app-root',

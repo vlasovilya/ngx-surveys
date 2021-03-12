@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NgxSurveyModule } from '../lib/public_api';
+import { NgxSurveyModule } from '../../projects/ngx-surveys/src/lib';
 
 import { AppComponent } from './app.component';
 import { DemoComponent } from './demo/demo.component';
