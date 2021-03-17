@@ -25,7 +25,8 @@
     "@angular/core": ">=8.0.0 <=11.0.0",
     "@angular/common": ">=8.0.0 <=11.0.0",
     "@angular/forms": ">=8.0.0 <=11.0.0",
-    "@angular/material": ">=8.0.0 <=11.0.0"
+    "@angular/material": ">=8.0.0 <=11.0.0",
+    "@angular/material-moment-adapter": ">=8.0.0 <=11.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"
