@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgxSurveyComponent } from '../../ngx-survey.component'
 import { FormItem, FormItemOptionItem } from '../../form-item/form-item';
 import { buildField, buildOption, FormItemTypes } from '../../form-item/form-item.component';
+import * as _ from 'lodash';
 
 const allFieldTypeOptions=<FormItemOptionItem[]>[];
 Object.keys(FormItemTypes).forEach(key=>{
@@ -24,7 +25,7 @@ export class DialogItemEdit {
 
     public commonFields: FormItem[] =[
         buildField('select', {name: "type", label: "Type", items: allFieldTypeOptions, actionUpdatesSectionValue: true}, true),
-        buildField('string', {name: "name", label: "Name"}, true),
+        //buildField('string', {name: "name", label: "Name"}, true),
         buildField('string', {name: "label", label: "Label"}),
         buildField('string', {name: "hint", label: "Hint"}),
         buildField('checkbox', {name: "required", label: "Required"}),
@@ -67,6 +68,8 @@ export class DialogItemEdit {
         if (!data.fieldValidations.rules){
             data.fieldValidations.rules=[];
         }
+        data.name=_.camelCase(data.label);
+        console.log(data);
         const minLengthRule=data.fieldValidations.rules.find(r=>r.minLength > 0);
         console.log(data, minLengthRule);
         if (data.required && !minLengthRule){

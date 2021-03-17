@@ -130,6 +130,9 @@ export class FormItemComponent implements OnInit, OnDestroy, OnChanges {
     }
 
     loadComponent() {
+        if (!FormItemTypes[this.type]){
+            return;
+        }
 
         let componentFactory = this.componentFactoryResolver.resolveComponentFactory(FormItemTypes[this.type].component);
 

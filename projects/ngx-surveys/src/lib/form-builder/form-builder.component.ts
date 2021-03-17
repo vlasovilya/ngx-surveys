@@ -67,7 +67,7 @@ export class FormBuilderComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
+            console.log('The dialog was closed', result);
             section=_.extend(section, result);
             this.changes.emit(this.form);
         });
@@ -80,9 +80,13 @@ export class FormBuilderComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed', result);
+            console.log('The dialog was closed', result, section);
             if (result){
                 item=_.extend(item, result);
+                if (section){
+                    item.name=_.camelCase((section.name || '')+' '+item.name);
+                }
+
                 item.justAdded=false;
                 this.changes.emit(this.form);
             }

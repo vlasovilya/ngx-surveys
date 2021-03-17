@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgxSurveyComponent } from '../../ngx-survey.component'
 import { FormItem, FormSection } from '../../form-item/form-item';
 import { buildField } from '../../form-item/form-item.component';
-
+import * as _ from 'lodash';
 
 @Component({
   selector: 'dialog-section-edit',
@@ -16,7 +16,7 @@ export class DialogSectionEdit {
     @ViewChild('survey', { static: false }) public survey:NgxSurveyComponent;
 
     public commonFields: FormItem[] =[
-        buildField('string', {name: "name", label: "Name"}, true),
+        //buildField('string', {name: "name", label: "Name"}, true),
         buildField('string', {name: "title", label: "Title"}),
         buildField('string', {name: "subtitle", label: "Subtitle"}),
         buildField('select', {name: "sectionStyle", label: "Section Style", items: [
@@ -49,6 +49,7 @@ export class DialogSectionEdit {
     }
 
     onFormSubmit(data){
+        data.name=_.camelCase(data.title);
         this.data=data;
         this.dialogRef.close(this.data);
     }

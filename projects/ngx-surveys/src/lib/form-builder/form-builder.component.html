@@ -9,9 +9,27 @@
     >
         <div class="section-drag-placeholder" *cdkDragPlaceholder></div>
         <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-         <mat-card-header>
-          <mat-card-title>
-            <span [ngClass]="'section-style-'+section.sectionStyle">{{section.title}}</span>
+         <mat-card-header class="section-header">
+          <mat-card-title class="section-title">
+            <div class="section-title-text">
+                <span [ngClass]="'section-style-'+section.sectionStyle">{{section.title}}</span>
+            </div>
+
+            <button mat-icon-button class="form-item-actions-button" aria-label="Toggle menu"
+                matTooltip="Edit Section"
+                matTooltipPosition="above"
+                (click)="openSectionDialog(section)"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+             <button mat-icon-button class="form-item-actions-button " aria-label="Toggle menu"
+                matTooltip="Delete Section"
+                matTooltipPosition="above"
+                (click)="removeSection(section)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+            <!--
             <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
               <mat-icon>more_vert</mat-icon>
             </button>
@@ -19,6 +37,8 @@
               <button mat-menu-item (click)="openSectionDialog(section)">Edit Section</button>
               <button mat-menu-item (click)="removeSection(section)">Remove</button>
             </mat-menu>
+            -->
+
           </mat-card-title>
           <mat-card-subtitle>
             <span *ngIf="section.subtitle"><small [innerHtml]="section.subtitle"></small></span>
@@ -37,21 +57,9 @@
                     >
                         <div class="item-drag-placeholder" *cdkDragPlaceholder></div>
                         <div class="form-item-actions">
-                            <small>{{item.name}}</small>
-                            <button mat-icon-button class="form-item-actions-button" aria-label="Toggle menu"
-                                matTooltip="Delete"
-                                matTooltipPosition="above"
-                                (click)="removeField(item, section)"
-                            >
-                              <mat-icon>delete</mat-icon>
-                            </button>
-                            <button mat-icon-button class="form-item-actions-button" aria-label="Toggle menu"
-                                matTooltip="Edit"
-                                matTooltipPosition="above"
-                                (click)="openItemDialog(item)"
-                            >
-                              <mat-icon>edit</mat-icon>
-                            </button>
+                            <div class="form-item-var-name">
+                                <small>{{item.name}}</small>
+                            </div>
                             <button mat-icon-button class="form-item-actions-button" aria-label="Visibility" *ngIf="getSectionValueItemsForItem(item, section).length"
                                 matTooltip="Visibility"
                                 matTooltipPosition="above"
@@ -59,6 +67,21 @@
                             >
                                 <mat-icon>visibility</mat-icon>
                             </button>
+                            <button mat-icon-button class="form-item-actions-button" aria-label="Toggle menu"
+                                matTooltip="Edit Field"
+                                matTooltipPosition="above"
+                                (click)="openItemDialog(item, section)"
+                            >
+                              <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button class="form-item-actions-button" aria-label="Toggle menu"
+                                matTooltip="Delete Field"
+                                matTooltipPosition="above"
+                                (click)="removeField(item, section)"
+                            >
+                              <mat-icon>delete</mat-icon>
+                            </button>
+
                         </div>
                         <ngx-survey-form-item
                             *ngIf="service.isItemVisible(form, section, item)"
@@ -71,12 +94,8 @@
                 </div>
             </div>
         <div class="add-item-button"
-            matTooltip="Add Field"
-            matTooltipPosition="above"
         >
-            <button mat-mini-fab color="primary" aria-label="Add Field" (click)="addFeild(section)">
-              <mat-icon>add</mat-icon>
-            </button>
+            <button mat-stroked-button color="primary" (click)="addFeild(section)">Add Field</button>
         </div>
         <!--
             <button mat-icon-button class="add-item-button" aria-label="Toggle menu">

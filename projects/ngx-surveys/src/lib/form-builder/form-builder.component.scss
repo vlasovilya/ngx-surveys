@@ -1,81 +1,141 @@
 .more-button {
-	position: absolute;
-	top: 5px;
-	right: 10px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
 }
-
 .add-item-button {
-	text-align: center;
+    text-align: center;
+    .mat-stroked-button {
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+::ng-deep .mat-card {
+    margin-bottom: 10px;
+    .add-item-button {
+        //display:none;
+    }
+    &:hover {
+        .add-item-button {
+            display:block;
+        }
+    }
+    .mat-card-header-text {
+        width: 100%;
+        margin-right: 0px;
+
+        .section-title {
+            align-content: center;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            .section-title-text {
+                flex: 1 1 auto;
+            }
+        }
+    }
+
 }
 
-.mat-card {
-	margin-bottom: 10px;
-}
+.form-item {
+    .form-item-actions {
+        //display: none;
+        height: 20px;
+        align-content: center;
+        align-items: center;
+        display: flex;
+        justify-content: center;
 
-.mat-card .add-item-button {
-	display: none;
-}
+        .form-item-var-name {
+            small {
+                display:none;
+            }
+            flex: 1 1 auto;
+        }
+        .mat-icon {
+            /* height: 14px; */
+            /* width: 14px; */
+            font-size: 16px;
+        }
+        .mat-icon-button {
+            height: 20px;
+            width: 20px;
+            /* flex-shrink: 0; */
+            line-height: 20px;
+        }
+    }
+    border: dotted 3px #fff;
+    &:hover {
+        background: #ccc;
+        border-color: #999;
+        min-height: 60px;
+        transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+        .form-item-actions {
 
-.mat-card:hover .add-item-button {
-	display: block;
-}
-
-.form-item .form-item-actions {
-	display: none;
-	height: 20px;
-}
-
-.form-item .form-item-actions .mat-icon {
-	font-size: 16px;
-}
-
-.form-item .form-item-actions .mat-icon-button {
-	height: 20px;
-	width: 20px;
-	line-height: 20px;
-	float: right;
-}
-
-.form-item:hover {
-	background: #ccc;
-	border: dotted 3px #999;
-	min-height: 60px;
-	transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-	cursor: move;
-}
-
-.form-item:hover .form-item-actions {
-	display: block;
+            .form-item-var-name {
+                small {
+                    display:inline;
+                }
+            }
+        }
+        cursor: move;
+    }
 }
 
 .example-list {
-	min-height: 60px;
+  min-height: 60px;
+}
+
+.example-box {
+
 }
 
 .cdk-drag-preview {
-	box-sizing: border-box;
-	border-radius: 4px;
-	box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 
 .cdk-drag-animating {
-	transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 .form-items-list.cdk-drop-list-dragging .form-item:not(.cdk-drag-placeholder) {
-	transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 .item-drag-placeholder {
-	background: #ccc;
-	border: dotted 3px #999;
-	min-height: 60px;
-	transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  background: #ccc;
+  border: dotted 3px #999;
+  min-height: 83px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 .section-drag-placeholder {
-	background: #ccc;
-	border: dotted 3px #999;
-	min-height: 120px;
-	transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  background: #ccc;
+  border: dotted 3px #999;
+  min-height: 150px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
+
+
+/*
+.add-item-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    .mat-icon {
+        height: 40px;
+        width: 40px;
+        font-size: 40px;
+    }
+    .mat-icon-button {
+        height: 80px;
+        width: 80px;
+
+        line-height: 80px;
+    }
+}
+*/
