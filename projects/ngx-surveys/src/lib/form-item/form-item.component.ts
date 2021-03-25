@@ -17,37 +17,37 @@ export const FormItemTypes={
     'string' : {
         component: FormItemStringComponent,
         model: FormItemString,
-        title: 'Short text'
+        label: 'Short text'
     },
     text : {
         component: FormItemTextComponent,
         model: FormItemText,
-        title: 'Long text'
+        label: 'Long text'
     },
     rating : {
         component: FormItemRatingComponent,
         model: FormItemRating,
-        title: 'Star rating'
+        label: 'Star rating'
     },
     numericRating : {
         component: FormItemNumericRatingComponent,
         model: FormItemNumericRating,
-        title: 'Numeric rating'
+        label: 'Numeric rating'
     },
     segments : {
         component: FormItemSegmentsComponent,
         model: FormItemSegments,
-        title: 'Segments'
+        label: 'Segments'
     },
     radio : {
         component: FormItemRadioComponent,
         model: FormItemRadio,
-        title: 'Radio'
+        label: 'Radio'
     },
     select : {
         component: FormItemSelectComponent,
         model: FormItemSelect,
-        title: 'Select'
+        label: 'Select'
     },
     optionsEditor : {
         component: FormItemOptionsEditorComponent,
@@ -56,12 +56,12 @@ export const FormItemTypes={
     checkbox : {
         component: FormItemCheckboxComponent,
         model: FormItemCheckbox,
-        title: 'Checkbox'
+        label: 'Checkbox'
     },
     date : {
         component: FormItemDateComponent,
         model: FormItemDate,
-        title: 'Date'
+        label: 'Date'
     },
 };
 

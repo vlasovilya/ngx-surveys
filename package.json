@@ -29,7 +29,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "rimraf dist/ngx-surveys && ng build ngx-surveys --prod",
-    "build:demo": "rimraf dist/demo && ng build --prod --base-href=/ngx-surveys/demo/ --output-path=dist/demo",
+    "build:demo": "rimraf dist/ngx-surveys-demo && ng build ngx-surveys-demo --prod --base-href=/ngx-surveys/demo/",
     "release": "cd dist/ngx-surveys && yarn publish",
     "bundlewatch": "bundlewatch",
     "test": "ng test",

@@ -6,14 +6,6 @@ import { FormItem, FormItemOptionItem } from '../../form-item/form-item';
 import { buildField, buildOption, FormItemTypes } from '../../form-item/form-item.component';
 import * as _ from 'lodash';
 
-const allFieldTypeOptions=<FormItemOptionItem[]>[];
-Object.keys(FormItemTypes).forEach(key=>{
-    const type=FormItemTypes[key];
-    if (type.title){
-        allFieldTypeOptions.push(buildOption(key, type.title));
-    }
-})
-
 @Component({
   selector: 'dialog-item-edit',
   templateUrl: './dialog-item-edit.html',
@@ -24,7 +16,10 @@ export class DialogItemEdit {
     @ViewChild('survey', { static: false }) public survey:NgxSurveyComponent;
 
     public commonFields: FormItem[] =[
-        buildField('select', {name: "type", label: "Type", items: allFieldTypeOptions, actionUpdatesSectionValue: true}, true),
+        buildField('select', {name: "type", label: "Type", items: Object.keys(FormItemTypes).map(key=>{
+            const item=<FormItemOptionItem>FormItemTypes[key];
+            return item.label ? item : null;
+        }).filter(t=>t), actionUpdatesSectionValue: true}, true),
         //buildField('string', {name: "name", label: "Name"}, true),
         buildField('string', {name: "label", label: "Label"}),
         buildField('string', {name: "hint", label: "Hint"}),
