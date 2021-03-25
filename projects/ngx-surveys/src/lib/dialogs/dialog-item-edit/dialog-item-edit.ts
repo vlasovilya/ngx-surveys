@@ -18,7 +18,7 @@ export class DialogItemEdit {
     public commonFields: FormItem[] =[
         buildField('select', {name: "type", label: "Type", items: Object.keys(FormItemTypes).map(key=>{
             const item=<FormItemOptionItem>FormItemTypes[key];
-            return item.label ? item : null;
+            return item.label ? buildOption(key, item.label) : null;
         }).filter(t=>t), actionUpdatesSectionValue: true}, true),
         //buildField('string', {name: "name", label: "Name"}, true),
         buildField('string', {name: "label", label: "Label"}),
