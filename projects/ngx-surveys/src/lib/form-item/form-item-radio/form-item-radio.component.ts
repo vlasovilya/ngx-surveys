@@ -23,7 +23,7 @@ export class FormItemRadioComponent implements FormItemWidget, OnInit {
     @ViewChild('selectedOptions', { static: true }) public selectedOptions:MatSelectionList;
 
     explanationValue: string;
-    explanationLabel: string;
+    explanationLabel: string | undefined;
     selectedOption: string;
 
     constructor() { }

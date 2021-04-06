@@ -172,7 +172,7 @@ export class FormBuilderComponent implements OnInit {
     }
 
     clearValue(item: FormItem, section: FormSection): void {
-        item.value=undefined;
+        item.value='';
         this.changes.emit(this.form);
     }
 
