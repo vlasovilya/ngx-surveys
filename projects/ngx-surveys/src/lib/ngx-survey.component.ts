@@ -1,27 +1,44 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
 import { NgxSurveyService } from './ngx-survey.service';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'ngx-survey',
   templateUrl: './ngx-survey.component.html',
   styleUrls: ['./ngx-survey.component.scss']
 })
-export class NgxSurveyComponent implements OnInit {
+export class NgxSurveyComponent implements OnInit, AfterViewInit {
 
     @Input() form:any[];
     @Input() value:any={};
+    @Input() splitBySteps:boolean;
+
     @Output() valueChange = new EventEmitter<any>();
     @Output() submit = new EventEmitter<any>();
+
+    @ViewChild('stepper', { static: false }) public stepper:MatStepper;
 
 
     public editable:boolean=true;
 
     constructor(
         public service: NgxSurveyService,
-    ) { }
+    ) {
+
+    }
 
     ngOnInit() {
+        console.log(this.value);
         this.form=this.service.initForm(this.form, this.value);
+        if (this.splitBySteps){
+            this.form.forEach(section=>{
+                section.isEditable=true;
+            });
+        }
+    }
+
+    ngAfterViewInit() {
+        console.log(this.stepper);
     }
 
     scrollToField(field) {
@@ -31,10 +48,24 @@ export class NgxSurveyComponent implements OnInit {
         }
     };
 
+    isStepEnabled(section){
+        const prevSection=this.form[this.form.indexOf(section)-1];
+        return !prevSection || (prevSection && prevSection.submited && !prevSection.hasError);
+    }
+
     onItemChanges(item) {
         item.errors=this.service.getErrors(item);
-        const formValue=this.service.getValue(this.form, false);
-        this.valueChange.emit(formValue.value);
+        const {value}=this.service.getValue(this.form, false);
+        this.valueChange.emit(value);
+    }
+
+    onStepChange(step) {
+        console.log(step);
+        if (step.previouslySelectedIndex>=0 && this.form[step.previouslySelectedIndex]){
+            this.submitStep(this.form[step.previouslySelectedIndex], false);
+        }
+
+//        this.stepper.selectedIndex=0;
     }
 
     submitForm(){
@@ -47,8 +78,31 @@ export class NgxSurveyComponent implements OnInit {
             this.scrollToField(firstError);
         }
 
+    }
 
+    submitStep(section, goToNext){
+        console.log(section);
+        const {valid, value, firstError}=this.service.getValue([section], true);
+        console.log({valid, value, firstError});
+        if (valid){
+            section.hasError=false;
+            section.submited=true;
+            console.log(this.stepper);
+            if (goToNext){
+                setTimeout(()=>{
+                    this.stepper.next();
+                }, 100)
+            }
 
+        }
+        else {
+            console.log(firstError);
+            this.scrollToField(firstError);
+            section.hasError=true;
+            if (firstError && firstError.errors && firstError.errors[0]){
+                section.firstErrorText=firstError.label+': '+firstError.errors[0].message;
+            }
+        }
     }
 
 }

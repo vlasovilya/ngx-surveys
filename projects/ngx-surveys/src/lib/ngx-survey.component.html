@@ -1,4 +1,4 @@
-<form name="surveyForm">
+<form name="surveyForm" *ngIf="!splitBySteps">
     <fieldset class="form-fieldset" *ngFor="let section of form">
         <ng-container *ngIf="service.isSectionVisible(form, section)">
             <legend class="form-legend" *ngIf="section.title || section.subtitle">
@@ -20,3 +20,45 @@
         </ng-container>
     </fieldset>
 </form>
+
+<div *ngIf="splitBySteps">
+    <mat-horizontal-stepper linear #stepper
+        (selectionChange)="onStepChange($event)"
+    >
+<!--
+      <ng-template matStepperIcon="done" let-index="index">
+        {{index+1}}
+      </ng-template>
+
+-->
+
+      <mat-step  *ngFor="let section of form; index as i;"
+        [editable]="isStepEnabled(section)"
+        [completed]="section.submited"
+
+        [hasError]="section.hasError"
+        [errorMessage]="section.firstErrorText"
+      >
+
+        <form>
+            <ng-template matStepLabel>{{section.title}}</ng-template>
+            <h3 *ngIf="section.subtitle">{{section.subtitle}}</h3>
+            <div *ngFor="let item of section.items" [attr.id]="'form_item_'+item.name">
+                <ngx-survey-form-item
+                    *ngIf="service.isItemVisible(form, section, item)"
+                    [type]="item.type"
+                    [item]="item"
+                    [editable]="editable"
+                    (changes)="onItemChanges($event)"
+                ></ngx-survey-form-item>
+            </div>
+        </form>
+        <div *ngIf="i<form.length-1">
+            <button mat-button class="btn btn-primary btn-block" (click)="submitStep(section, true)">Continue</button>
+        </div>
+        <div *ngIf="i>=form.length-1">
+            <button mat-button class="btn btn-success btn-block" (click)="submitForm()">Submit</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+</div>

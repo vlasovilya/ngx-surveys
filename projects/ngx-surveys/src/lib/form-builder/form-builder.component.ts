@@ -171,6 +171,11 @@ export class FormBuilderComponent implements OnInit {
         section.items=(section.items || []).filter((op, index)=>index!==(section.items || []).indexOf(item));
     }
 
+    clearValue(item: FormItem, section: FormSection): void {
+        item.value=undefined;
+        this.changes.emit(this.form);
+    }
+
     addFeild(section: FormSection): void {
         if (!section.items){
             section.items=[];

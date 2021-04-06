@@ -2,6 +2,7 @@
 <mat-form-field>
     <input #inputField
         matInput
+        [type]="item.style || 'text'"
         [disabled]="!editable"
         [attr.id]="item.name"
         [placeholder]="item.label"

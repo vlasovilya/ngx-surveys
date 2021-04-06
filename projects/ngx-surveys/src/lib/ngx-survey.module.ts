@@ -18,6 +18,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatStepperModule } from '@angular/material/stepper';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+
 
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 
@@ -41,6 +46,7 @@ import { DialogItemEdit } from './dialogs/dialog-item-edit/dialog-item-edit';
 import { DialogItemVisibility } from './dialogs/dialog-item-visibility/dialog-item-visibility';
 import { NgxSurveyComponent } from './ngx-survey.component';
 import { NgxSurveyService } from './ngx-survey.service';
+console.log(STEPPER_GLOBAL_OPTIONS);
 
 const formItemComponents=[
     FormItemStringComponent,
@@ -78,7 +84,10 @@ const formItemComponents=[
         MatSelectModule,
         MatTableModule,
         DragDropModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatRadioModule,
+        MatSlideToggleModule,
+        MatStepperModule
     ],
     declarations: [
         FormItemDirective,
@@ -96,7 +105,10 @@ const formItemComponents=[
         NgxSurveyComponent
     ],
     providers: [
-        NgxSurveyService
+        NgxSurveyService,
+        {
+            provide: STEPPER_GLOBAL_OPTIONS, useValue: {showError: true}
+        }
     ],
 })
 export class NgxSurveyModule { }

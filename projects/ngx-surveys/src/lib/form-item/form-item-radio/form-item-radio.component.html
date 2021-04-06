@@ -1,15 +1,39 @@
 <mat-label *ngIf="item.label">{{item.label}}</mat-label>
-<mat-selection-list #selectedOptions *ngIf="item.items && item.items.length"
-    (selectionChange)="onSelectionChange($event)"
-    [disabled]="!editable"
->
-    <mat-list-option *ngFor="let option of item.items"
-        [value]="option.optionValue"
-        [selected]="isOptionSelected(option)"
+<ng-container *ngIf="item.items && item.items.length">
+    <mat-radio-group [attr.aria-label]="item.label" *ngIf="item.style==='buttons'"
+        (change)="onSelectionChange($event)"
+        [disabled]="!editable"
+        [(ngModel)]="selectedOption"
     >
-        {{option.label}}
-    </mat-list-option>
-</mat-selection-list>
+      <mat-radio-button *ngFor="let option of item.items"
+        [value]="option.optionValue"
+        [checked]="isOptionSelected(option)"
+      >{{option.label}}</mat-radio-button>
+
+    </mat-radio-group>
+
+    <mat-selection-list #selectedOptions *ngIf="!item.style || item.style==='list'"
+        (selectionChange)="onSelectionChange($event)"
+        [disabled]="!editable"
+        [(ngModel)]="selectedOption"
+    >
+        <mat-list-option *ngFor="let option of item.items"
+            [value]="option.optionValue"
+            [selected]="isOptionSelected(option)"
+        >
+            {{option.label}}
+        </mat-list-option>
+    </mat-selection-list>
+
+    <mat-form-field *ngIf="isExplanationRequired(selectedOption)" class="other-option-field">
+        <mat-label>{{explanationLabel}}</mat-label>
+        <input #inputField
+            matInput
+            [(ngModel)]="explanationValue"
+            (ngModelChange)="onExplanationValueChanges($event, selectedOption)"
+        >
+    </mat-form-field>
+</ng-container>
 
 <mat-error *ngIf="item.errors && item.errors.length">
     <div *ngFor="let error of item.errors">{{error.message}}</div>

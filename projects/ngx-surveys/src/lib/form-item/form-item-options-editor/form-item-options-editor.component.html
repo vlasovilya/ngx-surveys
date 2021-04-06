@@ -1,6 +1,15 @@
 <div>
     <mat-label>{{item.label}}</mat-label>
 
+    <mat-slide-toggle
+      class="example-margin"
+      [color]="'primary'"
+      [checked]="useCustomValues"
+      (change)="onUseCustomValuesChange($event)"
+    >
+    Use custom option values
+    </mat-slide-toggle>
+
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"
         cdkDropList
         [cdkDropListData]="dataSource"
@@ -23,12 +32,21 @@
 
         <ng-container matColumnDef="label">
             <th mat-header-cell *matHeaderCellDef> Label </th>
-            <td mat-cell *matCellDef="let element">
+            <td mat-cell *matCellDef="let element" class="row-actions">
                 <mat-form-field class="example-full-width">
                     <input #inputField
                         matInput
                         [(ngModel)]="element.label"
+                        (ngModelChange)="onOptionLabelChange($event, element)"
                         [errorStateMatcher]="matcher"
+                    >
+                </mat-form-field>
+
+                <mat-form-field class="explanation-field" *ngIf="element.showExplanation">
+                    <mat-label>Explanation field label</mat-label>
+                    <input #inputField
+                        matInput
+                        [(ngModel)]="element.explanationLabel"
                     >
                 </mat-form-field>
             </td>
@@ -36,6 +54,12 @@
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
+                <button mat-icon-button class="form-item-actions-button" aria-label="Show text field with custom value" (click)="toggleExplanationField(element)" type="button"
+                    matTooltip="Show explanation text field"
+                >
+                  <mat-icon [color]="element.showExplanation ? 'primary' : 'disabled'">comment</mat-icon>
+                </button>
+
                 <button mat-icon-button class="form-item-actions-button" aria-label="Remove Option" (click)="removeOption(element)" type="button"
                     matTooltip="Remove Option"
                 >
@@ -57,8 +81,8 @@
         <div *ngFor="let error of item.errors">{{error.message}}</div>
     </mat-error>
     <mat-hint align="start" *ngIf="!(item.errors && item.errors.length)"><strong>{{item.hint}}</strong> </mat-hint>
-    <button mat-mini-fab color="primary" aria-label="Add Option" (click)="addOption()" type="button" matTooltip="Add Option">
-        <mat-icon>add</mat-icon>
+    <button mat-raised-button color="primary" aria-label="Add Option" (click)="addOption()" type="button" matTooltip="Add Option">
+        Add Option
     </button>
 </div>
 

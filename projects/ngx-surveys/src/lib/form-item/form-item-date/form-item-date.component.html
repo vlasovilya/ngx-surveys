@@ -2,11 +2,11 @@
     <mat-form-field class="example-full-width">
         <input matInput #inputField
             [matDatepicker]="picker"
-            [disabled]="!editable || (item.value && item.readOnly)"
+            [disabled]="!editable || (value && item.readOnly)"
             [attr.id]="item.name"
             [placeholder]="item.label"
-            [(ngModel)]="item.value"
-            (ngModelChanges)="onValueChanges(item)"
+            [(ngModel)]="value"
+            (dateChange)="onValueChanges($event)"
             [errorStateMatcher]="matcher"
         >
         <mat-error *ngIf="item.errors && item.errors.length">

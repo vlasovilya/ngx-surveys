@@ -9,6 +9,7 @@ import { FormItem, FormItemOptionItem, FormItemWidget, FormItemValidation, FormI
 export class FormItemOptionsEditor extends FormItem {
     value: FormItemOptionItem[];
     hasOptions: boolean=true;
+    useCustomOptionValues:  boolean=false;
     fieldValidations: FormItemValidation={
         rules: <FormItemValidationRules[]> [
             {
@@ -30,7 +31,9 @@ export class FormItemOptionsEditorComponent implements FormItemWidget, OnInit {
     @Output() changes = new EventEmitter<FormItemOptionsEditor>();
     matcher = new ItemOptionStateMatcher();
     dataSource = new MatTableDataSource<FormItemOptionItem>([]);
-    columns=['optionValue', 'label', 'actions'];
+    public columns: string[];
+
+    public useCustomValues:boolean=false;
 
     constructor() { }
 
@@ -39,16 +42,40 @@ export class FormItemOptionsEditorComponent implements FormItemWidget, OnInit {
             this.item.value=[];
         }
         this.dataSource.data=this.item.value;
+        this.useCustomValues=this.item.useCustomOptionValues;
+        this.setColumns();
+    }
+
+    setColumns(){
+        this.columns=this.useCustomValues ? ['optionValue', 'label', 'actions'] : ['label', 'actions'];
+    }
+
+    onUseCustomValuesChange(ev){
+        this.useCustomValues=ev.checked;
+        this.item.useCustomOptionValues=this.useCustomValues;
+        this.setColumns();
     }
 
     onValueChange(value){
-        console.log(value);
         this.item.value=value;
+        if (this.useCustomValues){
+            (this.item.value || []).forEach(field=>{
+                field.optionValue=field.label;
+            })
+        }
         this.changes.emit(this.item);
     }
 
+    onOptionLabelChange(value, option) {
+        if (!this.useCustomValues){
+            option.optionValue=value;
+        }
+    }
+
     addOption(){
-        this.item.value.push(<FormItemOptionItem>{});
+        const obj=<FormItemOptionItem>{};
+
+        this.item.value.push(obj);
         this.dataSource.data=this.item.value;
     }
 
@@ -62,5 +89,9 @@ export class FormItemOptionsEditorComponent implements FormItemWidget, OnInit {
         moveItemInArray(this.dataSource.data,previousIndex, event.currentIndex);
         this.dataSource.data = this.dataSource.data.slice();
         console.log('dropped', JSON.stringify(this.dataSource.data), JSON.stringify(this.item.value));
+    }
+
+    toggleExplanationField (option) {
+        option.showExplanation=!option.showExplanation;
     }
 }

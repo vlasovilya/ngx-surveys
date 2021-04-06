@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormItem, SurveyErrorStateMatcher, FormItemWidget } from '../index';
+import moment from "moment";
 
 export class FormItemDate extends FormItem {
 
@@ -16,11 +17,16 @@ export class FormItemDateComponent implements FormItemWidget, OnInit {
     @Input() editable: boolean=true;
     @Output() changes = new EventEmitter<FormItemDate>();
     matcher = new SurveyErrorStateMatcher();
+    public value: Object;
 
     constructor() { }
 
     ngOnInit() {
         this.matcher.item=this.item;
+        if (this.item.value){
+            this.value=moment(this.item.value.toString());
+        }
+        //console.log(this.value);
     }
 
     ngOnChanges() {
@@ -33,8 +39,10 @@ export class FormItemDateComponent implements FormItemWidget, OnInit {
         }
     }
 
-    onValueChanges(item) {
-        this.changes.emit(item);
+    onValueChanges(ev) {
+        const val=ev.value.format('L');
+        this.item.value=val;
+        this.changes.emit(this.item);
     }
 
 }

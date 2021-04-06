@@ -1,0 +1,13 @@
+::ng-deep {
+    .mat-step-header {
+        &.mat-disabled {
+            cursor: default;
+            .mat-step-icon-state-done {
+                background-color: rgba(0,0,0,.54);
+            }
+            .mat-step-label.mat-step-label-active {
+                color: rgba(0,0,0,.54);
+            }
+        }
+    }
+}

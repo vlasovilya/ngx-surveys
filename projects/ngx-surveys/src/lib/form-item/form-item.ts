@@ -38,6 +38,8 @@ export class FormItem {
 export interface FormItemOptionItem {
     optionValue: string;
     label: string;
+    showExplanation?: boolean;
+    explanationLabel?: string;
 }
 
 
@@ -53,4 +55,7 @@ export interface FormSection {
     subtitle?: string;
     sectionStyle?: string;
     items?: FormItem[];
+    isEditable?: boolean;
+    hasError?: boolean;
+    firstErrorText?: string;
 }

@@ -20,7 +20,18 @@ export class DialogItemEdit {
             const item=<FormItemOptionItem>FormItemTypes[key];
             return item.label ? buildOption(key, item.label) : null;
         }).filter(t=>t), actionUpdatesSectionValue: true}, true),
-        //buildField('string', {name: "name", label: "Name"}, true),
+        buildField('select', {name: "style", label: "Text Field Style", items: [
+            buildOption('text', 'Standard Text Field'),
+            buildOption('number', 'Number'),
+            buildOption('email', 'E-mail'),
+            buildOption('password', 'Password'),
+            buildOption('url', 'URL'),
+        ], visibilityValuesInSection: ["string"], value:'text'}, true),
+        buildField('select', {name: "style", label: "Radio Buttons Style", items: [
+            buildOption('list', 'List with selection'),
+            buildOption('buttons', 'Buttons'),
+        ], visibilityValuesInSection: ["radio"], value:'list'}, true),
+        buildField('string', {name: "name", label: "Name"}, false),
         buildField('string', {name: "label", label: "Label"}),
         buildField('string', {name: "hint", label: "Hint"}),
         buildField('checkbox', {name: "required", label: "Required"}),
