@@ -57,7 +57,8 @@
             <button mat-button class="btn btn-primary btn-block" (click)="submitStep(section, true)">Continue</button>
         </div>
         <div *ngIf="i>=form.length-1">
-            <button mat-button class="btn btn-success btn-block" (click)="submitForm()">Submit</button>
+            <div class="text-center text-danger global-error" *ngIf="submitErrorText">{{submitErrorText}}<br /></div>
+            <button mat-button class="btn btn-success btn-block" (click)="submitForm()" [disabled]="submitInProgress"><i class="fa fa-spinner fa-spin" *ngIf="submitInProgress"></i> Submit</button>
         </div>
       </mat-step>
     </mat-horizontal-stepper>

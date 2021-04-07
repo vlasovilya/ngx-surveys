@@ -12,6 +12,8 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit {
     @Input() form:any[];
     @Input() value:any={};
     @Input() splitBySteps:boolean;
+    @Input() submitInProgress:boolean;
+    @Input() submitErrorText:string;
 
     @Output() valueChange = new EventEmitter<any>();
     @Output() submit = new EventEmitter<any>();
@@ -28,7 +30,7 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        console.log(this.value);
+        //console.log(this.value);
         this.form=this.service.initForm(this.form, this.value);
         if (this.splitBySteps){
             this.form.forEach(section=>{
@@ -38,7 +40,7 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        console.log(this.stepper);
+        //console.log(this.stepper);
     }
 
     scrollToField(field) {
@@ -60,7 +62,7 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit {
     }
 
     onStepChange(step) {
-        console.log(step);
+        //console.log(step);
         if (step.previouslySelectedIndex>=0 && this.form[step.previouslySelectedIndex]){
             this.submitStep(this.form[step.previouslySelectedIndex], false);
         }
@@ -81,13 +83,13 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit {
     }
 
     submitStep(section, goToNext){
-        console.log(section);
-        const {valid, value, firstError}=this.service.getValue([section], true);
-        console.log({valid, value, firstError});
+        //console.log(section);
+        const {valid, firstError}=this.service.getValue([section], true);
+        //console.log({valid, value, firstError});
         if (valid){
             section.hasError=false;
             section.submited=true;
-            console.log(this.stepper);
+            //console.log(this.stepper);
             if (goToNext){
                 setTimeout(()=>{
                     this.stepper.next();
@@ -96,7 +98,7 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit {
 
         }
         else {
-            console.log(firstError);
+            //console.log(firstError);
             this.scrollToField(firstError);
             section.hasError=true;
             if (firstError && firstError.errors && firstError.errors[0]){
