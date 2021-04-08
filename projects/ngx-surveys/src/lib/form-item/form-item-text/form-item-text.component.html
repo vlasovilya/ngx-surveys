@@ -7,6 +7,7 @@
         [(ngModel)]="item.value"
         (ngModelChange)="onValueChanges(item)"
         [errorStateMatcher]="matcher"
+        [required]="item.required"
     ></textarea>
     <mat-error *ngIf="item.errors && item.errors.length">
       <div *ngFor="let error of item.errors">{{error.message}}</div>

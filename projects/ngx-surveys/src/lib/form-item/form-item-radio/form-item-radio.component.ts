@@ -57,7 +57,7 @@ export class FormItemRadioComponent implements FormItemWidget, OnInit {
             this.item.value=event.value;
             this.onExplanationValueChanges(this.explanationValue, this.item.value);
         }
-        console.log(this.item.value);
+        //console.log(this.item.value);
         this.changes.emit(this.item);
     }
 
@@ -67,7 +67,7 @@ export class FormItemRadioComponent implements FormItemWidget, OnInit {
     }
 
     onExplanationValueChanges(val, selectedOptionVal){
-        console.log(val, selectedOptionVal);
+        //console.log(val, selectedOptionVal);
         const option=this.item.items.find(op=>op.optionValue===selectedOptionVal);
         if (!option || !this.isExplanationRequired(option.optionValue)){
             return false;

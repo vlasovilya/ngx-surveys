@@ -5,6 +5,7 @@
     [disabled]="!editable"
     (valueChange)="onSelectionChange($event)"
     [errorStateMatcher]="matcher"
+    [required]="item.required"
   >
     <mat-option *ngFor="let option of item.items" [value]="option.optionValue">
       {{option.label}}

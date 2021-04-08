@@ -1,9 +1,10 @@
-<mat-label *ngIf="item.label">{{item.label}}</mat-label>
+<label *ngIf="item.label" [required]="item.required" [ngClass]="{'has-error':item.errors && item.errors.length}">{{item.label}} <span class="required" *ngIf="item.required">*</span></label>
 <ng-container *ngIf="item.items && item.items.length">
     <mat-radio-group [attr.aria-label]="item.label" *ngIf="item.style==='buttons'"
         (change)="onSelectionChange($event)"
         [disabled]="!editable"
         [(ngModel)]="selectedOption"
+        [required]="item.required"
     >
       <mat-radio-button *ngFor="let option of item.items"
         [value]="option.optionValue"

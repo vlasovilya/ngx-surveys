@@ -10,6 +10,7 @@
         [minlength]="item.fieldValidation ? item.fieldValidation.minLength : undefined "
         (ngModelChange)="onValueChanges(item)"
         [errorStateMatcher]="matcher"
+        [required]="item.required"
     >
     <mat-error *ngIf="item.errors && item.errors.length">
       <div *ngFor="let error of item.errors">{{error.message}}</div>
