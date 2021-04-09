@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import { Subscription } from 'rxjs';
 import { NgxSurveyService } from './ngx-survey.service';
 import { MatStepper } from '@angular/material/stepper';
 
@@ -7,7 +9,7 @@ import { MatStepper } from '@angular/material/stepper';
   templateUrl: './ngx-survey.component.html',
   styleUrls: ['./ngx-survey.component.scss']
 })
-export class NgxSurveyComponent implements OnInit, AfterViewInit {
+export class NgxSurveyComponent implements OnInit, AfterViewInit, OnDestroy {
 
     @Input() form:any[];
     @Input() value:any={};
@@ -20,10 +22,14 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit {
 
     @ViewChild('stepper', { static: false }) public stepper:MatStepper;
 
-
     public editable:boolean=true;
+    public selectedIndex: number = 0;
+    public isMobile: boolean;
+
+    private _bpSub: Subscription;
 
     constructor(
+        private bpObserver: BreakpointObserver,
         public service: NgxSurveyService,
     ) {
 
@@ -37,6 +43,11 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit {
                 section.isEditable=true;
             });
         }
+        this._bpSub = this.bpObserver
+          .observe(['(max-width: 599px)'])
+          .subscribe((state: BreakpointState) => {
+            this.setMobileStepper(state.matches);
+          });
     }
 
     ngAfterViewInit() {
@@ -60,6 +71,19 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit {
         const {value}=this.service.getValue(this.form, false);
         this.valueChange.emit(value);
     }
+
+    selectionChanged(event: any): void {
+    this.selectedIndex = event.selectedIndex;
+  }
+
+  setMobileStepper(isMobile: boolean): void {
+    this.isMobile = isMobile;
+    setTimeout(() => {
+        if (this.stepper){
+            this.stepper.selectedIndex = this.selectedIndex;
+        }
+    });
+  }
 
     onStepChange(step) {
         //console.log(step);
@@ -105,6 +129,10 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit {
                 section.firstErrorText=firstError.label+': '+firstError.errors[0].message;
             }
         }
+    }
+
+    ngOnDestroy() {
+        this._bpSub.unsubscribe();
     }
 
 }

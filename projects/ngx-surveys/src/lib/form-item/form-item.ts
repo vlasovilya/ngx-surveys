@@ -19,6 +19,7 @@ export class FormItem {
     name: string;
     label: string;
     style: string;
+    hint: string;
     value: string | number | string[] | boolean | FormItemOptionItem[];
     errors: FormItemError[];
     fieldValidations: FormItemValidation;
