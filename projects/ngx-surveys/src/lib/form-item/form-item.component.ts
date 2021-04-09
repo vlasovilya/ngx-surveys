@@ -98,6 +98,7 @@ export class FormItemComponent implements OnInit, OnDestroy, OnChanges {
     @Input() item: FormItem | FormItemString | FormItemRating | FormItemText | FormItemDate | FormItemSegments | FormItemRadio | FormItemNumericRating
         | FormItemSelect | FormItemOptionsEditor | FormItemCheckbox;
     @Input() editable: boolean=true;
+    @Input() isMobile: boolean=false;
     @Output() changes = new EventEmitter<any>();
 
     @ViewChild(FormItemDirective, { static: true }) public itemHost: FormItemDirective;
@@ -142,6 +143,7 @@ export class FormItemComponent implements OnInit, OnDestroy, OnChanges {
         let componentRef = viewContainerRef.createComponent(componentFactory);
         (<FormItemWidget>componentRef.instance).item=this.item;
         (<FormItemWidget>componentRef.instance).editable=this.editable;
+        (<FormItemWidget>componentRef.instance).isMobile=this.isMobile;
 
         this.subscription=(<FormItemWidget>componentRef.instance).changes.subscribe(item=>this.changes.emit(item));
     }

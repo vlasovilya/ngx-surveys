@@ -47,6 +47,7 @@ export interface FormItemOptionItem {
 export interface FormItemWidget {
     item: FormItem;
     editable: boolean;
+    isMobile?: boolean;
     changes: EventEmitter<FormItem>;
 }
 

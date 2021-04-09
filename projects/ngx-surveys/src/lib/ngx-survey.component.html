@@ -13,6 +13,7 @@
                         [type]="item.type"
                         [item]="item"
                         [editable]="editable"
+                        [isMobile]="isMobile"
                         (changes)="onItemChanges($event)"
                     ></ngx-survey-form-item>
                 </div>
@@ -49,6 +50,7 @@
                     [type]="item.type"
                     [item]="item"
                     [editable]="editable"
+                    [isMobile]="isMobile"
                     (changes)="onItemChanges($event)"
                 ></ngx-survey-form-item>
             </div>
@@ -91,6 +93,7 @@
                     [item]="item"
                     [editable]="editable"
                     (changes)="onItemChanges($event)"
+                    [isMobile]="isMobile"
                 ></ngx-survey-form-item>
             </div>
         </form>
