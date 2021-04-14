@@ -24,6 +24,9 @@ export class FormItemRatingComponent implements FormItemWidget, OnInit {
     }
 
     onRatingChanged(value){
+        if (!this.editable){
+            return;
+        }
         this.item.value=value;
         this.changes.emit(this.item);
     }

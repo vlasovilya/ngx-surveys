@@ -2,7 +2,13 @@
     <div class="col-xs-12 rating-set">
         <div class="rating-set-title">{{item.label}}</div>
         <div class="rating-set-stars">
-            <mat-star-rating [rating]="item.value"  [starCount]="5" [color]="'primary'" (ratingUpdated)="onRatingChanged($event)"></mat-star-rating>
+            <mat-star-rating
+                [rating]="item.value"
+                [starCount]="5"
+                [color]="editable ? 'primary' : 'muted'"
+                [readOnly]="!editable"
+                (ratingUpdated)="onRatingChanged($event)"
+            ></mat-star-rating>
         </div>
         <mat-error *ngIf="item.errors && item.errors.length">
             <div *ngFor="let error of item.errors">{{error.message}}</div>

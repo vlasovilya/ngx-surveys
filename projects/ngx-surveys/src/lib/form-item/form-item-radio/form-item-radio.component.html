@@ -1,4 +1,4 @@
-<label *ngIf="item.label" [required]="item.required" [ngClass]="{'has-error':item.errors && item.errors.length}">{{item.label}} <span class="required" *ngIf="item.required">*</span></label>
+<label *ngIf="item.label" [ngClass]="{'has-error':item.errors && item.errors.length}">{{item.label}} <span class="required" *ngIf="item.required">*</span></label>
 <ng-container *ngIf="item.items && item.items.length">
     <mat-radio-group [attr.aria-label]="item.label" *ngIf="item.style==='buttons'" [class.is-mobile]="isMobile"
         (change)="onSelectionChange($event)"

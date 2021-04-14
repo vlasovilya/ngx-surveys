@@ -9,9 +9,10 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } fro
 })
 export class StarRatingComponent implements OnInit {
 
-  @Input('rating') public rating: number;
-  @Input('starCount') public starCount: number;
-  @Input('color') public color: string;
+  @Input() public rating: number;
+  @Input() public starCount: number;
+  @Input() public color: string;
+  @Input() public readOnly: boolean;
   @Output() public ratingUpdated = new EventEmitter();
 
   public snackBarDuration: number = 2000;
@@ -27,6 +28,9 @@ export class StarRatingComponent implements OnInit {
     }
   }
   onClick(rating:number) {
+    if (this.readOnly){
+        return false;
+    }
     this.rating=rating;
     this.ratingUpdated.emit(rating);
     return false;
