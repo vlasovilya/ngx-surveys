@@ -16,13 +16,13 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit, OnDestroy {
     @Input() splitBySteps:boolean;
     @Input() submitInProgress:boolean;
     @Input() submitErrorText:string;
+    @Input() editable:boolean=true;
 
     @Output() valueChange = new EventEmitter<any>();
     @Output() submit = new EventEmitter<any>();
 
     @ViewChild('stepper', { static: false }) public stepper:MatStepper;
 
-    public editable:boolean=true;
     public selectedIndex: number = 0;
     public isMobile: boolean;
 
@@ -67,6 +67,9 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     onItemChanges(item) {
+        if (!this.editable){
+            return;
+        }
         item.errors=this.service.getErrors(item);
         const {value}=this.service.getValue(this.form, false);
         this.valueChange.emit(value);
@@ -107,6 +110,9 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     submitStep(section, goToNext){
+        if (!this.editable){
+            return;
+        }
         //console.log(section);
         const {valid, firstError}=this.service.getValue([section], true);
         //console.log({valid, value, firstError});
