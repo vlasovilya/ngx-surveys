@@ -46,7 +46,7 @@ import { DialogItemEdit } from './dialogs/dialog-item-edit/dialog-item-edit';
 import { DialogItemVisibility } from './dialogs/dialog-item-visibility/dialog-item-visibility';
 import { NgxSurveyComponent } from './ngx-survey.component';
 import { NgxSurveyService } from './ngx-survey.service';
-console.log(STEPPER_GLOBAL_OPTIONS);
+import { NgxMaskModule } from 'ngx-mask';
 
 const formItemComponents=[
     FormItemStringComponent,
@@ -87,7 +87,8 @@ const formItemComponents=[
         MatCheckboxModule,
         MatRadioModule,
         MatSlideToggleModule,
-        MatStepperModule
+        MatStepperModule,
+        NgxMaskModule.forRoot(),
     ],
     declarations: [
         FormItemDirective,

@@ -103,8 +103,7 @@ export const demoForm = [
                 "errors": [],
                 "name": "content",
                 "type": "radio",
-                "position": 0,
-                "value": "Very Good"
+                "position": 0
             }
         ]
     },

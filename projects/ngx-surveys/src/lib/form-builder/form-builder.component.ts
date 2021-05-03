@@ -17,9 +17,18 @@ import { FormItem, FormSection, buildField } from '../form-item/index';
 })
 export class FormBuilderComponent implements OnInit {
 
-    @Input() form:FormSection[];
     @Output() changes = new EventEmitter<any[]>();
 
+    @Input() set form(form: FormSection[]){
+        this._form=this.service.initForm(form, this.formValues);
+        console.log(this._form);
+    };
+
+    get form() : FormSection[] {
+        return this._form;
+    }
+
+    private _form;
     public formValues:any={};
     public editable:boolean=true;
     public sortableSectionOptions:any={
@@ -136,7 +145,6 @@ export class FormBuilderComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.form=this.service.initForm(this.form, this.formValues);
     }
 
     getDateStr(time) {
