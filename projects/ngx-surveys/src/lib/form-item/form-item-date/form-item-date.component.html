@@ -7,7 +7,7 @@
             [attr.id]="item.name"
             [placeholder]="item.label"
             (change)='todate($event.target.value)'
-            [ngModel]="value | date:'MM/dd/yyyy'"
+            [ngModel]="textValue | date:'MM/dd/yyyy'"
             [errorStateMatcher]="matcher"
             [required]="item.required"
             mask="M0/d0/0000"

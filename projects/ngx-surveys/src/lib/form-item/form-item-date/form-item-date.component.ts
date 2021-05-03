@@ -35,7 +35,7 @@ export class FormItemDateComponent implements FormItemWidget, OnInit, AfterViewI
     @Output() changes = new EventEmitter<FormItemDate>();
     matcher = new SurveyErrorStateMatcher();
 
-    innerValue: Object;
+    innerValue: any;
 
     constructor() { }
 
@@ -75,12 +75,16 @@ export class FormItemDateComponent implements FormItemWidget, OnInit, AfterViewI
 
 
   //get accessor
-  get value(): Object {
+  get value(): any {
     return this.innerValue;
   };
 
+  get textValue(): string {
+    return this.value ? this.value.format('L') : '';
+  };
+
   //set accessor including call the onchange callback
-  set value(v: Object) {
+  set value(v: any) {
     if (v !== this.innerValue) {
       this.innerValue = v;
     }

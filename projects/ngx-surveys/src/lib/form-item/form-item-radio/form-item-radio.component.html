@@ -1,6 +1,6 @@
 <label *ngIf="item.label" [ngClass]="{'has-error':item.errors && item.errors.length}">{{item.label}} <span class="required" *ngIf="item.required">*</span></label>
 <ng-container *ngIf="item.items && item.items.length">
-    <mat-radio-group [attr.aria-label]="item.label" *ngIf="item.style==='buttons'" [class.is-mobile]="isMobile"
+    <mat-radio-group [attr.aria-label]="item.label" *ngIf="item.style==='buttons'"
         (change)="onSelectionChange($event)"
         [disabled]="!editable"
         [(ngModel)]="selectedOption"
@@ -13,7 +13,7 @@
 
     </mat-radio-group>
 
-    <mat-selection-list #selectedOptions *ngIf="!item.style || item.style==='list'" [class.is-mobile]="isMobile"
+    <mat-selection-list #selectedOptions *ngIf="!item.style || item.style==='list'"
         (selectionChange)="onSelectionChange($event)"
         [disabled]="!editable"
         [(ngModel)]="selectedOption"
