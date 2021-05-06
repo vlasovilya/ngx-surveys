@@ -2,7 +2,7 @@
 <div mat-dialog-content>
     <ngx-survey #survey
         [form]="itemEditForm"
-        [value]="data"
+        [value]="item"
         (valueChange)="onFormChange($event)"
         (submit)="onFormSubmit($event)"
     ></ngx-survey>

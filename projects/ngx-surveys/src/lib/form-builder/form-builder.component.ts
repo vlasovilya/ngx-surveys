@@ -28,6 +28,8 @@ export class FormBuilderComponent implements OnInit {
         return this._form;
     }
 
+    @Input() allowMultiChoiseFieldsOnly:boolean=false;
+
     private _form;
     public formValues:any={};
     public editable:boolean=true;
@@ -85,7 +87,12 @@ export class FormBuilderComponent implements OnInit {
     openItemDialog(item: FormItem, section?: FormSection): void {
         const dialogRef = this.dialog.open(DialogItemEdit, {
             width: '450px',
-            data: _.cloneDeep(item)
+            data: {
+                params: {
+                    multiChoiseFieldsOnly: this.allowMultiChoiseFieldsOnly,
+                },
+                item: _.cloneDeep(item)
+            },
         });
 
         dialogRef.afterClosed().subscribe(result => {
@@ -188,7 +195,7 @@ export class FormBuilderComponent implements OnInit {
         if (!section.items){
             section.items=[];
         }
-        const field=buildField('string', {name: "", label: ""});
+        const field=this.allowMultiChoiseFieldsOnly ? buildField('radio', {name: "", label: "", items:[], style: "list"}, true) : buildField('string', {name: "", label: ""});
         field.justAdded=true;
         section.items.push(field);
         this.openItemDialog(field, section);
