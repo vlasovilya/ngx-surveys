@@ -18,10 +18,11 @@ import { FormItem, FormSection, buildField } from '../form-item/index';
 export class FormBuilderComponent implements OnInit {
 
     @Output() changes = new EventEmitter<any[]>();
+    @Output() onFieldAdded = new EventEmitter<FormItem>();
 
     @Input() set form(form: FormSection[]){
         this._form=this.service.initForm(form, this.formValues);
-        console.log(this._form);
+        //console.log(this._form);
     };
 
     get form() : FormSection[] {
@@ -29,14 +30,17 @@ export class FormBuilderComponent implements OnInit {
     }
 
     @Input() allowMultiChoiseFieldsOnly:boolean=false;
+    @Input() enableEditFieldValues:boolean=true;
+    @Input() showFieldNames:boolean=true;  
+    @Input() readOnly:boolean=false;
 
     private _form;
     public formValues:any={};
-    public editable:boolean=true;
+    
     public sortableSectionOptions:any={
         onUpdate: (event: any) => {
             //event;
-            console.log(event);
+            //console.log(event);
             this.changes.emit(this.form);
         },
         //handle: '.sortable-handle'
@@ -59,7 +63,7 @@ export class FormBuilderComponent implements OnInit {
     public sortableItemOptions:any={
         onUpdate: (event: any) => {
             //event;
-            console.log(event);
+            //console.log(event);
             this.changes.emit(this.form);
         },
         handle: '.form-item'
@@ -74,13 +78,21 @@ export class FormBuilderComponent implements OnInit {
     openSectionDialog(section: FormSection): void {
         const dialogRef = this.dialog.open(DialogSectionEdit, {
             width: '450px',
-            data: section
+            data: {
+                params: {
+                    readOnly: this.readOnly,
+                },
+                section: section
+            },
         });
 
         dialogRef.afterClosed().subscribe(result => {
             console.log('The dialog was closed', result);
-            section=_.extend(section, result);
-            this.changes.emit(this.form);
+            if (result && !this.readOnly){
+                section=_.extend(section, result);
+                this.changes.emit(this.form);
+            }
+            
         });
     }
 
@@ -90,6 +102,8 @@ export class FormBuilderComponent implements OnInit {
             data: {
                 params: {
                     multiChoiseFieldsOnly: this.allowMultiChoiseFieldsOnly,
+                    customFieldNamesAllowed: this.showFieldNames,
+                    readOnly: this.readOnly,
                 },
                 item: _.cloneDeep(item)
             },
@@ -97,10 +111,13 @@ export class FormBuilderComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
             console.log('The dialog was closed', result, section);
-            if (result){
+            if (result && !this.readOnly){
                 item=_.extend(item, result);
                 if (section){
                     item.name=_.camelCase((section.name || '')+' '+item.name);
+                }
+                if (item.justAdded){
+                    this.onFieldAdded.emit(item);
                 }
 
                 item.justAdded=false;
@@ -124,13 +141,14 @@ export class FormBuilderComponent implements OnInit {
             width: '450px',
             data: {
                 sectionItems: sectionValueItems,
-                visibility: item.visibilityValuesInSection || []
+                visibility: item.visibilityValuesInSection || [],
+                readOnly: this.readOnly,
             }
         });
 
         dialogRef.afterClosed().subscribe(result => {
             console.log('The dialog was closed', result);
-            if (result){
+            if (result && !this.readOnly){
                 item.visibilityValuesInSection=[];
                 sectionValueItems.forEach(sItem=>{
                     if (result[sItem.name]){
@@ -138,6 +156,7 @@ export class FormBuilderComponent implements OnInit {
                     }
                 });
                 console.log(item);
+                this.changes.emit(this.form);
             }
 
             /*
@@ -184,6 +203,7 @@ export class FormBuilderComponent implements OnInit {
 
     removeField(item: FormItem, section: FormSection): void {
         section.items=(section.items || []).filter((op, index)=>index!==(section.items || []).indexOf(item));
+        this.changes.emit(this.form);
     }
 
     clearValue(item: FormItem, section: FormSection): void {

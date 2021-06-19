@@ -3,6 +3,7 @@
         [(ngModel)]="item.value"
         (ngModelChanges)="onChange($event)"
         [required]="item.required"
+        [disabled]="!editable"
     >{{item.label}}</mat-checkbox>
 </section>
 <mat-error *ngIf="item.errors && item.errors.length">

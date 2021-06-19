@@ -1,12 +1,50 @@
-<form name="surveyForm" *ngIf="!splitBySteps">
-    <fieldset class="form-fieldset" *ngFor="let section of form">
-        <ng-container *ngIf="service.isSectionVisible(form, section)">
-            <legend class="form-legend" *ngIf="section.title || section.subtitle">
-                <span [ngClass]="'section-style-'+section.sectionStyle">{{section.title}}</span>
-                <span *ngIf="section.subtitle"><br /><small [innerHtml]="section.subtitle"></small></span>
-            </legend>
+<div (resized)="onResized($event)">
+    <form name="surveyForm" *ngIf="!splitBySteps">
+        <fieldset class="form-fieldset" *ngFor="let section of form">
+            <ng-container *ngIf="service.isSectionVisible(form, section)">
+                <legend class="form-legend" *ngIf="section.title || section.subtitle">
+                    <span [ngClass]="'section-style-'+section.sectionStyle">{{section.title}}</span>
+                    <span *ngIf="section.subtitle"><br /><small [innerHtml]="section.subtitle"></small></span>
+                </legend>
 
-            <div class="form-fieldset-content">
+                <div class="form-fieldset-content">
+                    <div *ngFor="let item of section.items" [attr.id]="'form_item_'+item.name">
+                        <ngx-survey-form-item
+                            *ngIf="service.isItemVisible(form, section, item)"
+                            [type]="item.type"
+                            [item]="item"
+                            [editable]="editable"
+                            [isMobile]="isMobile"
+                            (changes)="onItemChanges($event)"
+                        ></ngx-survey-form-item>
+                    </div>
+                </div>
+            </ng-container>
+        </fieldset>
+    </form>
+
+    <div *ngIf="splitBySteps">
+        <mat-horizontal-stepper #stepper *ngIf="!isMobile"
+            (selectionChange)="onStepChange($event)"
+        >
+    <!--
+        <ng-template matStepperIcon="done" let-index="index">
+            {{index+1}}
+        </ng-template>
+
+    -->
+
+        <mat-step  *ngFor="let section of form; index as i;"
+            [editable]="isStepEnabled(section)"
+            [completed]="section.submited"
+
+            [hasError]="section.hasError"
+            [errorMessage]="section.firstErrorText"
+        >
+
+            <form>
+                <ng-template matStepLabel>{{section.title}}</ng-template>
+                <h3 *ngIf="section.subtitle">{{section.subtitle}}</h3>
                 <div *ngFor="let item of section.items" [attr.id]="'form_item_'+item.name">
                     <ngx-survey-form-item
                         *ngIf="service.isItemVisible(form, section, item)"
@@ -17,93 +55,57 @@
                         (changes)="onItemChanges($event)"
                     ></ngx-survey-form-item>
                 </div>
+            </form>
+            <div *ngIf="i<form.length-1">
+                <button mat-button type="button" class="btn btn-primary btn-block" (click)="submitStep(section, true)">Continue</button>
             </div>
-        </ng-container>
-    </fieldset>
-</form>
-
-<div *ngIf="splitBySteps">
-    <mat-horizontal-stepper #stepper *ngIf="!isMobile"
-        (selectionChange)="onStepChange($event)"
-    >
-<!--
-      <ng-template matStepperIcon="done" let-index="index">
-        {{index+1}}
-      </ng-template>
-
--->
-
-      <mat-step  *ngFor="let section of form; index as i;"
-        [editable]="isStepEnabled(section)"
-        [completed]="section.submited"
-
-        [hasError]="section.hasError"
-        [errorMessage]="section.firstErrorText"
-      >
-
-        <form>
-            <ng-template matStepLabel>{{section.title}}</ng-template>
-            <h3 *ngIf="section.subtitle">{{section.subtitle}}</h3>
-            <div *ngFor="let item of section.items" [attr.id]="'form_item_'+item.name">
-                <ngx-survey-form-item
-                    *ngIf="service.isItemVisible(form, section, item)"
-                    [type]="item.type"
-                    [item]="item"
-                    [editable]="editable"
-                    [isMobile]="isMobile"
-                    (changes)="onItemChanges($event)"
-                ></ngx-survey-form-item>
+            <div *ngIf="i>=form.length-1">
+                <div class="text-center text-danger global-error" *ngIf="submitErrorText">{{submitErrorText}}<br /></div>
+                <button mat-button type="button" class="btn btn-success btn-block" (click)="submitForm()" [disabled]="submitInProgress"><i class="fa fa-spinner fa-spin" *ngIf="submitInProgress"></i> Submit</button>
             </div>
-        </form>
-        <div *ngIf="i<form.length-1">
-            <button mat-button class="btn btn-primary btn-block" (click)="submitStep(section, true)">Continue</button>
-        </div>
-        <div *ngIf="i>=form.length-1">
-            <div class="text-center text-danger global-error" *ngIf="submitErrorText">{{submitErrorText}}<br /></div>
-            <button mat-button class="btn btn-success btn-block" (click)="submitForm()" [disabled]="submitInProgress"><i class="fa fa-spinner fa-spin" *ngIf="submitInProgress"></i> Submit</button>
-        </div>
-      </mat-step>
-    </mat-horizontal-stepper>
+        </mat-step>
+        </mat-horizontal-stepper>
 
-    <mat-vertical-stepper #stepper *ngIf="isMobile"
-        (selectionChange)="onStepChange($event)"
-    >
-<!--
-      <ng-template matStepperIcon="done" let-index="index">
-        {{index+1}}
-      </ng-template>
+        <mat-vertical-stepper #stepper *ngIf="isMobile"
+            (selectionChange)="onStepChange($event)"
+        >
+    <!--
+        <ng-template matStepperIcon="done" let-index="index">
+            {{index+1}}
+        </ng-template>
 
--->
+    -->
 
-      <mat-step  *ngFor="let section of form; index as i;"
-        [editable]="isStepEnabled(section)"
-        [completed]="section.submited"
+        <mat-step  *ngFor="let section of form; index as i;"
+            [editable]="isStepEnabled(section)"
+            [completed]="section.submited"
 
-        [hasError]="section.hasError"
-        [errorMessage]="section.firstErrorText"
-      >
+            [hasError]="section.hasError"
+            [errorMessage]="section.firstErrorText"
+        >
 
-        <form>
-            <ng-template matStepLabel>{{section.title}}</ng-template>
-            <h3 *ngIf="section.subtitle">{{section.subtitle}}</h3>
-            <div *ngFor="let item of section.items" [attr.id]="'form_item_'+item.name">
-                <ngx-survey-form-item
-                    *ngIf="service.isItemVisible(form, section, item)"
-                    [type]="item.type"
-                    [item]="item"
-                    [editable]="editable"
-                    (changes)="onItemChanges($event)"
-                    [isMobile]="isMobile"
-                ></ngx-survey-form-item>
+            <form>
+                <ng-template matStepLabel>{{section.title}}</ng-template>
+                <h3 *ngIf="section.subtitle">{{section.subtitle}}</h3>
+                <div *ngFor="let item of section.items" [attr.id]="'form_item_'+item.name">
+                    <ngx-survey-form-item
+                        *ngIf="service.isItemVisible(form, section, item)"
+                        [type]="item.type"
+                        [item]="item"
+                        [editable]="editable"
+                        (changes)="onItemChanges($event)"
+                        [isMobile]="isMobile"
+                    ></ngx-survey-form-item>
+                </div>
+            </form>
+            <div *ngIf="i<form.length-1">
+                <button mat-button type="button" class="btn btn-primary btn-block" (click)="submitStep(section, true)">Continue</button>
             </div>
-        </form>
-        <div *ngIf="i<form.length-1">
-            <button mat-button class="btn btn-primary btn-block" (click)="submitStep(section, true)">Continue</button>
-        </div>
-        <div *ngIf="i>=form.length-1">
-            <div class="text-center text-danger global-error" *ngIf="submitErrorText">{{submitErrorText}}<br /></div>
-            <button mat-button class="btn btn-success btn-block" (click)="submitForm()" [disabled]="submitInProgress"><i class="fa fa-spinner fa-spin" *ngIf="submitInProgress"></i> Submit</button>
-        </div>
-      </mat-step>
-    </mat-vertical-stepper>
+            <div *ngIf="i>=form.length-1">
+                <div class="text-center text-danger global-error" *ngIf="submitErrorText">{{submitErrorText}}<br /></div>
+                <button mat-button type="button" class="btn btn-success btn-block" (click)="submitForm()" [disabled]="submitInProgress"><i class="fa fa-spinner fa-spin" *ngIf="submitInProgress"></i> Submit</button>
+            </div>
+        </mat-step>
+        </mat-vertical-stepper>
+    </div>
 </div>

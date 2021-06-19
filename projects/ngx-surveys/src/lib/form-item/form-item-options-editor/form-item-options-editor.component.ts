@@ -10,6 +10,7 @@ export class FormItemOptionsEditor extends FormItem {
     value: FormItemOptionItem[];
     hasOptions: boolean=true;
     useCustomOptionValues:  boolean=false;
+    allowCustomOptionValues:  boolean=true;
     allowCustomAnswers:  boolean=true;
     fieldValidations: FormItemValidation={
         rules: <FormItemValidationRules[]> [
@@ -35,6 +36,7 @@ export class FormItemOptionsEditorComponent implements FormItemWidget, OnInit {
     public columns: string[];
 
     public useCustomValues:boolean=false;
+    public allowCustomValues:boolean=true;
     public allowCustomAnswers:boolean=true;
 
     constructor() { }
@@ -45,6 +47,7 @@ export class FormItemOptionsEditorComponent implements FormItemWidget, OnInit {
         }
         this.dataSource.data=this.item.value;
         this.useCustomValues=this.item.useCustomOptionValues;
+        this.allowCustomValues=this.item.allowCustomOptionValues;
         this.allowCustomAnswers=this.item.allowCustomAnswers;
         this.setColumns();
     }

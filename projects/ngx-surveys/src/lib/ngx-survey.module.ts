@@ -47,6 +47,7 @@ import { DialogItemVisibility } from './dialogs/dialog-item-visibility/dialog-it
 import { NgxSurveyComponent } from './ngx-survey.component';
 import { NgxSurveyService } from './ngx-survey.service';
 import { NgxMaskModule } from 'ngx-mask';
+import { AngularResizedEventModule } from 'angular-resize-event';
 
 const formItemComponents=[
     FormItemStringComponent,
@@ -89,6 +90,7 @@ const formItemComponents=[
         MatSlideToggleModule,
         MatStepperModule,
         NgxMaskModule.forRoot(),
+        AngularResizedEventModule,
     ],
     declarations: [
         FormItemDirective,

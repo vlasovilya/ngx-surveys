@@ -5,9 +5,10 @@
         [value]="item"
         (valueChange)="onFormChange($event)"
         (submit)="onFormSubmit($event)"
+        [editable]="!readOnly"
     ></ngx-survey>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button (click)="onOkClick()" cdkFocusInitial>Ok</button>
+  <button mat-button (click)="onOkClick()" [disabled]="readOnly" cdkFocusInitial>Ok</button>
 </div>

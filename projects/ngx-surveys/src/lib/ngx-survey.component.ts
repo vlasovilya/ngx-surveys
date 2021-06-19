@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
-import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, AfterViewInit, OnDestroy, ElementRef } from '@angular/core';
+//import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import { ResizedEvent } from 'angular-resize-event';
+//import { Subscription } from 'rxjs';
 import { NgxSurveyService } from './ngx-survey.service';
 import { MatStepper } from '@angular/material/stepper';
 
@@ -14,22 +15,26 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit, OnDestroy {
     @Input() form:any[];
     @Input() value:any={};
     @Input() splitBySteps:boolean;
+    @Input() validateByStepChange:boolean=true;
     @Input() submitInProgress:boolean;
     @Input() submitErrorText:string;
     @Input() editable:boolean=true;
 
     @Output() valueChange = new EventEmitter<any>();
+    @Output() stepChanged = new EventEmitter<any>();
     @Output() submit = new EventEmitter<any>();
+    @Output() resized = new EventEmitter<ResizedEvent>(); 
 
     @ViewChild('stepper', { static: false }) public stepper:MatStepper;
 
     public selectedIndex: number = 0;
     public isMobile: boolean;
 
-    private _bpSub: Subscription;
+    //private _bpSub: Subscription;
 
     constructor(
-        private bpObserver: BreakpointObserver,
+        //private bpObserver: BreakpointObserver,
+        private elRef:ElementRef,
         public service: NgxSurveyService,
     ) {
 
@@ -43,19 +48,34 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit, OnDestroy {
                 section.isEditable=true;
             });
         }
+        /*
         this._bpSub = this.bpObserver
           .observe(['(max-width: 599px)'])
           .subscribe((state: BreakpointState) => {
             this.setMobileStepper(state.matches);
           });
+          */
     }
 
     ngAfterViewInit() {
         //console.log(this.stepper);
     }
 
+    onResized(event: ResizedEvent) {
+        
+        if (event.newWidth<600 && !this.isMobile){
+            this.setMobileStepper(true);
+        }
+        else if (event.newWidth>=600 && this.isMobile){
+            this.setMobileStepper(false);
+        }
+        this.resized.emit(event);
+        //this.width = event.newWidth;
+        //this.height = event.newHeight;
+    }
+
     scrollToField(field) {
-        let el = document.getElementById('form_item_' + field.name);
+        let el = this.elRef.nativeElement.querySelector('#form_item_' + field.name);
         if (el){
             el.scrollIntoView();
         }
@@ -63,7 +83,7 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit, OnDestroy {
 
     isStepEnabled(section){
         const prevSection=this.form[this.form.indexOf(section)-1];
-        return !prevSection || (prevSection && prevSection.submited && !prevSection.hasError);
+        return !this.validateByStepChange || !prevSection || (prevSection && prevSection.submited && !prevSection.hasError);
     }
 
     onItemChanges(item) {
@@ -80,6 +100,7 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   setMobileStepper(isMobile: boolean): void {
+    
     this.isMobile = isMobile;
     setTimeout(() => {
         if (this.stepper){
@@ -90,9 +111,11 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit, OnDestroy {
 
     onStepChange(step) {
         //console.log(step);
-        if (step.previouslySelectedIndex>=0 && this.form[step.previouslySelectedIndex]){
+        this.stepChanged.emit(step);
+        if (this.validateByStepChange && step.previouslySelectedIndex>=0 && this.form[step.previouslySelectedIndex]){
             this.submitStep(this.form[step.previouslySelectedIndex], false);
         }
+        
 
 //        this.stepper.selectedIndex=0;
     }
@@ -138,7 +161,7 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this._bpSub.unsubscribe();
+        //this._bpSub.unsubscribe();
     }
 
 }

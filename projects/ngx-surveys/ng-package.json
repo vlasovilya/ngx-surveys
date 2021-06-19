@@ -5,6 +5,7 @@
     "entryFile": "src/public-api.ts"
   },
   "allowedNonPeerDependencies": [
-    "ngx-mask"
+    "ngx-mask",
+    "angular-resize-event"
   ]
 }

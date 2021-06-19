@@ -6,6 +6,11 @@ import { FormItem, FormSection } from '../../form-item/form-item';
 import { buildField } from '../../form-item/form-item.component';
 import * as _ from 'lodash';
 
+export interface DialogSectionData {
+    section: FormSection,
+    params: any
+}
+
 @Component({
   selector: 'dialog-section-edit',
   templateUrl: './dialog-section-edit.html',
@@ -15,10 +20,14 @@ export class DialogSectionEdit {
 
     @ViewChild('survey', { static: false }) public survey:NgxSurveyComponent;
 
+    public section:FormSection;
+    public readOnly: boolean;
+
     public commonFields: FormItem[] =[
         //buildField('string', {name: "name", label: "Name"}, true),
         buildField('string', {name: "title", label: "Title"}),
         buildField('string', {name: "subtitle", label: "Subtitle"}),
+        /*
         buildField('select', {name: "sectionStyle", label: "Section Style", items: [
             {
                 optionValue: 'Bold',
@@ -31,6 +40,7 @@ export class DialogSectionEdit {
                 style: "Checkmark"
             }
         ]}, true),
+        */
     ];
 
     public sectionEditForm:FormSection[]=[
@@ -41,8 +51,12 @@ export class DialogSectionEdit {
 
     constructor(
         public dialogRef: MatDialogRef<DialogSectionEdit>,
-        @Inject(MAT_DIALOG_DATA) public data: FormSection
-    ) {}
+        @Inject(MAT_DIALOG_DATA) public data: DialogSectionData
+    ) {
+        const section=data.section;
+        this.readOnly=data.params.readOnly;
+        this.section=section;
+    }
 
     onNoClick(): void {
         this.dialogRef.close();
@@ -50,8 +64,8 @@ export class DialogSectionEdit {
 
     onFormSubmit(data){
         data.name=_.camelCase(data.title);
-        this.data=data;
-        this.dialogRef.close(this.data);
+        this.section=data;
+        this.dialogRef.close(this.section);
     }
 
     onOkClick(): void {

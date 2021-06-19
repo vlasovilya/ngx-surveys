@@ -2,6 +2,7 @@
     cdkDropList
     [cdkDropListData]="form"
     (cdkDropListDropped)="onSectionDropped($event)"
+    [cdkDropListDisabled]="readOnly"
 >
     <mat-card *ngFor="let section of form"
         cdkDrag
@@ -26,6 +27,7 @@
                 matTooltip="Delete Section"
                 matTooltipPosition="above"
                 (click)="removeSection(section)"
+                [disabled]="readOnly"
             >
               <mat-icon>delete</mat-icon>
             </button>
@@ -49,6 +51,7 @@
                 <div cdkDropList
                     [cdkDropListData]="section.items"
                     (cdkDropListDropped)="onItemDropped($event, section)"
+                    [cdkDropListDisabled]="readOnly"
                     class="form-items-list"
                 >
                     <div *ngFor="let item of section.items" [attr.id]="'form_item_'+item.name" class="form-item"
@@ -58,7 +61,7 @@
                         <div class="item-drag-placeholder" *cdkDragPlaceholder></div>
                         <div class="form-item-actions">
                             <div class="form-item-var-name">
-                                <small>{{item.name}}</small>
+                                <small *ngIf="showFieldNames">{{item.name}}</small>
                             </div>
                             <button mat-icon-button class="form-item-actions-button" aria-label="Visibility" *ngIf="getSectionValueItemsForItem(item, section).length"
                                 matTooltip="Visibility"
@@ -74,14 +77,14 @@
                             >
                               <mat-icon>edit</mat-icon>
                             </button>
-                             <button mat-icon-button class="form-item-actions-button" aria-label="Toggle menu" *ngIf="item.value"
+                             <button mat-icon-button class="form-item-actions-button" aria-label="Toggle menu" *ngIf="item.value && !readOnly"
                                 matTooltip="Clear field value"
                                 matTooltipPosition="above"
                                 (click)="clearValue(item, section)"
                             >
                               <mat-icon>cancel_presentation</mat-icon>
                             </button>
-                            <button mat-icon-button class="form-item-actions-button" aria-label="Toggle menu"
+                            <button mat-icon-button class="form-item-actions-button" aria-label="Toggle menu" [disabled]="readOnly"
                                 matTooltip="Delete Field"
                                 matTooltipPosition="above"
                                 (click)="removeField(item, section)"
@@ -94,7 +97,7 @@
                             *ngIf="service.isItemVisible(form, section, item)"
                             [type]="item.type"
                             [item]="item"
-                            [editable]="editable"
+                            [editable]="enableEditFieldValues && !readOnly"
                             (changes)="onItemChanges($event)"
                         ></ngx-survey-form-item>
                     </div>
@@ -102,7 +105,7 @@
             </div>
         <div class="add-item-button"
         >
-            <button mat-stroked-button color="primary" (click)="addFeild(section)">Add Field</button>
+            <button mat-stroked-button color="primary" (click)="addFeild(section)" [disabled]="readOnly">Add Field</button>
         </div>
         <!--
             <button mat-icon-button class="add-item-button" aria-label="Toggle menu">
@@ -115,7 +118,7 @@
         matTooltip="Add Section"
         matTooltipPosition="above"
     >
-        <button mat-mini-fab color="primary" aria-label="Add Section" (click)="addSection()">
+        <button mat-mini-fab color="primary" aria-label="Add Section" (click)="addSection()" [disabled]="readOnly">
           <mat-icon>add</mat-icon>
         </button>
     </div>

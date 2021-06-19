@@ -1,10 +1,11 @@
 <div>
     <mat-label>{{item.label}}</mat-label>
 
-    <mat-slide-toggle
+    <mat-slide-toggle *ngIf="allowCustomValues"
       class="example-margin"
       [color]="'primary'"
       [checked]="useCustomValues"
+      [disabled]="!editable"
       (change)="onUseCustomValuesChange($event)"
     >
     Use custom option values
@@ -14,6 +15,7 @@
         cdkDropList
         [cdkDropListData]="dataSource"
         (cdkDropListDropped)="onListDropped($event)"
+        [cdkDropListDisabled]="!editable"
     >
 
 
@@ -25,6 +27,7 @@
                         matInput
                         [(ngModel)]="element.optionValue"
                         [errorStateMatcher]="matcher"
+                        [disabled]="!editable"
                     >
                 </mat-form-field>
             </td>
@@ -39,6 +42,7 @@
                         [(ngModel)]="element.label"
                         (ngModelChange)="onOptionLabelChange($event, element)"
                         [errorStateMatcher]="matcher"
+                        [disabled]="!editable"
                     >
                 </mat-form-field>
 
@@ -47,6 +51,7 @@
                     <input #inputField
                         matInput
                         [(ngModel)]="element.explanationLabel"
+                        [disabled]="!editable"
                     >
                 </mat-form-field>
             </td>
@@ -56,12 +61,14 @@
             <td mat-cell *matCellDef="let element">
                 <button mat-icon-button class="form-item-actions-button" aria-label="Show text field with custom value" *ngIf="allowCustomAnswers" (click)="toggleExplanationField(element)" type="button"
                     matTooltip="Show explanation text field"
+                    [disabled]="!editable"
                 >
                   <mat-icon [color]="element.showExplanation ? 'primary' : 'disabled'">comment</mat-icon>
                 </button>
 
                 <button mat-icon-button class="form-item-actions-button" aria-label="Remove Option" (click)="removeOption(element)" type="button"
                     matTooltip="Remove Option"
+                    [disabled]="!editable"
                 >
                   <mat-icon>delete</mat-icon>
                 </button>
@@ -81,7 +88,7 @@
         <div *ngFor="let error of item.errors">{{error.message}}</div>
     </mat-error>
     <mat-hint align="start" *ngIf="!(item.errors && item.errors.length)"><strong>{{item.hint}}</strong> </mat-hint>
-    <button mat-raised-button color="primary" aria-label="Add Option" (click)="addOption()" type="button" matTooltip="Add Option">
+    <button mat-raised-button color="primary" aria-label="Add Option" (click)="addOption()" type="button" matTooltip="Add Option" [disabled]="!editable">
         Add Option
     </button>
 </div>

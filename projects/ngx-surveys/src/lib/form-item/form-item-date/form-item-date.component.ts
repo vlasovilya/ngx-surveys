@@ -48,7 +48,7 @@ export class FormItemDateComponent implements FormItemWidget, OnInit, AfterViewI
     }
 
     ngAfterViewInit(){
-        console.log(this.inputField);
+        //console.log(this.inputField);
         this.inputField.value='5/14/2021';
     }
 

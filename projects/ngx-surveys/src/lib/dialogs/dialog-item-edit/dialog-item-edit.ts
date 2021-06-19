@@ -29,6 +29,8 @@ export class DialogItemEdit {
     public itemEditForm:any[];
 
     public multiChoiseFieldsOnly:boolean;
+    public customFieldNamesAllowed:boolean;
+    public readOnly: boolean;
 
     public multiChoiseFieldTypes:string[]=["radio", "select", "segments"];
 
@@ -43,6 +45,8 @@ export class DialogItemEdit {
         }
         this.item=item;
         this.multiChoiseFieldsOnly=data.params.multiChoiseFieldsOnly;
+        this.customFieldNamesAllowed=data.params.customFieldNamesAllowed;
+        this.readOnly=data.params.readOnly;
         this.setFormFields();
     }
 
@@ -64,13 +68,13 @@ export class DialogItemEdit {
                 buildOption('list', 'List with selection'),
                 buildOption('buttons', 'Buttons'),
             ], visibilityValuesInSection: ["radio"], value:'list'}, true),
-            buildField('string', {name: "name", label: "Name"}, false),
+            buildField('string', {name: "name", label: "Name", visibilityValuesInSection: !this.customFieldNamesAllowed ? ['none'] : undefined}, false),
             buildField('string', {name: "label", label: "Label"}),
             buildField('string', {name: "hint", label: "Hint"}),
             buildField('checkbox', {name: "required", label: "Required"}),
             buildField('checkbox', {name: "actionUpdatesSectionValue", label: "Action Updates Section Value", visibilityValuesInSection: this.multiChoiseFieldTypes}),
-            buildField('optionsEditor', {name: "items", label: "Options", visibilityValuesInSection: ["radio", "select"], allowCustomAnswers: !this.multiChoiseFieldsOnly}),
-            buildField('optionsEditor', {name: "segments", label: "Segments", visibilityValuesInSection: ["segments"], allowCustomAnswers: !this.multiChoiseFieldsOnly}),
+            buildField('optionsEditor', {name: "items", label: "Options", visibilityValuesInSection: ["radio", "select"], allowCustomAnswers: !this.multiChoiseFieldsOnly, allowCustomOptionValues: this.customFieldNamesAllowed}),
+            buildField('optionsEditor', {name: "segments", label: "Segments", visibilityValuesInSection: ["segments"], allowCustomAnswers: !this.multiChoiseFieldsOnly, allowCustomOptionValues: this.customFieldNamesAllowed}),
 
         ];
         this.itemEditForm=[

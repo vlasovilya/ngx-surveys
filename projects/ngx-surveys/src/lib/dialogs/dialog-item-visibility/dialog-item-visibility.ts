@@ -8,6 +8,7 @@ import { FormItem, FormSection, buildField } from '../../form-item/index';
 export interface FormItemVisibilityData {
     sectionItems: FormItem[],
     visibility: string[],
+    readOnly: boolean
 }
 
 @Component({
@@ -32,6 +33,7 @@ export class DialogItemVisibility {
     ];
 
     public value:any;
+    public readOnly: boolean;
 
     constructor(
         public dialogRef: MatDialogRef<DialogItemVisibility>,
@@ -49,6 +51,7 @@ export class DialogItemVisibility {
         this.itemEditForm=[{
             items: this.formFields
         }];
+        this.readOnly=data.readOnly;
         console.log(this.itemEditForm, value);
 
     }
