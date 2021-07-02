@@ -73,8 +73,8 @@ export class DialogItemEdit {
             buildField('string', {name: "hint", label: "Hint"}),
             buildField('checkbox', {name: "required", label: "Required"}),
             buildField('checkbox', {name: "actionUpdatesSectionValue", label: "Action Updates Section Value", visibilityValuesInSection: this.multiChoiseFieldTypes}),
-            buildField('optionsEditor', {name: "items", label: "Options", visibilityValuesInSection: ["radio", "select"], allowCustomAnswers: !this.multiChoiseFieldsOnly, allowCustomOptionValues: this.customFieldNamesAllowed}),
-            buildField('optionsEditor', {name: "segments", label: "Segments", visibilityValuesInSection: ["segments"], allowCustomAnswers: !this.multiChoiseFieldsOnly, allowCustomOptionValues: this.customFieldNamesAllowed}),
+            buildField('optionsEditor', {name: "items", label: "Options", visibilityValuesInSection: ["radio", "select"], allowCustomAnswers: !this.multiChoiseFieldsOnly, allowCustomOptionValues: this.customFieldNamesAllowed, defaultValue: this.item.value}),
+            buildField('optionsEditor', {name: "segments", label: "Segments", visibilityValuesInSection: ["segments"], allowCustomAnswers: !this.multiChoiseFieldsOnly, allowCustomOptionValues: this.customFieldNamesAllowed, defaultValue: this.item.value}),
 
         ];
         this.itemEditForm=[
@@ -111,6 +111,20 @@ export class DialogItemEdit {
         else if (!item.required && minLengthRule) {
             minLengthRule.minLength=0;
         }
+        ['segments', 'items'].forEach(key=>{
+            if (item[key] && item[key].length){
+                let defaultValArr:string[]=[];
+                let defaultValStr='';
+                item[key].forEach(option=>{
+                    if (option.selected){
+                        defaultValArr.push(option.optionValue);
+                        defaultValStr=option.optionValue;
+                    }
+                    delete option.selected;
+                });
+                item.value=item.multiple ? defaultValArr : defaultValStr;
+            }
+        })
         this.item=item;
         this.dialogRef.close(this.item);
     }

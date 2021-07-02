@@ -12,6 +12,8 @@ export class FormItemOptionsEditor extends FormItem {
     useCustomOptionValues:  boolean=false;
     allowCustomOptionValues:  boolean=true;
     allowCustomAnswers:  boolean=true;
+    multiple:  boolean=false;
+    defaultValue: string | string[];
     fieldValidations: FormItemValidation={
         rules: <FormItemValidationRules[]> [
             {
@@ -50,10 +52,15 @@ export class FormItemOptionsEditorComponent implements FormItemWidget, OnInit {
         this.allowCustomValues=this.item.allowCustomOptionValues;
         this.allowCustomAnswers=this.item.allowCustomAnswers;
         this.setColumns();
+        this.item.value.forEach(option=>{
+            option.selected=this.isOptionSelected(option);
+        });
+        console.log(this.item);
+
     }
 
     setColumns(){
-        this.columns=this.useCustomValues ? ['optionValue', 'label', 'actions'] : ['label', 'actions'];
+        this.columns=this.useCustomValues ? ['selectedByDefault', 'optionValue', 'label', 'actions'] : ['selectedByDefault', 'label', 'actions'];
     }
 
     onUseCustomValuesChange(ev){
@@ -69,6 +76,33 @@ export class FormItemOptionsEditorComponent implements FormItemWidget, OnInit {
                 field.optionValue=field.label;
             })
         }
+        this.changes.emit(this.item);
+    }
+
+    isOptionSelected(option){
+        //console.log(option);
+        const item=this.item;
+        return item.multiple ? (item.defaultValue || []).indexOf(option.optionValue) >=0 : item.defaultValue===option.optionValue;
+    }
+    setDefaultValue(option, checked) {
+        const item=this.item;
+        if (item.multiple){
+            let value=[...item.defaultValue];
+            const selectedIndex=value.indexOf(option.optionValue);
+            if (selectedIndex>=0){
+                checked ? value.push(option.optionValue) : value=value.filter((str, index)=>index!==selectedIndex);
+            }
+            else if (checked) {
+                value.push(option.optionValue);
+            }
+            item.defaultValue=value;
+        }
+        else {
+            item.defaultValue=checked ? option.optionValue : '';
+        }
+        (this.item.value || []).forEach(option=>{
+            option.selected=this.isOptionSelected(option);
+        });
         this.changes.emit(this.item);
     }
 

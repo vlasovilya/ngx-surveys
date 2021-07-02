@@ -68,7 +68,9 @@
                                 matTooltipPosition="above"
                                 (click)="openItemVisibilityDialog(item, section)"
                             >
-                                <mat-icon>visibility</mat-icon>
+                                <mat-icon
+                                    [color]="item.visibilityValuesInSection && item.visibilityValuesInSection.length ? 'primary' : 'disabled'"
+                                >visibility</mat-icon>
                             </button>
                             <button mat-icon-button class="form-item-actions-button" aria-label="Toggle menu"
                                 matTooltip="Edit Field"
@@ -77,13 +79,16 @@
                             >
                               <mat-icon>edit</mat-icon>
                             </button>
-                             <button mat-icon-button class="form-item-actions-button" aria-label="Toggle menu" *ngIf="item.value && !readOnly"
+                            <!--
+                            <button mat-icon-button class="form-item-actions-button" aria-label="Toggle menu" *ngIf="item.value && !readOnly"
                                 matTooltip="Clear field value"
                                 matTooltipPosition="above"
                                 (click)="clearValue(item, section)"
                             >
                               <mat-icon>cancel_presentation</mat-icon>
                             </button>
+                            -->
+                             
                             <button mat-icon-button class="form-item-actions-button" aria-label="Toggle menu" [disabled]="readOnly"
                                 matTooltip="Delete Field"
                                 matTooltipPosition="above"
@@ -94,7 +99,6 @@
 
                         </div>
                         <ngx-survey-form-item
-                            *ngIf="service.isItemVisible(form, section, item)"
                             [type]="item.type"
                             [item]="item"
                             [editable]="enableEditFieldValues && !readOnly"

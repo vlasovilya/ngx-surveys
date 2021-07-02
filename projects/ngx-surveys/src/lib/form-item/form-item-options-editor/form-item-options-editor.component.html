@@ -18,6 +18,16 @@
         [cdkDropListDisabled]="!editable"
     >
 
+        <ng-container matColumnDef="selectedByDefault">
+            <th mat-header-cell *matHeaderCellDef> Selected </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-checkbox
+                    [checked]="element.selected"
+                    [color]="'primary'"
+                    (change)="setDefaultValue(element, $event.checked)"
+                ></mat-checkbox>
+            </td>
+        </ng-container>
 
         <ng-container matColumnDef="optionValue">
             <th mat-header-cell *matHeaderCellDef> Value </th>

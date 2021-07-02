@@ -41,6 +41,7 @@ export interface FormItemOptionItem {
     label: string;
     showExplanation?: boolean;
     explanationLabel?: string;
+    selected?: boolean;
 }
 
 

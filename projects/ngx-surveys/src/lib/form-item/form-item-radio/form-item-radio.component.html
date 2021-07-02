@@ -16,7 +16,7 @@
     <mat-selection-list #selectedOptions *ngIf="!item.style || item.style==='list'"
         (selectionChange)="onSelectionChange($event)"
         [disabled]="!editable"
-        [(ngModel)]="selectedOption"
+        
         [multiple]="item.multiple"
     >
         <mat-list-option *ngFor="let option of item.items"
