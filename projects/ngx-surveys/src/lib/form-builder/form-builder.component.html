@@ -72,7 +72,7 @@
                                     [color]="item.visibilityValuesInSection && item.visibilityValuesInSection.length ? 'primary' : 'disabled'"
                                 >visibility</mat-icon>
                             </button>
-                            <button mat-icon-button class="form-item-actions-button" aria-label="Toggle menu"
+                            <button mat-icon-button class="form-item-actions-button" aria-label="Toggle menu" *ngIf="!readOnly"
                                 matTooltip="Clone"
                                 matTooltipPosition="above"
                                 (click)="cloneItem(item, section)"
