@@ -27,6 +27,20 @@
         </mat-list-option>
     </mat-selection-list>
 
+    <mat-form-field appearance="fill" *ngIf="item.style==='select'">
+        <mat-select
+          [value]="selectedOption"
+          [disabled]="!editable"
+          (selectionChange)="onSelectionChange($event)"
+          [errorStateMatcher]="matcher"
+          [required]="item.required"
+        >
+          <mat-option *ngFor="let option of item.items" [value]="option.optionValue">
+            {{option.label}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+
     <mat-form-field *ngIf="isExplanationRequired(selectedOption)" class="other-option-field">
         <mat-label>{{explanationLabel}}</mat-label>
         <input #inputField

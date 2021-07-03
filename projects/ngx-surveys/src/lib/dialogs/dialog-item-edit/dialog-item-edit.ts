@@ -64,9 +64,10 @@ export class DialogItemEdit {
                 buildOption('password', 'Password'),
                 buildOption('url', 'URL'),
             ], visibilityValuesInSection: ["string"], value:'text'}, true),
-            buildField('select', {name: "style", label: "Radio Buttons Style", items: [
+            buildField('select', {name: "style", label: "Style", items: [
                 buildOption('list', 'List with selection'),
-                buildOption('buttons', 'Buttons'),
+                buildOption('buttons', 'Radio Buttons'),
+                buildOption('select', 'Select'),
             ], visibilityValuesInSection: ["radio"], value:'list'}, true),
             buildField('string', {name: "name", label: "Name", visibilityValuesInSection: !this.customFieldNamesAllowed ? ['none'] : undefined}, false),
             buildField('string', {name: "label", label: "Label"}),
@@ -74,7 +75,7 @@ export class DialogItemEdit {
             buildField('checkbox', {name: "required", label: "Required"}),
             buildField('checkbox', {name: "actionUpdatesSectionValue", label: "Action Updates Section Value", visibilityValuesInSection: this.multiChoiseFieldTypes}),
             buildField('optionsEditor', {name: "items", label: "Options", visibilityValuesInSection: ["radio", "select"], allowCustomAnswers: !this.multiChoiseFieldsOnly, allowCustomOptionValues: this.customFieldNamesAllowed, defaultValue: this.item.value}),
-            buildField('optionsEditor', {name: "segments", label: "Segments", visibilityValuesInSection: ["segments"], allowCustomAnswers: !this.multiChoiseFieldsOnly, allowCustomOptionValues: this.customFieldNamesAllowed, defaultValue: this.item.value}),
+            buildField('optionsEditor', {name: "segments", label: "Segments", visibilityValuesInSection: ["segments"], allowCustomAnswers: false, allowCustomOptionValues: this.customFieldNamesAllowed, defaultValue: this.item.value}),
 
         ];
         this.itemEditForm=[

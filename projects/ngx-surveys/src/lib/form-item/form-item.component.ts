@@ -42,12 +42,12 @@ export const FormItemTypes={
     radio : {
         component: FormItemRadioComponent,
         model: FormItemRadio,
-        label: 'Radio'
+        label: 'Multi Choice'
     },
-    select : {
+    select : { //Depricated
         component: FormItemSelectComponent,
         model: FormItemSelect,
-        label: 'Select'
+        //label: 'Select'
     },
     optionsEditor : {
         component: FormItemOptionsEditorComponent,
