@@ -73,6 +73,13 @@
                                 >visibility</mat-icon>
                             </button>
                             <button mat-icon-button class="form-item-actions-button" aria-label="Toggle menu"
+                                matTooltip="Clone"
+                                matTooltipPosition="above"
+                                (click)="cloneItem(item, section)"
+                            >
+                              <mat-icon>filter_none</mat-icon>
+                            </button>
+                            <button mat-icon-button class="form-item-actions-button" aria-label="Toggle menu"
                                 matTooltip="Edit Field"
                                 matTooltipPosition="above"
                                 (click)="openItemDialog(item, section)"

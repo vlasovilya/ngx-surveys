@@ -206,6 +206,21 @@ export class FormBuilderComponent implements OnInit {
         this.changes.emit(this.form);
     }
 
+    cloneItem(item: FormItem, section: FormSection): void {
+        //section.items=(section.items || []).filter((op, index)=>index!==(section.items || []).indexOf(item));
+        //console.log(item);
+        const newItem=_.cloneDeep(item);
+        let newName=newItem.name+'_clone';
+        if (section.items?.find(item=>item.name===newName)){
+            const index=section.items?.filter(item=>item.name.indexOf(newName)>=0).length;
+            newName+='_'+index;
+        }
+        newItem.name=newName;
+        newItem.actionUpdatesSectionValue=false;
+        section.items?.splice(section.items?.indexOf(item)+1, 0, newItem);
+        this.changes.emit(this.form);
+    }
+
     clearValue(item: FormItem, section: FormSection): void {
         item.value='';
         this.changes.emit(this.form);
