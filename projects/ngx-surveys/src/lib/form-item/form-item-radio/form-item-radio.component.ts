@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewChild } from '@angular/core';
 import { MatSelectionList } from '@angular/material/list';
+import { SurveyErrorStateMatcher } from '../error-state.matcher';
 import { FormItem, FormItemOptionItem, FormItemWidget } from '../form-item';
 
 export class FormItemRadio extends FormItem {
@@ -22,6 +23,7 @@ export class FormItemRadioComponent implements FormItemWidget, OnInit {
     @Output() changes = new EventEmitter<FormItemRadio>();
     @ViewChild('selectedOptions', { static: true }) public selectedOptions:MatSelectionList;
 
+    matcher = new SurveyErrorStateMatcher();
     explanationValue: string='';
     explanationLabel: string | undefined;
     selectedOption: string;
