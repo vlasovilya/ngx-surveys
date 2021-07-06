@@ -1,0 +1,25 @@
+<mat-radio-group [attr.aria-label]="label" *ngIf="!multiple"
+    (change)="onSelectionChange($event)"
+    [disabled]="!editable"
+    [(ngModel)]="value"
+    [required]="required"
+>
+    <mat-radio-button *ngFor="let option of options"
+    [value]="option.optionValue"
+    [checked]="isOptionSelected(option)"
+    >{{option.label}}</mat-radio-button>
+
+</mat-radio-group> 
+<div class="example-list-section" *ngIf="multiple">
+    <ul>
+      <li *ngFor="let option of options">
+        <mat-checkbox
+            [value]="option.optionValue"
+            [checked]="isOptionSelected(option)"
+            [disabled]="!editable"
+            (change)="onCheckboxSelectionChange($event)">
+          {{option.label}}
+        </mat-checkbox>
+      </li>
+    </ul>
+</div>

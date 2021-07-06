@@ -1,7 +1,7 @@
 <section class="example-section">
     <mat-checkbox class="example-margin"
         [(ngModel)]="item.value"
-        (ngModelChanges)="onChange($event)"
+        (change)="onChange($event)"
         [required]="item.required"
         [disabled]="!editable"
     >{{item.label}}</mat-checkbox>

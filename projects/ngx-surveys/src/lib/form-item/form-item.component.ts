@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, ViewChild, ComponentFactoryResolver, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, ViewChild, ComponentFactoryResolver, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { FormItemDirective } from './form-item.directive';
 
 import { FormItem, FormItemWidget, FormItemValidation, FormItemOptionItem } from './form-item';
@@ -12,6 +12,7 @@ import { FormItemNumericRating, FormItemNumericRatingComponent } from './form-it
 import { FormItemSelect, FormItemSelectComponent } from './form-item-select/form-item-select.component';
 import { FormItemOptionsEditor, FormItemOptionsEditorComponent } from './form-item-options-editor/form-item-options-editor.component';
 import { FormItemCheckbox, FormItemCheckboxComponent } from './form-item-checkbox/form-item-checkbox.component';
+import { Subscription } from 'rxjs';
 
 export const FormItemTypes={
     'string' : {
@@ -99,11 +100,12 @@ export class FormItemComponent implements OnInit, OnDestroy, OnChanges {
         | FormItemSelect | FormItemOptionsEditor | FormItemCheckbox;
     @Input() editable: boolean=true;
     @Input() isMobile: boolean=false;
+    @Input() id: string;
     @Output() changes = new EventEmitter<any>();
 
     @ViewChild(FormItemDirective, { static: true }) public itemHost: FormItemDirective;
 
-    private subscription;
+    private subscription: Subscription;
 
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
@@ -115,9 +117,9 @@ export class FormItemComponent implements OnInit, OnDestroy, OnChanges {
         this.loadComponent();
     }
 
-    ngOnChanges(changes) {
+    ngOnChanges(changes:SimpleChanges) {
 
-        if (changes && changes.type){
+        if (changes && (changes.type || changes.id)){
             this.loadComponent();
         }
     }

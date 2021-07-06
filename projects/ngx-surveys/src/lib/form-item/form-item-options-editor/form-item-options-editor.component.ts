@@ -71,6 +71,7 @@ export class FormItemOptionsEditorComponent implements FormItemWidget, OnInit {
 
     onValueChange(value){
         this.item.value=value;
+        //console.log(this.item);
         if (this.useCustomValues){
             (this.item.value || []).forEach(field=>{
                 field.optionValue=field.label;
@@ -128,7 +129,7 @@ export class FormItemOptionsEditorComponent implements FormItemWidget, OnInit {
         const previousIndex = this.dataSource.data.findIndex(row => row === event.item.data);
         moveItemInArray(this.dataSource.data,previousIndex, event.currentIndex);
         this.dataSource.data = this.dataSource.data.slice();
-        console.log('dropped', JSON.stringify(this.dataSource.data), JSON.stringify(this.item.value));
+        //console.log('dropped', JSON.stringify(this.dataSource.data), JSON.stringify(this.item.value));
     }
 
     toggleExplanationField (option) {

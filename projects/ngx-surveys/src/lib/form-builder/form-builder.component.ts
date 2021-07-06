@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChildren, QueryList } from '@angular/core';
 import { NgxSurveyService } from '../ngx-survey.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import * as _ from 'lodash';
@@ -7,7 +7,7 @@ import * as moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
 
 import { DialogSectionEdit, DialogItemEdit, DialogItemVisibility } from '../dialogs/index';
-import { FormItem, FormSection, buildField } from '../form-item/index';
+import { FormItem, FormSection, buildField, FormItemComponent } from '../form-item/index';
 
 
 @Component({
@@ -33,6 +33,8 @@ export class FormBuilderComponent implements OnInit {
     @Input() enableEditFieldValues:boolean=true;
     @Input() showFieldNames:boolean=true;  
     @Input() readOnly:boolean=false;
+
+    @ViewChildren('formFieldItem') formItemElements: QueryList<FormItemComponent>
 
     private _form;
     public formValues:any={};
@@ -113,6 +115,7 @@ export class FormBuilderComponent implements OnInit {
             console.log('The dialog was closed', result, section);
             if (result && !this.readOnly){
                 item=_.extend(item, result);
+                const itemComponent=this.formItemElements.find(el=>el.item===item);
                 if (section){
                     item.name=_.camelCase((section.name || '')+' '+item.name);
                 }
@@ -122,6 +125,9 @@ export class FormBuilderComponent implements OnInit {
 
                 item.justAdded=false;
                 this.changes.emit(this.form);
+                if (itemComponent){
+                    itemComponent.loadComponent();
+                }
             }
             else if(section && item.justAdded) {
                 this.removeField(item, section);

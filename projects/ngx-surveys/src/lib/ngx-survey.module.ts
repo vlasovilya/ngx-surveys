@@ -48,6 +48,9 @@ import { NgxSurveyComponent } from './ngx-survey.component';
 import { NgxSurveyService } from './ngx-survey.service';
 import { NgxMaskModule } from 'ngx-mask';
 import { AngularResizedEventModule } from 'angular-resize-event';
+import { RadioGroupComponent } from './form-item/form-item-radio/radio-group/radio-group.component';
+import { SelectionListComponent } from './form-item/form-item-radio/selection-list/selection-list.component';
+import { SelectComponent } from './form-item/form-item-radio/select/select.component';
 
 const formItemComponents=[
     FormItemStringComponent,
@@ -98,7 +101,10 @@ const formItemComponents=[
         ...formItemComponents,
         FormBuilderComponent,
         StarRatingComponent,
-        NgxSurveyComponent
+        NgxSurveyComponent,
+        RadioGroupComponent,
+        SelectionListComponent,
+        SelectComponent
     ],
     entryComponents: [
         ...formItemComponents

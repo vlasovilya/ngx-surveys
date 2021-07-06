@@ -74,7 +74,8 @@ export class DialogItemEdit {
             buildField('string', {name: "hint", label: "Hint"}),
             buildField('checkbox', {name: "required", label: "Required"}),
             buildField('checkbox', {name: "actionUpdatesSectionValue", label: "Action Updates Section Value", visibilityValuesInSection: this.multiChoiseFieldTypes}),
-            buildField('optionsEditor', {name: "items", label: "Options", visibilityValuesInSection: ["radio", "select"], allowCustomAnswers: !this.multiChoiseFieldsOnly, allowCustomOptionValues: this.customFieldNamesAllowed, defaultValue: this.item.value}),
+            buildField('checkbox', {name: "multiple", label: "Multiple Answers", visibilityValuesInSection: ["radio"]}),
+            buildField('optionsEditor', {name: "items", label: "Options", visibilityValuesInSection: ["radio", "select"], allowCustomAnswers: !this.multiChoiseFieldsOnly, allowCustomOptionValues: this.customFieldNamesAllowed, defaultValue: this.item.value, multiple: this.item.multiple}),
             buildField('optionsEditor', {name: "segments", label: "Segments", visibilityValuesInSection: ["segments"], allowCustomAnswers: false, allowCustomOptionValues: this.customFieldNamesAllowed, defaultValue: this.item.value}),
 
         ];
@@ -85,8 +86,16 @@ export class DialogItemEdit {
         ];
     }
 
-    onFormChange(values){
-        console.log(values);
+    onFormChange(values:FormItem){
+        console.log(values, this.itemEditForm);
+        const optionsEditField=this.itemEditForm[0].items.find(f=>f.name==='items');
+        if (optionsEditField && optionsEditField.multiple!==values.multiple){
+            optionsEditField.multiple=values.multiple;
+            if (values.multiple){
+                optionsEditField.defaultValue=[];
+            }            
+        }
+        console.log(optionsEditField);
     }
 
     onNoClick(): void {

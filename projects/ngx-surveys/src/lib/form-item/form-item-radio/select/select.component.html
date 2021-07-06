@@ -1,0 +1,14 @@
+<mat-form-field appearance="fill" *ngIf="init">
+    <mat-select
+      [value]="value"
+      [disabled]="!editable"
+      (selectionChange)="onSelectionChange($event)"
+      [errorStateMatcher]="matcher"
+      [required]="required"
+      [multiple]="multiple"
+    >
+      <mat-option *ngFor="let option of options" [value]="option.optionValue">
+        {{option.label}}
+      </mat-option>
+    </mat-select>
+</mat-form-field>

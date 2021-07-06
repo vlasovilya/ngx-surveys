@@ -28,6 +28,7 @@ export class FormItem {
     justAdded:  boolean;
     required:  boolean;
     readOnly:  boolean;
+    multiple:  boolean;
     actionUpdatesTableValue: boolean;
     actionUpdatesSectionValue: boolean;
     visibilityValuesInTable: string[];

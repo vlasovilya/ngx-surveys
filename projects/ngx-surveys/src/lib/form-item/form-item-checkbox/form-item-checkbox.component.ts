@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { SurveyErrorStateMatcher } from '../error-state.matcher';
 import { FormItem, FormItemWidget } from '../form-item';
 
@@ -24,9 +25,9 @@ export class FormItemCheckboxComponent implements FormItemWidget, OnInit {
 
     }
 
-    onChange(value){
-        console.log(value);
-        this.item.value=value;
+    onChange(event:MatCheckboxChange){
+        console.log(event);
+        this.item.value=event.checked;
         this.changes.emit(this.item);
     }
 
