@@ -2,7 +2,7 @@
     <div class="col-xs-12 rating-set">
         <div class="rating-set-title">{{item.label}}</div>
         <div class="rating-set-buttons">
-            <button mat-button class="btn btn-sm"
+            <button mat-button class="btn btn-sm" type="button"
                 (click)="editable ? onSelectionChange(i) : false"
                 [ngClass]="item.value===i ? 'btn-primary' : 'btn-outline-primary'"
                 *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10]">{{i}}</button>
