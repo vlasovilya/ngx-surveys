@@ -10,6 +10,7 @@
     <mat-list-option *ngFor="let option of options"
         [value]="option.optionValue"
         [selected]="isOptionSelected(option)"
+        (click)="onOptionClick($event, option)"
     >
         {{option.label}}
     </mat-list-option>

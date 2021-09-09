@@ -45,4 +45,20 @@ export class SelectionListComponent implements OnInit, OnChanges {
     }
   }
 
+  onOptionClick(event, option:FormItemOptionItem){
+    /*
+    console.log(event, option);
+    if (!this.required){
+        if (this.multiple && this.value.indexOf(option.optionValue)>=0 && Array.isArray(this.value)){
+          this.value=this.value.filter(str=>str!==option.optionValue);
+          this.selectionChange.emit(this.value);
+        }
+        else if (this.value===option.optionValue) {
+          this.value='';
+          this.selectionChange.emit(this.value);
+        }
+    }
+    */
+  }
+
 }

@@ -35,6 +35,7 @@ export class FormItem {
     visibilityValuesInSection: string[];
     items?: FormItemOptionItem[];
     segments?: FormItemOptionItem[];
+    isSectionValueItem?: boolean;
 }
 
 export interface FormItemOptionItem {

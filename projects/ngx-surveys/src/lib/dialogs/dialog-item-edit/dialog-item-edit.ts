@@ -73,9 +73,9 @@ export class DialogItemEdit {
             buildField('string', {name: "label", label: "Label"}),
             buildField('string', {name: "hint", label: "Hint"}),
             buildField('checkbox', {name: "required", label: "Required"}),
-            buildField('checkbox', {name: "actionUpdatesSectionValue", label: "Action Updates Section Value", visibilityValuesInSection: this.multiChoiseFieldTypes}),
+            buildField('checkbox', {name: "actionUpdatesSectionValue", label: "Action Updates Section Value", visibilityValuesInSection: [this.multiChoiseFieldTypes]}),
             buildField('checkbox', {name: "multiple", label: "Multiple Answers", visibilityValuesInSection: ["radio"]}),
-            buildField('optionsEditor', {name: "items", label: "Options", visibilityValuesInSection: ["radio", "select"], allowCustomAnswers: !this.multiChoiseFieldsOnly, allowCustomOptionValues: this.customFieldNamesAllowed, defaultValue: this.item.value, multiple: this.item.multiple}),
+            buildField('optionsEditor', {name: "items", label: "Options", visibilityValuesInSection: [["radio", "select"]], allowCustomAnswers: !this.multiChoiseFieldsOnly, allowCustomOptionValues: this.customFieldNamesAllowed, defaultValue: this.item.value, multiple: this.item.multiple}),
             buildField('optionsEditor', {name: "segments", label: "Segments", visibilityValuesInSection: ["segments"], allowCustomAnswers: false, allowCustomOptionValues: this.customFieldNamesAllowed, defaultValue: this.item.value}),
 
         ];

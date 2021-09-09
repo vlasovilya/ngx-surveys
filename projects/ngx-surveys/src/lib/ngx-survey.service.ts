@@ -103,13 +103,22 @@ export class NgxSurveyService {
     public isItemVisible(form, section, item) {
         let res = true;
         if (item.visibilityValuesInSection && item.visibilityValuesInSection.length) {
-            let sectionItem = _.find(section.items, item=>item.isSectionValueItem) || _.find(section.items, item=>item.actionUpdatesSectionValue);
-            res = sectionItem ? _.intersection(item.visibilityValuesInSection, _.isArray(sectionItem.value) ? sectionItem.value : [sectionItem.value]).length > 0 : false;
+            let sectionItems = section.items?.filter(item=>item.isSectionValueItem).length ? section.items?.filter(item=>item.isSectionValueItem) : section.items?.filter(item=>item.actionUpdatesSectionValue);
+            
+            res = sectionItems.filter((sItem)=>{
+                const valArr=_.isArray(sItem.value) ? sItem.value : [sItem.value];
+                return valArr.find(val=>
+                    item.visibilityValuesInSection.find(arr=>
+                        arr.indexOf(val)>=0
+                    )
+                )
+            }
+            ).length===item.visibilityValuesInSection.length;
         }
         if (item.visibilityValuesInTable && item.visibilityValuesInTable.length) {
             let tableItem = _.first(_.map(form, (section) => {
                 return _.find(section.items, (item) => {
-                    if (!item.items) {
+                    if (!item.items) { 
                         return item.actionUpdatesTableValue;
                     } else {
                         return _.find(item.items, item=>item.actionUpdatesTableValue);

@@ -43,9 +43,11 @@ export class DialogItemVisibility {
         const value={};
         this.formFields=data.sectionItems.map(item=>{
             this.data.visibility.forEach(val=>{
-                value[item.name]=val;
+                if ((item.items || item.segments)?.find(op=>val.indexOf(op.optionValue)>=0)){
+                    value[item.name]=val;
+                }
             });
-            return buildField('radio', {name: item.name, label: item.label || item.name, items: item.items || item.segments}, false);
+            return buildField('radio', {name: item.name, label: item.label || item.name, items: item.items || item.segments, multiple: true}, false);
         });
         this.value=value;
         this.itemEditForm=[{
