@@ -28,8 +28,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "rimraf dist/ngx-surveys && ng build ngx-surveys --prod",
-    "build:demo": "rimraf dist/ngx-surveys-demo && ng build ngx-surveys-demo --prod --base-href=/ngx-surveys/demo/",
+    "build": "rimraf dist/ngx-surveys && ng build ngx-surveys --configuration production",
+    "build:demo": "rimraf dist/ngx-surveys-demo && ng build ngx-surveys-demo --configuration production --base-href=/ngx-surveys/demo/",
     "release": "cd dist/ngx-surveys && yarn publish",
     "bundlewatch": "bundlewatch",
     "test": "ng test",
@@ -63,7 +63,7 @@
     "tsickle": "^0.39.1",
     "tslib": "^2.0.0",
     "web-animations-js": "^2.3.2",
-    "zone.js": "~0.11.5"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular/cli": "^12.2.17",
