@@ -18,16 +18,15 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DemoComponent,
-    FooterComponent,
-    HeaderComponent,
-    GithubLinkComponent,
-  ],
-  imports: [BrowserModule, BrowserAnimationsModule, NgxSurveyModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatTabsModule],
-  entryComponents: [],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        DemoComponent,
+        FooterComponent,
+        HeaderComponent,
+        GithubLinkComponent,
+    ],
+    imports: [BrowserModule, BrowserAnimationsModule, NgxSurveyModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatTabsModule],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}

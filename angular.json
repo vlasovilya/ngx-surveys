@@ -85,18 +85,6 @@
               "src/favicon.ico"
             ]
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     },
@@ -110,17 +98,6 @@
           "options": {
             "protractorConfig": "./protractor.conf.js",
             "devServerTarget": "ngx-surveys:serve"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }
@@ -149,18 +126,6 @@
             "main": "projects/ngx-surveys/src/test.ts",
             "tsConfig": "projects/ngx-surveys/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-surveys/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ngx-surveys/tsconfig.lib.json",
-              "projects/ngx-surveys/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }

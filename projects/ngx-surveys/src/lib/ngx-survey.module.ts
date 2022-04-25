@@ -114,9 +114,6 @@ const formItemComponents=[
         FileListItemImageComponent,
         FileListItemVideoComponent
     ],
-    entryComponents: [
-        ...formItemComponents
-    ],
     exports: [
         FormBuilderComponent,
         NgxSurveyComponent
@@ -124,8 +121,8 @@ const formItemComponents=[
     providers: [
         NgxSurveyService,
         {
-            provide: STEPPER_GLOBAL_OPTIONS, useValue: {showError: true}
+            provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true }
         }
-    ],
+    ]
 })
 export class NgxSurveyModule { }
