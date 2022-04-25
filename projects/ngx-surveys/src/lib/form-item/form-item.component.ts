@@ -13,6 +13,7 @@ import { FormItemSelect, FormItemSelectComponent } from './form-item-select/form
 import { FormItemOptionsEditor, FormItemOptionsEditorComponent } from './form-item-options-editor/form-item-options-editor.component';
 import { FormItemCheckbox, FormItemCheckboxComponent } from './form-item-checkbox/form-item-checkbox.component';
 import { Subscription } from 'rxjs';
+import { FormItemFile, FormItemFileComponent } from './form-item-file/form-item-file.component';
 
 export const FormItemTypes={
     'string' : {
@@ -63,6 +64,11 @@ export const FormItemTypes={
         component: FormItemDateComponent,
         model: FormItemDate,
         label: 'Date'
+    },
+    file : {
+        component: FormItemFileComponent,
+        model: FormItemFile,
+        label: 'File Upload'
     },
 };
 

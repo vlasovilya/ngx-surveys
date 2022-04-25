@@ -51,6 +51,10 @@ import { AngularResizedEventModule } from 'angular-resize-event';
 import { RadioGroupComponent } from './form-item/form-item-radio/radio-group/radio-group.component';
 import { SelectionListComponent } from './form-item/form-item-radio/selection-list/selection-list.component';
 import { SelectComponent } from './form-item/form-item-radio/select/select.component';
+import { FormItemFileComponent } from './form-item/form-item-file/form-item-file.component';
+import { FileListItemFileComponent } from './form-item/form-item-file/file-list-item-file/file-list-item-file.component';
+import { FileListItemImageComponent } from './form-item/form-item-file/file-list-item-image/file-list-item-image.component';
+import { FileListItemVideoComponent } from './form-item/form-item-file/file-list-item-video/file-list-item-video.component';
 
 const formItemComponents=[
     FormItemStringComponent,
@@ -104,7 +108,11 @@ const formItemComponents=[
         NgxSurveyComponent,
         RadioGroupComponent,
         SelectionListComponent,
-        SelectComponent
+        SelectComponent,
+        FormItemFileComponent,
+        FileListItemFileComponent,
+        FileListItemImageComponent,
+        FileListItemVideoComponent
     ],
     entryComponents: [
         ...formItemComponents
