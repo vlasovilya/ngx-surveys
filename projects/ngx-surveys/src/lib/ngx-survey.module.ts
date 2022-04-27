@@ -22,6 +22,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatStepperModule } from '@angular/material/stepper';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { NgxFileDropModule } from 'ngx-file-drop';
 
 
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
@@ -47,7 +49,7 @@ import { DialogItemVisibility } from './dialogs/dialog-item-visibility/dialog-it
 import { NgxSurveyComponent } from './ngx-survey.component';
 import { NgxSurveyService } from './ngx-survey.service';
 import { NgxMaskModule } from 'ngx-mask';
-import { AngularResizedEventModule } from 'angular-resize-event';
+import { AngularResizeEventModule } from 'angular-resize-event';
 import { RadioGroupComponent } from './form-item/form-item-radio/radio-group/radio-group.component';
 import { SelectionListComponent } from './form-item/form-item-radio/selection-list/selection-list.component';
 import { SelectComponent } from './form-item/form-item-radio/select/select.component';
@@ -55,6 +57,7 @@ import { FormItemFileComponent } from './form-item/form-item-file/form-item-file
 import { FileListItemFileComponent } from './form-item/form-item-file/file-list-item-file/file-list-item-file.component';
 import { FileListItemImageComponent } from './form-item/form-item-file/file-list-item-image/file-list-item-image.component';
 import { FileListItemVideoComponent } from './form-item/form-item-file/file-list-item-video/file-list-item-video.component';
+import { FileSizePipe } from './pipes/file-size.pipe';
 
 const formItemComponents=[
     FormItemStringComponent,
@@ -97,7 +100,9 @@ const formItemComponents=[
         MatSlideToggleModule,
         MatStepperModule,
         NgxMaskModule.forRoot(),
-        AngularResizedEventModule,
+        AngularResizeEventModule,
+        NgxFileDropModule,
+        MatProgressBarModule
     ],
     declarations: [
         FormItemDirective,
@@ -112,7 +117,8 @@ const formItemComponents=[
         FormItemFileComponent,
         FileListItemFileComponent,
         FileListItemImageComponent,
-        FileListItemVideoComponent
+        FileListItemVideoComponent,
+        FileSizePipe
     ],
     exports: [
         FormBuilderComponent,

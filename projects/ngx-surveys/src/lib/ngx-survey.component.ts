@@ -23,7 +23,7 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit, OnDestroy {
     @Output() valueChange = new EventEmitter<any>();
     @Output() stepChanged = new EventEmitter<any>();
     @Output() submit = new EventEmitter<any>();
-    @Output() resized = new EventEmitter<ResizedEvent>(); 
+    @Output() resized = new EventEmitter<ResizedEvent>();
 
     @ViewChild('stepper', { static: false }) public stepper:MatStepper;
 
@@ -62,11 +62,11 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     onResized(event: ResizedEvent) {
-        
-        if (event.newWidth<600 && !this.isMobile){
+
+        if (event.newRect.width<600 && !this.isMobile){
             this.setMobileStepper(true);
         }
-        else if (event.newWidth>=600 && this.isMobile){
+        else if (event.newRect.width>=600 && this.isMobile){
             this.setMobileStepper(false);
         }
         this.resized.emit(event);
@@ -100,7 +100,7 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   setMobileStepper(isMobile: boolean): void {
-    
+
     this.isMobile = isMobile;
     setTimeout(() => {
         if (this.stepper){
@@ -115,7 +115,7 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit, OnDestroy {
         if (this.validateByStepChange && step.previouslySelectedIndex>=0 && this.form[step.previouslySelectedIndex]){
             this.submitStep(this.form[step.previouslySelectedIndex], false);
         }
-        
+
 
 //        this.stepper.selectedIndex=0;
     }

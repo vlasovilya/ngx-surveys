@@ -1,13 +1,23 @@
 
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, Observer, of } from 'rxjs';
 import { FormItem, SurveyErrorStateMatcher, FormItemWidget } from '../index';
 import * as _ from 'lodash';
-import { map } from 'rxjs/operators';
+import { NgxFileDropEntry } from 'ngx-file-drop';
+import { NgxSurveyService } from '../../ngx-survey.service';
+//import { map } from 'rxjs/operators';
 
 export class FormItemFile extends FormItem {
     type: string;
     multiple: boolean;
+}
+
+export class SurveyFile extends NgxFileDropEntry {
+    progressSubject: Observable<number>;
+    progressObserver: Observer<number>;
+    progressValue: number;
+    uploading: boolean;
+    name: string;
 }
 
 @Component({
@@ -40,7 +50,9 @@ export class FormItemFileComponent implements FormItemWidget, OnInit {
         allowedTypes: "image/jpeg,image/png,image/svg",
     }
 
-    constructor() { }
+    constructor(
+        private service: NgxSurveyService,
+    ) { }
 
 
     ngOnInit() {
@@ -73,22 +85,44 @@ export class FormItemFileComponent implements FormItemWidget, OnInit {
           this.fileIsOver = fileIsOver;
       }
 
-      public onFileDrop(event): void {
-          //console.log('onFileDrop', event, this.files);
+      public onFileDrop(files: NgxFileDropEntry[]): void {
+            console.log('onFileDrop', files, this.files);
+            this.files = files;
+            for (const droppedFile of files) {
+                // Is it a file?
+                if (droppedFile.fileEntry.isFile) {
+                    const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
+                    fileEntry.file((file: File) => {
 
-          const dataTransfer = event.dataTransfer ? event.dataTransfer : event.originalEvent.dataTransfer;
-          this.files = _.union(this.files, dataTransfer.files);
-          this.uploadFiles(dataTransfer.files);
+                    // Here you can access the real file
+                    console.log(droppedFile.relativePath, file);
+
+                    /**
+                     // You could upload it like this:
+                    const formData = new FormData()
+                    formData.append('logo', file, relativePath)
+
+                    // Headers
+                    const headers = new HttpHeaders({
+                        'security-token': 'mytoken'
+                    })
+
+                    this.http.post('https://mybackend.com/api/upload/sanitize-and-save-logo', formData, { headers: headers, responseType: 'blob' })
+                    .subscribe(data => {
+                        // Sanitized logo returned from backend
+                    })
+                    **/
+
+                    });
+                } else {
+                    // It was a directory (empty directories are added, otherwise only files)
+                    const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
+                    console.log(droppedFile.relativePath, fileEntry);
+                }
+            }
+            this.uploadFiles(this.files);
       }
 
-      public onFileSelect(event): void {
-        //console.log(event);
-        let files=(event.srcElement || event.target).files;
-        //console.log(files, this.files, _.union(this.files, files));
-        console.log(files);
-        this.files = _.union(this.files, files);
-        this.uploadFiles(files);
-      }
 
       processFileObject(file, fileResult){
         //console.log(file, fileResult);
@@ -102,16 +136,32 @@ export class FormItemFileComponent implements FormItemWidget, OnInit {
         return file;
     }
 
-      uploadFiles(files) {
+      uploadFiles(files: SurveyFile[]) {
         //console.log(files);
         if(!files.length){
             return;
         }
+        files.forEach(file=>{
+            file.uploading=true;
+            file.name=file.relativePath;
+            file.progressSubject = new Observable(observer => {
+                file.progressObserver = observer
+            });
+            file.progressSubject.subscribe(
+              data => {
+                file.progressValue=data;
+                //console.log(file);
+              }
+            );
+        })
+        this.service.onFilesSelected.next(files);
+        this.files=_.union(this.files, files);
+
         this.isFilesUploading = true;
 
         this.uploadFilesNumber=files.length;
         this.uploadedFilesNumber=1;
-
+/* ono
         const streams=[...files].map(file=>this.uploadFile(file).pipe(map(res=>{
           //console.log(res);
           const fileObj=res['file'];
@@ -125,7 +175,7 @@ export class FormItemFileComponent implements FormItemWidget, OnInit {
           return res;
         })));
 
-        /* ono
+
         this.parse.eachLimit(streams, 10).subscribe(res=>{
 
           this.fileObjects=_.union(this.fileObjects || [], res.filter(item=>item).map(item=>this.processFileObject(item.file, item)));

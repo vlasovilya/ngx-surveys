@@ -1,1 +1,22 @@
-<p>form-item-file works!</p>
+<div>
+    <div class="file" *ngFor="let file of files">
+        <div class="file-title">
+            <div class="file-name">
+                <i class="fa fa-file-o" aria-hidden="true"></i>
+                <strong *ngIf="file.uploading">{{file.name}}</strong>
+                <a [href]="file.url" target="_blank" *ngIf="!file.uploading">{{file.name}}</a>
+                <span class="file-size" [innerHTML]="file.size | fileSize"></span>
+            </div>
+            <a class="file-upload-cancel" [href]="file.url" target="_blank" *ngIf="!file.uploading"><i class="fa fa-download" aria-hidden="true"></i></a>
+            <a class="file-upload-cancel" *ngIf="allowDelete" (click)="delete.emit(file)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+        </div>
+        <mat-progress-bar mode="determinate"  *ngIf="file.uploading" [value]="file.progressValue"></mat-progress-bar>
+    </div>
+</div>
+<ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="onFileDrop($event)"
+    (onFileOver)="fileOver($event)" (onFileLeave)="fileOver($event)">
+        <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+          Optional custom content that replaces the the entire default content.<br/>
+          <button  mat-raised-button color="primary" type="button" (click)="openFileSelector()">Browse Files</button>
+        </ng-template>
+</ngx-file-drop>

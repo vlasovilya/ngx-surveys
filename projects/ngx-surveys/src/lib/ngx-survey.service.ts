@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormItemError } from './form-item';
 import * as _ from 'lodash';
+import { ReplaySubject } from 'rxjs';
+import { SurveyFile } from './form-item/form-item-file/form-item-file.component';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,8 @@ export class NgxSurveyService {
     constructor() {
 
     }
+
+    public onFilesSelected: ReplaySubject<SurveyFile[]> = new ReplaySubject(1);
 
     public errorMessages: any= {
         require: "Field required",
@@ -104,7 +108,7 @@ export class NgxSurveyService {
         let res = true;
         if (item.visibilityValuesInSection && item.visibilityValuesInSection.length) {
             let sectionItems = section.items?.filter(item=>item.isSectionValueItem).length ? section.items?.filter(item=>item.isSectionValueItem) : section.items?.filter(item=>item.actionUpdatesSectionValue);
-            
+
             res = sectionItems.filter((sItem)=>{
                 const valArr=_.isArray(sItem.value) ? sItem.value : [sItem.value];
                 return valArr.find(val=>
@@ -118,7 +122,7 @@ export class NgxSurveyService {
         if (item.visibilityValuesInTable && item.visibilityValuesInTable.length) {
             let tableItem = _.first(_.map(form, (section) => {
                 return _.find(section.items, (item) => {
-                    if (!item.items) { 
+                    if (!item.items) {
                         return item.actionUpdatesTableValue;
                     } else {
                         return _.find(item.items, item=>item.actionUpdatesTableValue);

@@ -53,6 +53,13 @@ export const demoForm = [
                 "position": 1
             },
             {
+                "name": "file",
+                "type": "file",
+                "label": "File",
+                "hint": "Required. Numeric.",
+                "position": 1
+            },
+            {
                 "fieldValidations": {
                     "rules": [
                         {

@@ -1,0 +1,11 @@
+
+:host ::ng-deep {
+    .ngx-file-drop__content{
+        display: block!important;
+        text-align: center;
+        padding-top: 15px;
+        .mat-raised-button {
+            margin-top: 10px;
+        }
+    }
+}

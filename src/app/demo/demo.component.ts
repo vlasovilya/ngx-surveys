@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { demoForm } from '../demoform';
 import { NgxSurveyComponent } from '../../../projects/ngx-surveys/src/public-api'
+import { NgxSurveyService } from '../../../projects/ngx-surveys/src/lib/ngx-survey.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-demo',
@@ -26,16 +28,37 @@ import { NgxSurveyComponent } from '../../../projects/ngx-surveys/src/public-api
     `,
   ],
 })
-export class DemoComponent implements OnInit {
+export class DemoComponent implements OnInit, OnDestroy {
 
     @ViewChild('survey', { static: false }) public survey:NgxSurveyComponent;
 
     public form=demoForm;
     public model={};
+    private fileUpoadSubscription: Subscription;
 
-    constructor() {}
+    constructor(
+        surveyService: NgxSurveyService
+    ) {
+        this.fileUpoadSubscription=surveyService.onFilesSelected.subscribe(files=>{
+            files.forEach(file=>{
+                let i=0;
+                const interval=setInterval(()=>{
+                    i++;
+                    file.progressObserver.next(i);
+                    if (i>=100){
+                        clearInterval(interval);
+                    }
+                }, 30)
+
+            })
+        })
+    }
 
     ngOnInit() {}
+
+    ngOnDestroy(): void {
+        this.fileUpoadSubscription.unsubscribe();
+    }
 
     onFormSubmit(value) {
         console.log(value);
