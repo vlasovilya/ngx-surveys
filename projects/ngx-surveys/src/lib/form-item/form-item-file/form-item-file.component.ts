@@ -1,7 +1,8 @@
 
 import { Component, OnInit, Input, Output, EventEmitter, NgZone } from '@angular/core';
-import { Observable, Observer } from 'rxjs';
-import { FormItem, SurveyErrorStateMatcher, FormItemWidget } from '../index';
+import { Observable } from 'rxjs';
+import { SurveyErrorStateMatcher } from '../index';
+import { FormItem, FormItemWidget, SurveyFile } from '../form-item';
 import * as _ from 'lodash';
 import { NgxFileDropEntry } from 'ngx-file-drop';
 import { NgxSurveyService } from '../../ngx-survey.service';
@@ -13,19 +14,6 @@ export class FormItemFile extends FormItem {
     value: SurveyFile[];
     areaLabel: string;
     buttonLabel: string;
-}
-
-export class SurveyFile {
-    progressSubject: Observable<number>;
-    progressObserver: Observer<number>;
-    progressValue: number;
-    uploading: boolean;
-    name: string;
-    size: number;
-    mime: string;
-    src: string | ArrayBuffer | null;
-    url: string;
-    file: File;
 }
 
 @Component({
@@ -53,15 +41,9 @@ export class FormItemFileComponent implements FormItemWidget, OnInit {
     private acceptTypes: any={
         image: '.png, .jpg, .jpeg',
         video: '.mp4, .mov',
-        file: '*'
+        file: ''
     }
 
-    public uploaderFieldParams:any={
-        name:'screenshots',
-        uploaderType: "multiple",
-        workflow: "media",
-        allowedTypes: "image/jpeg,image/png,image/svg",
-    }
 
     constructor(
         private service: NgxSurveyService,

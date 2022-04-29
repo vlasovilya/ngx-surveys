@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { SurveyFile } from '../form-item-file.component';
+import { SurveyFile } from '../../form-item';
 
 @Component({
   selector: 'ammo-file-list-item-image',

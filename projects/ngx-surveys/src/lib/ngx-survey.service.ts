@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { FormItemError } from './form-item';
+import { FormItemError, SurveyFile } from './form-item';
 import * as _ from 'lodash';
 import { ReplaySubject } from 'rxjs';
-import { SurveyFile } from './form-item/form-item-file/form-item-file.component';
 
 @Injectable({
   providedIn: 'root'

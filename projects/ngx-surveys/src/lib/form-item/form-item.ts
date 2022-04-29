@@ -1,5 +1,5 @@
 import { EventEmitter } from '@angular/core';
-import { SurveyFile } from './form-item-file/form-item-file.component';
+import { Observable, Observer } from 'rxjs';
 
 export interface FormItemError {
     type?: string;
@@ -64,4 +64,17 @@ export interface FormSection {
     isEditable?: boolean;
     hasError?: boolean;
     firstErrorText?: string;
+}
+
+export class SurveyFile {
+    progressSubject: Observable<number>;
+    progressObserver: Observer<number>;
+    progressValue: number;
+    uploading: boolean;
+    name: string;
+    size: number;
+    mime: string;
+    src: string | ArrayBuffer | null;
+    url: string;
+    file: File;
 }
