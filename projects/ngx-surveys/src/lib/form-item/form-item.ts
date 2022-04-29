@@ -1,4 +1,5 @@
 import { EventEmitter } from '@angular/core';
+import { SurveyFile } from './form-item-file/form-item-file.component';
 
 export interface FormItemError {
     type?: string;
@@ -20,7 +21,7 @@ export class FormItem {
     label: string;
     style: string;
     hint: string;
-    value: string | number | string[] | boolean | FormItemOptionItem[];
+    value: string | number | string[] | boolean | FormItemOptionItem[] | SurveyFile[];
     errors: FormItemError[];
     fieldValidations: FormItemValidation;
     fieldValidation: FormItemValidationRules;

@@ -103,7 +103,7 @@ export class FormItemComponent implements OnInit, OnDestroy, OnChanges {
 
     @Input() type: string;
     @Input() item: FormItem | FormItemString | FormItemRating | FormItemText | FormItemDate | FormItemSegments | FormItemRadio | FormItemNumericRating
-        | FormItemSelect | FormItemOptionsEditor | FormItemCheckbox;
+        | FormItemSelect | FormItemOptionsEditor | FormItemCheckbox | FormItemFile;
     @Input() editable: boolean=true;
     @Input() isMobile: boolean=false;
     @Input() id: string;

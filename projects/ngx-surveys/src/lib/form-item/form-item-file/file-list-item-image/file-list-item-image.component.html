@@ -1,1 +1,8 @@
-<p>file-list-item-image works!</p>
+<div class="image-upload-item" [ngClass]="{uploading: file.uploading}">
+    <img [src]="file.src || file.url" width="100%" *ngIf="file.src || file.url">
+    <mat-progress-bar mode="determinate"  *ngIf="file.uploading" [value]="file.progressValue"></mat-progress-bar>
+    <div class="file-upload-img-info" *ngIf="file.size">
+        Size: <div class="file-upload-img-info-value" [innerHTML]="file.size| fileSize"></div>
+    </div>
+    <a class="delete-btn" (click)="onDelete.emit(file)" title="Delete Image"><mat-icon>cancel</mat-icon></a>
+</div>

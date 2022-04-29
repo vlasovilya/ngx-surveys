@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { SurveyFile } from '../form-item-file.component';
 
 @Component({
-  selector: 'app-file-list-item-file',
+  selector: 'ammo-file-list-item-file',
   templateUrl: './file-list-item-file.component.html',
-  styleUrls: ['./file-list-item-file.component.css']
+  styleUrls: ['./file-list-item-file.component.scss']
 })
 export class FileListItemFileComponent implements OnInit {
 
-  constructor() { }
+    @Input() file: SurveyFile;
+    @Input() allowDelete: boolean;
+    @Output() onDelete = new EventEmitter<SurveyFile>();
 
-  ngOnInit(): void {
-  }
+    constructor() { }
+
+    ngOnInit(): void {
+    }
 
 }

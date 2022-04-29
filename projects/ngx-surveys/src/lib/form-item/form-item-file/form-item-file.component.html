@@ -1,22 +1,49 @@
-<div>
-    <div class="file" *ngFor="let file of files">
-        <div class="file-title">
-            <div class="file-name">
-                <i class="fa fa-file-o" aria-hidden="true"></i>
-                <strong *ngIf="file.uploading">{{file.name}}</strong>
-                <a [href]="file.url" target="_blank" *ngIf="!file.uploading">{{file.name}}</a>
-                <span class="file-size" [innerHTML]="file.size | fileSize"></span>
+<div class="form-group">
+    <div class="col-xs-12 files-set">
+        <div class="files-set-title">{{item.label}}</div>
+        <div [ngClass]="'files-list-'+item.fileType">
+            <div class="file-item" *ngFor="let file of files">
+                <ammo-file-list-item-file *ngIf="!item.fileType || item.fileType==='file'"
+                    [file]="file"
+                    [allowDelete]="allowDelete"
+                    (onDelete)="removeFile($event)"
+                >
+                </ammo-file-list-item-file>
+                <ammo-file-list-item-image *ngIf="item.fileType==='image'"
+                    [file]="file"
+                    [allowDelete]="allowDelete"
+                    (onDelete)="removeFile($event)"
+                >
+                </ammo-file-list-item-image>
+                <ammo-file-list-item-video *ngIf="item.fileType==='video'"
+                    [file]="file"
+                    [allowDelete]="allowDelete"
+                    (onDelete)="removeFile($event)"
+                >
+                </ammo-file-list-item-video>
             </div>
-            <a class="file-upload-cancel" [href]="file.url" target="_blank" *ngIf="!file.uploading"><i class="fa fa-download" aria-hidden="true"></i></a>
-            <a class="file-upload-cancel" *ngIf="allowDelete" (click)="delete.emit(file)"><i class="fa fa-trash" aria-hidden="true"></i></a>
         </div>
-        <mat-progress-bar mode="determinate"  *ngIf="file.uploading" [value]="file.progressValue"></mat-progress-bar>
+        <ngx-file-drop *ngIf="item.multiple || (!item.multiple && files.length<1)"
+            dropZoneLabel="Drop files here"
+            (onFileDrop)="onFileDrop($event)"
+            (onFileOver)="fileOver(true)"
+            (onFileLeave)="fileOver(false)"
+            [multiple]="item.multiple"
+            [accept]="accept"
+            [directory]="false"
+        >
+                <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                    <span *ngIf="!fileIsOver">{{item.areaLabel || 'Drag and drop files here or use "Browse Files" button'}}</span>
+                    <span *ngIf="fileIsOver">Drop files here</span>
+                    <br/>
+                    <button  mat-raised-button color="primary" type="button" (click)="openFileSelector()">{{item.buttonLabel || 'Browse Files'}}</button>
+                </ng-template>
+        </ngx-file-drop>
+        <mat-error *ngIf="item.errors && item.errors.length">
+          <div *ngFor="let error of item.errors">{{error.message}}</div>
+        </mat-error>
+        <mat-hint align="start" *ngIf="!(item.errors && item.errors.length)"><strong>{{item.hint}}</strong> </mat-hint>
     </div>
 </div>
-<ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="onFileDrop($event)"
-    (onFileOver)="fileOver($event)" (onFileLeave)="fileOver($event)">
-        <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-          Optional custom content that replaces the the entire default content.<br/>
-          <button  mat-raised-button color="primary" type="button" (click)="openFileSelector()">Browse Files</button>
-        </ng-template>
-</ngx-file-drop>
+
+

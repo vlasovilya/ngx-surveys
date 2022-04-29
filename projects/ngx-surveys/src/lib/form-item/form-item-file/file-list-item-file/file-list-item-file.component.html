@@ -1,1 +1,13 @@
-<p>file-list-item-file works!</p>
+<div class="file">
+    <div class="file-title">
+        <div class="file-name">
+            <mat-icon>insert_drive_file</mat-icon>
+            <strong *ngIf="file.uploading">{{file.name}}</strong>
+            <a [href]="file.url" target="_blank" *ngIf="!file.uploading">{{file.name}}</a>
+            <span class="file-size" [innerHTML]="file.size | fileSize"></span>
+        </div>
+        <a class="file-upload-cancel" [href]="file.url" target="_blank" *ngIf="!file.uploading"><mat-icon>cloud_download</mat-icon></a>
+        <a class="file-upload-cancel" *ngIf="allowDelete" (click)="onDelete.emit(file)"><mat-icon>delete</mat-icon></a>
+    </div>
+    <mat-progress-bar mode="determinate"  *ngIf="file.uploading" [value]="file.progressValue"></mat-progress-bar>
+</div>

@@ -44,10 +44,12 @@ export class DemoComponent implements OnInit, OnDestroy {
                 let i=0;
                 const interval=setInterval(()=>{
                     i++;
-                    file.progressObserver.next(i);
                     if (i>=100){
                         clearInterval(interval);
+                        file.uploading=false;
+                        file.url='https://cdn.pixabay.com/photo/2020/06/01/22/23/eye-5248678__340.jpg';
                     }
+                    file.progressObserver.next(i);
                 }, 30)
 
             })

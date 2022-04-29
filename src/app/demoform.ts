@@ -55,9 +55,17 @@ export const demoForm = [
             {
                 "name": "file",
                 "type": "file",
-                "label": "File",
-                "hint": "Required. Numeric.",
-                "position": 1
+                "label": "Images",
+                "fileType": "image",
+                "multiple": true,
+                "hint": "",
+                "position": 1,
+                "value": [
+                    {
+                        url:'https://cdn.pixabay.com/photo/2020/06/01/22/23/eye-5248678__340.jpg',
+                        name:'eye.jpg'
+                    }
+                ]
             },
             {
                 "fieldValidations": {

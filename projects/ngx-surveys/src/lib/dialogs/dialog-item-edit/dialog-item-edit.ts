@@ -64,11 +64,21 @@ export class DialogItemEdit {
                 buildOption('password', 'Password'),
                 buildOption('url', 'URL'),
             ], visibilityValuesInSection: ["string"], value:'text'}, true),
+            buildField('select', {name: "fileType", label: "Uploader Type", items: [
+                buildOption('image', 'Image'),
+                buildOption('video', 'Video'),
+                buildOption('file', 'Any File'),
+            ], visibilityValuesInSection: ["file"], value:'image'}, true),
             buildField('select', {name: "style", label: "Style", items: [
                 buildOption('list', 'List with selection'),
                 buildOption('buttons', 'Radio Buttons'),
                 buildOption('select', 'Select'),
             ], visibilityValuesInSection: ["radio"], value:'list'}, true),
+            buildField('checkbox', {name: "multiple", label: "Allow multiple files upload", visibilityValuesInSection: ["file"]}),
+            /*
+            buildField('string', {name: "areaLabel", label: "Area Label", visibilityValuesInSection: ["file"], defaultValue:'Drag and drop files here or use "Browse Files" button'}),
+            buildField('string', {name: "buttonLabel", label: "Button Label", visibilityValuesInSection: ["file"], defaultValue:'Browse Files'}),
+            */
             buildField('string', {name: "name", label: "Name", visibilityValuesInSection: !this.customFieldNamesAllowed ? ['none'] : undefined}, false),
             buildField('string', {name: "label", label: "Label"}),
             buildField('string', {name: "hint", label: "Hint"}),
@@ -93,7 +103,7 @@ export class DialogItemEdit {
             optionsEditField.multiple=values.multiple;
             if (values.multiple){
                 optionsEditField.defaultValue=[];
-            }            
+            }
         }
         console.log(optionsEditField);
     }

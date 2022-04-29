@@ -1,0 +1,36 @@
+.file {
+    font-size: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    line-height: 13px;
+    text-align: left;
+    .file-title {
+        display: flex;
+        font-size: 12px;
+
+        .file-name {
+            width: 100%;
+            mat-icon {
+                width: 16px;
+                font-size: 15px;
+            }
+            i {
+                padding-right: 5px;
+            }
+        }
+        .file-size {
+            margin-left: 5px;
+        }
+    }
+    .file-upload-cancel {
+        display: block;
+        width: 20px;
+        padding-left: 5px;
+        font-size: 15px;
+        cursor: pointer;
+        mat-icon {
+            width: 20px;
+            font-size: 20px;
+        }
+    }
+}
