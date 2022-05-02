@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgxSurveyModule } from '../../projects/ngx-surveys/src/lib';
+//import { NgxSurveyModule } from '../../dist/ngx-surveys/lib/ngx-survey.module';
 
 import { AppComponent } from './app.component';
 import { DemoComponent } from './demo/demo.component';

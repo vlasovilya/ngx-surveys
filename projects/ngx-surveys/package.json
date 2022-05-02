@@ -1,6 +1,6 @@
 {
   "name": "ngx-surveys",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Angular 8+ survey / form builder",
   "bugs": "https://github.com/vlasovilya/ngx-surveys/issues",
   "homepage": "https://github.com/vlasovilya/ngx-surveys#readme",
@@ -30,8 +30,9 @@
   },
   "dependencies": {
     "tslib": "^2.0.0",
-    "ngx-mask": "^11.1.5",
-    "angular-resize-event": "^2.1.0"
+    "ngx-mask": "^13.1.12",
+    "ngx-file-drop": "^13.0.0",
+    "angular-resize-event": "^3.1.1"
   }
 
 }

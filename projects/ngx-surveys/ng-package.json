@@ -6,6 +6,7 @@
   },
   "allowedNonPeerDependencies": [
     "ngx-mask",
-    "angular-resize-event"
+    "angular-resize-event",
+    "ngx-file-drop"
   ]
 }
