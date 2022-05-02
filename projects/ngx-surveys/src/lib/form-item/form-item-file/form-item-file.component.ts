@@ -87,13 +87,14 @@ export class FormItemFileComponent implements FormItemWidget, OnInit {
     }
 
     public onFileDrop(files: NgxFileDropEntry[]): void {
-        console.log('onFileDrop', files, this.files);
+
         const surveyFiles:SurveyFile[]=[];
 
         let droppedFiles=files.filter(f=>f.fileEntry.isFile && (!this.accept || this.accept.split(',').find(ext=>f.fileEntry.name.indexOf(ext.trim())>0)));
         if (!this.item.multiple && droppedFiles.length>1){
             droppedFiles=[droppedFiles[0]];
         }
+        console.log('onFileDrop', files, this.files, droppedFiles);
         droppedFiles.forEach(droppedFile=>{
             const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
             fileEntry.file((file: File) => {

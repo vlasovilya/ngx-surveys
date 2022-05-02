@@ -1,6 +1,6 @@
 <div class="video-upload-item" [ngClass]="{uploading: file.uploading}">
-    <video class="media-player img" controls preload="metadata">
-        <source [type]="file.mime" [src]="file.src || file.url"/>
+    <video class="media-player img" controls preload="metadata" *ngIf="file.url">
+        <source [type]="file.mime" [src]="file.url"/>
     </video>
     <mat-progress-bar mode="determinate"  *ngIf="file.uploading" [value]="file.progressValue"></mat-progress-bar>
     <div class="file-upload-img-info" *ngIf="file.size">
