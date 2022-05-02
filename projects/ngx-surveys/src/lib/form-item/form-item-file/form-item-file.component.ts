@@ -90,7 +90,7 @@ export class FormItemFileComponent implements FormItemWidget, OnInit {
         console.log('onFileDrop', files, this.files);
         const surveyFiles:SurveyFile[]=[];
 
-        let droppedFiles=files.filter(f=>f.fileEntry.isFile && this.accept.split(',').find(ext=>f.fileEntry.name.indexOf(ext.trim())>0));
+        let droppedFiles=files.filter(f=>f.fileEntry.isFile && (!this.accept || this.accept.split(',').find(ext=>f.fileEntry.name.indexOf(ext.trim())>0)));
         if (!this.item.multiple && droppedFiles.length>1){
             droppedFiles=[droppedFiles[0]];
         }
