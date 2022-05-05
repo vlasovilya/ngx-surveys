@@ -74,7 +74,7 @@ export const FormItemTypes={
     voice : {
         component: FormItemVoiceComponent,
         model: FormItemVoice,
-        label: 'File Upload'
+        label: 'Voice Record'
     },
 };
 
