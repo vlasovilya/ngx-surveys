@@ -260,6 +260,7 @@ export class FormItemVoiceComponent implements FormItemWidget, OnInit, AfterView
         fileReader.onload = (event) => {
             if (this.file && event?.target){
                 this.file.src=event.target['result'];
+                this.uploadFile(this.file);
             }
         };
         fileReader.readAsArrayBuffer(this.recordedBlob);
@@ -302,7 +303,7 @@ export class FormItemVoiceComponent implements FormItemWidget, OnInit, AfterView
 
             });
         });
-        this.uploadFile(this.file);
+
         return this.file;
     }
 
