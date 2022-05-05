@@ -5,9 +5,8 @@ import { FormItem, FormItemWidget, SurveyFile } from '../form-item';
 import * as _ from 'lodash';
 import { NgxSurveyService } from '../../ngx-survey.service';
 //import { map } from 'rxjs/operators';
-import * as RecordRTC from 'recordrtc';
 import * as WaveSurfer from 'wavesurfer.js';
-import { StereoAudioRecorder } from 'recordrtc';
+import RecordRTC, { StereoAudioRecorder } from 'recordrtc';
 
 export class FormItemVoice extends FormItem {
     value: SurveyFile;
