@@ -58,6 +58,8 @@ import { FileListItemFileComponent } from './form-item/form-item-file/file-list-
 import { FileListItemImageComponent } from './form-item/form-item-file/file-list-item-image/file-list-item-image.component';
 import { FileListItemVideoComponent } from './form-item/form-item-file/file-list-item-video/file-list-item-video.component';
 import { FileSizePipe } from './pipes/file-size.pipe';
+import { DurationPipe } from './pipes/duration.pipe';
+import { FormItemVoiceComponent } from './form-item/form-item-voice/form-item-voice.component';
 
 const formItemComponents=[
     FormItemStringComponent,
@@ -118,7 +120,9 @@ const formItemComponents=[
         FileListItemFileComponent,
         FileListItemImageComponent,
         FileListItemVideoComponent,
-        FileSizePipe
+        FileSizePipe,
+        DurationPipe,
+        FormItemVoiceComponent
     ],
     exports: [
         FormBuilderComponent,

@@ -7,6 +7,8 @@
   "allowedNonPeerDependencies": [
     "ngx-mask",
     "angular-resize-event",
-    "ngx-file-drop"
+    "ngx-file-drop",
+    "recordrtc",
+    "wavesurfer.js"
   ]
 }

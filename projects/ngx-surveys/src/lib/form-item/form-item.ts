@@ -21,7 +21,7 @@ export class FormItem {
     label: string;
     style: string;
     hint: string;
-    value: string | number | string[] | boolean | FormItemOptionItem[] | SurveyFile[];
+    value: string | number | string[] | boolean | FormItemOptionItem[] | SurveyFile[] | SurveyFile;
     errors: FormItemError[];
     fieldValidations: FormItemValidation;
     fieldValidation: FormItemValidationRules;
@@ -77,4 +77,5 @@ export class SurveyFile {
     src: string | ArrayBuffer | null;
     url: string;
     file: File;
+    duration: number;
 }

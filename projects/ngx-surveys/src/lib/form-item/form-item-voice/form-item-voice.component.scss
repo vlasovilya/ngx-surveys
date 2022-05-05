@@ -1,0 +1,99 @@
+//@import "variables";
+
+.mat-form-field {
+    width: 100%;
+}
+
+.audio-recorder {
+    height: 192px;
+    background-color: #f9f9f9;
+    border: 1px solid #efefef;
+    border-radius: 4px;
+}
+
+.start-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.start-screen-button {
+    height: 100%;
+    width: 100%;
+
+}
+
+.start-screen-icon {
+    font-size: 6rem;
+    color: #9b0000;
+    width: 96px;
+    height: 96px;
+}
+
+.start-screen-text {
+    color: #919191;
+    margin-top: 15px;
+}
+
+.main-screen {
+    position: relative;
+    height: 100%;
+}
+
+.main-screen-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    padding: 0;
+    z-index: 3;
+    border-radius: 50%;
+}
+
+.main-screen-button-aside {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    min-width: 48px;
+    padding: 0;
+    border-radius: 50%;
+    z-index: 3;
+}
+
+.main-screen-icon-big {
+    font-size: 6rem;
+    color: #10027b;
+    width: 96px;
+    height: 96px;
+}
+
+.main-screen-icon-small {
+    font-size: 3rem;
+    color: #b1b1b1;
+    width: 48px;
+    height: 48px;
+}
+
+#waveform {
+    height: 100% !important;
+    background-color: #f9f9f9;
+    display: block;
+    &.hidden {
+        display: block;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

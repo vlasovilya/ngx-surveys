@@ -5874,12 +5874,12 @@
   dependencies:
     "tslib" "^2.0.0"
 
-"ngx-mask@^11.1.5":
-  "integrity" "sha512-rp0iH0bCpM7SiKi9FHZAyl6KwzwtIzO3vmxDPWCjjMxPN7cgUGA88mN2aAgFjL5cMvvQZRwUGyOfT2Di/GpPgg=="
-  "resolved" "https://registry.npmjs.org/ngx-mask/-/ngx-mask-11.1.5.tgz"
-  "version" "11.1.5"
+"ngx-mask@^13.1.12":
+  "integrity" "sha512-XSNIZ7LH2o+cbYIGz4wUSlrdNCN8NqMPpIXV39x5S2OLiaWXJ8H5irdh0hNzS4f/dUUJZ/cRV9gTcqGsDv3GsA=="
+  "resolved" "https://registry.npmjs.org/ngx-mask/-/ngx-mask-13.1.12.tgz"
+  "version" "13.1.12"
   dependencies:
-    "tslib" "^2.0.0"
+    "tslib" "^2.3.0"
 
 "nice-napi@^1.0.2":
   "integrity" "sha512-px/KnJAJZf5RuBGcfD+Sp2pAKq0ytz8j+1NehvgIGFkvtvFrDM3T8E4x/JJODXK9WZow8RRGrbA9QQ3hs+pDhA=="
@@ -6928,6 +6928,11 @@
   "version" "0.6.2"
   dependencies:
     "resolve" "^1.1.6"
+
+"recordrtc@^5.6.2":
+  "integrity" "sha512-1QNKKNtl7+KcwD1lyOgP3ZlbiJ1d0HtXnypUy7yq49xEERxk31PHvE9RCciDrulPCY7WJ+oz0R9hpNxgsIurGQ=="
+  "resolved" "https://registry.npmjs.org/recordrtc/-/recordrtc-5.6.2.tgz"
+  "version" "5.6.2"
 
 "reflect-metadata@^0.1.2":
   "integrity" "sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg=="
@@ -8418,6 +8423,11 @@
   dependencies:
     "glob-to-regexp" "^0.4.1"
     "graceful-fs" "^4.1.2"
+
+"wavesurfer.js@^6.1.0":
+  "integrity" "sha512-Ss8d4PC8r1vSE8Qtf3UhC6o4BWXL1J/tr9DFwshFW2pSZBdkzau6FzWGJUul3aoOZSFb+azC5F/m0I9F+vU72w=="
+  "resolved" "https://registry.npmjs.org/wavesurfer.js/-/wavesurfer.js-6.1.0.tgz"
+  "version" "6.1.0"
 
 "wbuf@^1.1.0", "wbuf@^1.7.3":
   "integrity" "sha512-O84QOnr0icsbFGLS0O3bI5FswxzRr8/gHwWkDlQFskhSPryQXvrTMxjxGP4+iWYoauLoBvfDpkrOauZ+0iZpDA=="

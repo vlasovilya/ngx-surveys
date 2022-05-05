@@ -53,6 +53,13 @@ export const demoForm = [
                 "position": 1
             },
             {
+                "name": "voice",
+                "type": "voice",
+                "label": "Voice Message",
+                "hint": "",
+                "position": 1
+            },
+            {
                 "name": "file",
                 "type": "file",
                 "label": "Images",

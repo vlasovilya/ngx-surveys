@@ -14,6 +14,7 @@ import { FormItemOptionsEditor, FormItemOptionsEditorComponent } from './form-it
 import { FormItemCheckbox, FormItemCheckboxComponent } from './form-item-checkbox/form-item-checkbox.component';
 import { Subscription } from 'rxjs';
 import { FormItemFile, FormItemFileComponent } from './form-item-file/form-item-file.component';
+import { FormItemVoice, FormItemVoiceComponent } from './form-item-voice/form-item-voice.component';
 
 export const FormItemTypes={
     'string' : {
@@ -68,6 +69,11 @@ export const FormItemTypes={
     file : {
         component: FormItemFileComponent,
         model: FormItemFile,
+        label: 'File Upload'
+    },
+    voice : {
+        component: FormItemVoiceComponent,
+        model: FormItemVoice,
         label: 'File Upload'
     },
 };
