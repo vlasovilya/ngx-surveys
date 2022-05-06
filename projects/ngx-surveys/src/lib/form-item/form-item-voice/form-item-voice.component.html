@@ -2,14 +2,14 @@
     <div class="col-xs-12 voice-recorder">
         <div class="voice-recorder-title">{{item.label}}</div>
         <div class="audio-recorder">
-            <audio #audio class="audio" style="display:none;"></audio>
+            <audio #audio class="audio" style="display:none;" [src]="file?.url"></audio>
             <div class="main-screen">
-                <div id="waveform" [ngClass]="{hidden:recordingInprogress || !hasRecord}"></div>
+                <div #waveform class="waveform" [ngClass]="{hidden:recordingInprogress || !hasRecord}"></div>
                 <ng-container *ngIf="!recordingInprogress && hasRecord; else startScreen">
-                    <button mat-button class="main-screen-button" (click)="togglePlay()">
+                    <button mat-button class="main-screen-button" (click)="togglePlay()" type="button">
                         <mat-icon class="main-screen-icon-big">{{this.wavesurferPlay ? 'pause_circle_outline' : 'play_circle_outline'}}</mat-icon>
                     </button>
-                    <button mat-button class="main-screen-button-aside" (click)="clearBlob()">
+                    <button mat-button class="main-screen-button-aside" (click)="clearBlob()" type="button">
                         <mat-icon class="main-screen-icon-small">delete_outline</mat-icon>
                     </button>
                     <mat-progress-bar mode="determinate"  *ngIf="file && file.uploading" [value]="file.progressValue"></mat-progress-bar>

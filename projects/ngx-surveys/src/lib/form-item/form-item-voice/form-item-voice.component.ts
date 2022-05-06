@@ -22,6 +22,7 @@ export class FormItemVoice extends FormItem {
 export class FormItemVoiceComponent implements FormItemWidget, OnInit, AfterViewInit {
 
     @ViewChild('audio', { static: true }) audio: any;
+    @ViewChild('waveform', { static: true }) waveformElement: any;
 
     @Input() item: FormItemVoice;
     @Input() editable: boolean=true;
@@ -62,6 +63,9 @@ export class FormItemVoiceComponent implements FormItemWidget, OnInit, AfterView
     ngOnInit() {
         if (this.item.value){
             this.file=_.extend(new SurveyFile(), this.item.value);
+            if (this.file?.url){
+                this.hasRecord=true;
+            }
         }
         this.matcher.item=this.item;
         this.service;
@@ -75,6 +79,44 @@ export class FormItemVoiceComponent implements FormItemWidget, OnInit, AfterView
         audio.muted = false;
         audio.controls = true;
         audio.autoplay = false;
+
+        if (this.file?.url){
+            this.hasRecord=true;
+            this.wavesurfer = WaveSurfer.create({
+                container: this.waveformElement.nativeElement,
+                height: 190,
+                waveColor: '#d4d9dd',
+                progressColor: '#555',
+                normalize: true,
+                barHeight: 8,
+                cursorWidth: 1,
+                cursorColor: '#d9d9d9'
+            });
+            this.wavesurfer.load(this.file.url);
+
+            this.wavesurfer.on('ready', ()=>{
+            console.log(this.wavesurfer);
+                this.zone.run(()=>{
+                    if (this.file){
+                        this.file.duration=this.wavesurfer.getDuration();
+                        this.duration=this.file.duration*1000;
+                        this.wavesurferPlay=false;
+                    }
+                })
+
+            });
+            this.wavesurfer.on('play', ()=>{
+                this.zone.run(()=>{
+                    this.wavesurferPlay=true;
+                })
+            });
+            this.wavesurfer.on('pause', ()=>{
+                this.zone.run(()=>{
+                    this.wavesurferPlay=false;
+                })
+
+            });
+        }
     }
 
     ngOnChanges() {
@@ -272,7 +314,7 @@ export class FormItemVoiceComponent implements FormItemWidget, OnInit, AfterView
         recordRTC.getDataURL(dataURL=>{
             //console.log(audioVideoWebMURL, dataURL, audio.src);
             this.wavesurfer = WaveSurfer.create({
-                  container: '#waveform',
+                  container: this.waveformElement.nativeElement,
                   height: 190,
                   waveColor: '#d4d9dd',
                   progressColor: '#555',
