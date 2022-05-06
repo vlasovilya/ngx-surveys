@@ -19,7 +19,7 @@
 
             <ng-template #startScreen>
                 <div class="start-screen">
-                    <button mat-button class="start-screen-button" (click)="toggleRecording()" [disable]="!editable" type="button">
+                    <button mat-button class="start-screen-button" (click)="toggleRecording()" [disabled]="!editable" type="button">
                         <mat-icon class="start-screen-icon" >{{recordingInprogress ? 'mic':'mic_none'}}</mat-icon>
                         <div *ngIf="!recordingInprogress && !hasRecord" class="start-screen-text">Press to record audio</div>
                         <div *ngIf="recordingInprogress" class="start-screen-text">
