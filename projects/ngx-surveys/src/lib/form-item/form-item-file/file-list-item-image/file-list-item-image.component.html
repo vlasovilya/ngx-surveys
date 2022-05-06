@@ -4,5 +4,5 @@
     <div class="file-upload-img-info" *ngIf="file.size">
         Size: <div class="file-upload-img-info-value" [innerHTML]="file.size| fileSize"></div>
     </div>
-    <a class="delete-btn" (click)="onDelete.emit(file)" title="Delete Image"><mat-icon>cancel</mat-icon></a>
+    <a class="delete-btn" *ngIf="allowDelete" (click)="onDelete.emit(file)" title="Delete Image"><mat-icon>cancel</mat-icon></a>
 </div>
