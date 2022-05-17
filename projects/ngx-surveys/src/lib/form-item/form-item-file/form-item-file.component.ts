@@ -145,6 +145,7 @@ export class FormItemFileComponent implements FormItemWidget, OnInit {
                             obj.url=f.url;
                             obj.name=f.name;
                             obj.mime=f.mime;
+                            obj.size=f.size;
                             return obj;
                         });
                         console.log(this.item);

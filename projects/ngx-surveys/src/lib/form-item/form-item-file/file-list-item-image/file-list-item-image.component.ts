@@ -11,6 +11,7 @@ export class FileListItemImageComponent implements OnInit {
     @Input() file: SurveyFile;
     @Input() allowDelete: boolean;
     @Output() onDelete = new EventEmitter<SurveyFile>();
+    @Input() type: string;
 
     constructor() { }
 

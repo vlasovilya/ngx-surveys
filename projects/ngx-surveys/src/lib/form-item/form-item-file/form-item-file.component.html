@@ -3,13 +3,8 @@
         <div class="files-set-title">{{item.label}}</div>
         <div [ngClass]="'files-list-'+item.fileType">
             <div class="file-item" *ngFor="let file of files">
-                <ammo-file-list-item-file *ngIf="!item.fileType || item.fileType==='file'"
-                    [file]="file"
-                    [allowDelete]="editable"
-                    (onDelete)="removeFile($event)"
-                >
-                </ammo-file-list-item-file>
-                <ammo-file-list-item-image *ngIf="item.fileType==='image'"
+                <ammo-file-list-item-image *ngIf="item.fileType!=='video'"
+                    [type]="item.fileType"
                     [file]="file"
                     [allowDelete]="editable"
                     (onDelete)="removeFile($event)"

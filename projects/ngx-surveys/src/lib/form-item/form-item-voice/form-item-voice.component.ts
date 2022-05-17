@@ -213,7 +213,8 @@ export class FormItemVoiceComponent implements FormItemWidget, OnInit, AfterView
             mimeType: 'audio/webm',
             numberOfAudioChannels: this.isEdge ? 1 : 2,
             checkForInactiveTracks: true,
-            bufferSize: 16384
+            bufferSize: 16384,
+            elementClass: 'multi-streams-mixer'
         };
         this.stream = stream;
 
@@ -237,6 +238,7 @@ export class FormItemVoiceComponent implements FormItemWidget, OnInit, AfterView
 
         this.recordRTC = new RecordRTC(stream, options);
         this.recordRTC.startRecording();
+        this.audio.srcObject = stream;
         //audio.src = this.recordRTC.toURL();
         this.duration=0;
         this.durationInterval=setInterval(()=>{

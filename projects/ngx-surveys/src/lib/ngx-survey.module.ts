@@ -60,6 +60,7 @@ import { FileListItemVideoComponent } from './form-item/form-item-file/file-list
 import { FileSizePipe } from './pipes/file-size.pipe';
 import { DurationPipe } from './pipes/duration.pipe';
 import { FormItemVoiceComponent } from './form-item/form-item-voice/form-item-voice.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 const formItemComponents=[
     FormItemStringComponent,
@@ -122,6 +123,7 @@ const formItemComponents=[
         FileListItemVideoComponent,
         FileSizePipe,
         DurationPipe,
+        TruncatePipe,
         FormItemVoiceComponent
     ],
     exports: [

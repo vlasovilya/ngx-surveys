@@ -87,6 +87,7 @@ export class NgxSurveyService {
                     if (item.multiple && _.isString(item.value)) {
                         item.value = JSON.parse(item.value);
                     }
+
                     if (item.type === 'numericRating' && _.isString(item.value)) {
                         item.value = parseInt(item.value);
                     }

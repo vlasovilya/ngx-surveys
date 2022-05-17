@@ -1,8 +1,15 @@
 <div class="image-upload-item" [ngClass]="{uploading: file.uploading}">
-    <img [src]="file.src || file.url" width="100%" *ngIf="file.src || file.url">
+    <img [src]="file.src || file.url" width="100%" *ngIf="type==='image' && (file.src || file.url)">
+    <mat-icon class="file-icon" *ngIf="type!=='image'">insert_drive_file</mat-icon>
     <mat-progress-bar mode="determinate"  *ngIf="file.uploading" [value]="file.progressValue"></mat-progress-bar>
-    <div class="file-upload-img-info" *ngIf="file.size">
-        Size: <div class="file-upload-img-info-value" [innerHTML]="file.size| fileSize"></div>
+    <div class="file-upload-img-info" *ngIf="file.size || file.name">
+        <div *ngIf="file.size">
+        Size: <span class="file-upload-img-info-value" [innerHTML]="file.size| fileSize"></span>
+        </div>
+        <div *ngIf="file.name" >
+            <a [href]="file.url" class="file-name" target="_blank" [title]="file.name" *ngIf="!file.uploading">{{file.name | truncate}}</a>
+            <span class="file-name" *ngIf="file.uploading">{{file.name | truncate}}</span>
+        </div>
     </div>
     <a class="delete-btn" *ngIf="allowDelete" (click)="onDelete.emit(file)" title="Delete Image"><mat-icon>cancel</mat-icon></a>
 </div>
