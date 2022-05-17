@@ -27,12 +27,16 @@
             [accept]="accept"
             [directory]="false"
             [disabled]="!editable"
+            [ngClass]="{'file-is-over':fileIsOver}"
         >
                 <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-                    <span *ngIf="!fileIsOver">{{item.areaLabel || 'Drag and drop files here or use "Browse Files" button'}}</span>
+                    <span *ngIf="!fileIsOver">
+                        <ng-container *ngIf="item.areaLabel"{{item.areaLabel}}></ng-container>
+                        <ng-container *ngIf="!item.areaLabel"> Drag & Drop Files here <br />or </ng-container>
+                    </span>
                     <span *ngIf="fileIsOver">Drop files here</span>
                     <br/>
-                    <button  mat-raised-button [disabled]="!editable" color="primary" type="button" (click)="openFileSelector()">{{item.buttonLabel || 'Browse Files'}}</button>
+                    <button  *ngIf="!fileIsOver" mat-raised-button [disabled]="!editable" color="primary" type="button" (click)="openFileSelector()">{{item.buttonLabel || 'Browse Files'}}</button>
                 </ng-template>
         </ngx-file-drop>
         <mat-error *ngIf="item.errors && item.errors.length">

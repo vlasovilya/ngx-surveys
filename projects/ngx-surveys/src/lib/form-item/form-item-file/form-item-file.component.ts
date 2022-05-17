@@ -120,7 +120,7 @@ export class FormItemFileComponent implements FormItemWidget, OnInit {
                 console.log(droppedFile.relativePath, file);
             });
         })
-
+        this.fileIsOver=false;
 
     }
 
