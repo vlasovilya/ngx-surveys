@@ -52,6 +52,7 @@ export class FormItemVoiceComponent implements FormItemWidget, OnInit, AfterView
     public isSafari: boolean = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
     public durationInterval;
     public controlIcon:string = 'record-circle';
+    public recordVar:number;
 
 
     constructor(
@@ -207,14 +208,21 @@ export class FormItemVoiceComponent implements FormItemWidget, OnInit, AfterView
             this.audio.srcObject = microphone;
         }
 
-        //console.log(stream);
+
+        //this.wavesurfer.loadDecodedBuffer(stream);
+
         //let audio: HTMLAudioElement = this.audio.nativeElement;
         let options = {
             mimeType: 'audio/webm',
             numberOfAudioChannels: this.isEdge ? 1 : 2,
             checkForInactiveTracks: true,
             bufferSize: 16384,
-            elementClass: 'multi-streams-mixer'
+            elementClass: 'multi-streams-mixer',
+            timeSlice: 100,
+            ondataavailable: (blob)=>{
+                console.log(blob);
+                this.recordVar=blob.size/700;
+            }
         };
         this.stream = stream;
 
@@ -239,7 +247,9 @@ export class FormItemVoiceComponent implements FormItemWidget, OnInit, AfterView
         this.recordRTC = new RecordRTC(stream, options);
         this.recordRTC.startRecording();
         this.audio.srcObject = stream;
-        //audio.src = this.recordRTC.toURL();
+
+        console.log(this.recordRTC);
+
         this.duration=0;
         this.durationInterval=setInterval(()=>{
             //console.log(this.recordRTC.getState(), this.recordRTC);

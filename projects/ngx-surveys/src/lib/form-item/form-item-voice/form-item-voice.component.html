@@ -16,9 +16,14 @@
                 </ng-container>
 
             </div>
-
+            <div #waveform2 class="waveform"></div>
             <ng-template #startScreen>
+
                 <div class="start-screen">
+                    <app-voice-visualizer
+                        [voiceVar]="recordVar"
+                    ></app-voice-visualizer>
+                    <div #waveform2 class="waveform"></div>
                     <button mat-button class="start-screen-button" (click)="toggleRecording()" [disabled]="!editable" type="button">
                         <mat-icon class="start-screen-icon" >{{recordingInprogress ? 'mic':'mic_none'}}</mat-icon>
                         <div *ngIf="!recordingInprogress && !hasRecord" class="start-screen-text">Press to record audio</div>

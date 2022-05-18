@@ -61,6 +61,7 @@ import { FileSizePipe } from './pipes/file-size.pipe';
 import { DurationPipe } from './pipes/duration.pipe';
 import { FormItemVoiceComponent } from './form-item/form-item-voice/form-item-voice.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { VoiceVisualizerComponent } from './form-item/form-item-voice/voice-visualizer/voice-visualizer.component';
 
 const formItemComponents=[
     FormItemStringComponent,
@@ -124,7 +125,8 @@ const formItemComponents=[
         FileSizePipe,
         DurationPipe,
         TruncatePipe,
-        FormItemVoiceComponent
+        FormItemVoiceComponent,
+        VoiceVisualizerComponent
     ],
     exports: [
         FormBuilderComponent,

@@ -1,0 +1,15 @@
+:host {
+    width: 100%;
+    position: absolute;
+    height: 192px;
+}
+
+  .title {
+    font-size: 10vw;
+    color: white;
+  }
+
+  canvas {
+    width: 100%;
+    height: 192px;
+  }
