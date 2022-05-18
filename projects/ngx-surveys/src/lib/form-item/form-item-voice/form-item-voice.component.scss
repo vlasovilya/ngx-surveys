@@ -62,6 +62,18 @@
     padding: 0;
     border-radius: 50%;
     z-index: 3;
+    &.delete-btn {
+        .mat-icon {
+            color: #c72939;
+        }
+    }
+    &.download-btn{
+        left: 15px;
+        right: auto;
+        .mat-icon {
+            color: #3f51b5;
+        }
+    }
 }
 
 .main-screen-icon-big {
@@ -86,6 +98,8 @@
         display: block;
     }
 }
+
+
 
 
 

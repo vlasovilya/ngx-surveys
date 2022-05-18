@@ -9,8 +9,12 @@
                     <button mat-button class="main-screen-button" (click)="togglePlay()" type="button">
                         <mat-icon class="main-screen-icon-big">{{this.wavesurferPlay ? 'pause_circle_outline' : 'play_circle_outline'}}</mat-icon>
                     </button>
-                    <button mat-button class="main-screen-button-aside" (click)="clearBlob()" *ngIf="editable" type="button">
-                        <mat-icon class="main-screen-icon-small">delete_outline</mat-icon>
+
+                    <a mat-button class="main-screen-button-aside download-btn" *ngIf="item.value && item.value.url" [href]="item.value.url" target="_blank" title="Dowload Record">
+                        <mat-icon class="main-screen-icon-small">download</mat-icon>
+                    </a>
+                    <button mat-button class="main-screen-button-aside delete-btn" title="Delete Record" (click)="clearBlob()" *ngIf="editable" type="button">
+                        <mat-icon class="main-screen-icon-small">cancel</mat-icon>
                     </button>
                     <mat-progress-bar mode="determinate"  *ngIf="file && file.uploading" [value]="file.progressValue"></mat-progress-bar>
                 </ng-container>
