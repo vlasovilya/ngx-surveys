@@ -18,7 +18,7 @@
                 </ammo-file-list-item-video>
             </div>
         </div>
-        <ngx-file-drop *ngIf="item.multiple || (!item.multiple && files.length<1)"
+        <ngx-file-drop *ngIf="item.multiple || (!item.multiple && (!files || files.length<1))"
             dropZoneLabel="Drop files here"
             (onFileDrop)="onFileDrop($event)"
             (onFileOver)="fileOver(true)"
