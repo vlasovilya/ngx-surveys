@@ -9,7 +9,7 @@ import * as WaveSurfer from 'wavesurfer.js';
 import RecordRTC, { StereoAudioRecorder } from 'recordrtc';
 
 export class FormItemVoice extends FormItem {
-    value: SurveyFile;
+    value?: SurveyFile;
     areaLabel: string;
     buttonLabel: string;
 }
@@ -422,6 +422,8 @@ export class FormItemVoiceComponent implements FormItemWidget, OnInit, AfterView
             //this.recordRTC.destroy()
         }
         this.controlIcon = 'record-circle';
+        this.item.value=undefined;
+        this.changes.emit(this.item);
     }
 
     download() {

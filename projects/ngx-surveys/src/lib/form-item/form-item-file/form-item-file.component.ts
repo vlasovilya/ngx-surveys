@@ -76,9 +76,11 @@ export class FormItemFileComponent implements FormItemWidget, OnInit {
         this.changes.emit(item);
     }
 
-    removeFile(file){
+    removeFile(file:SurveyFile){
         this.files=_.without(this.files, file);
-        this.fileObjects=_.without(this.fileObjects, this.fileObjects.find(f=>f.id===file.id));
+        //this.fileObjects=_.without(this.fileObjects, this.fileObjects.find(f=>f.id===file.id));
+        this.item.value=(this.item.value || []).filter(f=>f.url!==file.url);
+        this.changes.emit(this.item);
     }
 
     public fileOver(fileIsOver: boolean): void {
