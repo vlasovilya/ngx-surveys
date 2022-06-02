@@ -61,7 +61,7 @@
             </div>
             <div *ngIf="i>=form.length-1">
                 <div class="text-center text-danger global-error" *ngIf="submitErrorText">{{submitErrorText}}<br /></div>
-                <button mat-button type="button" class="btn btn-success btn-block" (click)="submitForm()" [disabled]="submitInProgress"><i class="fa fa-spinner fa-spin" *ngIf="submitInProgress"></i> Submit</button>
+                <button mat-button type="button" class="btn btn-success btn-block" (click)="submitForm()" [disabled]="submitInProgress || submitDisabled"><i class="fa fa-spinner fa-spin" *ngIf="submitInProgress"></i> Submit</button>
             </div>
         </mat-step>
         </mat-horizontal-stepper>
@@ -103,7 +103,7 @@
             </div>
             <div *ngIf="i>=form.length-1">
                 <div class="text-center text-danger global-error" *ngIf="submitErrorText">{{submitErrorText}}<br /></div>
-                <button mat-button type="button" class="btn btn-success btn-block" (click)="submitForm()" [disabled]="submitInProgress"><i class="fa fa-spinner fa-spin" *ngIf="submitInProgress"></i> Submit</button>
+                <button mat-button type="button" class="btn btn-success btn-block" (click)="submitForm()" [disabled]="submitInProgress || submitDisabled"><i class="fa fa-spinner fa-spin" *ngIf="submitInProgress"></i> Submit</button>
             </div>
         </mat-step>
         </mat-vertical-stepper>

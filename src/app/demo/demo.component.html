@@ -13,7 +13,7 @@
         (submit)="onFormSubmit($event)"
     >
     </ngx-survey>
-    <button mat-raised-button color="primary" class="submit-button" (click)="survey.submitForm()">Submit</button>
+    <button mat-raised-button color="primary" class="submit-button" (click)="survey.submitForm()" [disabled]="submitDisabled">Submit</button>
   </mat-tab>
   <mat-tab label="Model">
     <pre>{{ form | json }}</pre>

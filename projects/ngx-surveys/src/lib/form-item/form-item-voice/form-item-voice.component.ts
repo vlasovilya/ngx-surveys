@@ -356,21 +356,26 @@ export class FormItemVoiceComponent implements FormItemWidget, OnInit, AfterView
         file.progressSubject = new Observable(observer => {
             file.progressObserver = observer
         });
+        this.item.busy=true;
         file.progressSubject.subscribe(
             data => {
-            this.zone.run(()=>{
-                file.progressValue=data;
-                //console.log(file);
-                if (file.url){
-                    const obj=new SurveyFile;
-                    obj.url=file.url;
-                    obj.name=file.name;
-                    obj.mime=file.mime;
-                    this.item.value=obj;
-                    console.log(this.item);
-                    this.changes.emit(this.item);
-                }
-            })
+                this.zone.run(()=>{
+                    file.progressValue=data;
+                    //console.log(file);
+                    if (file.url){
+                        const obj=new SurveyFile;
+                        obj.url=file.url;
+                        obj.name=file.name;
+                        obj.mime=file.mime;
+                        this.item.value=obj;
+                        console.log(this.item);
+                        this.item.busy=false;
+                        this.changes.emit(this.item);
+                    }
+                })
+            },
+            err=>{
+                this.item.busy=false;
             }
         );
         this.service.onFilesSelected.next([file]);

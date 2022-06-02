@@ -36,6 +36,10 @@ export class DemoComponent implements OnInit, OnDestroy {
     public model={};
     private fileUpoadSubscription: Subscription;
 
+    get submitDisabled(): boolean {
+        return !!this.form.find(section=>section.items.some(item=>item.busy));
+    }
+
     constructor(
         surveyService: NgxSurveyService
     ) {

@@ -5,6 +5,7 @@ import { ResizedEvent } from 'angular-resize-event';
 import { NgxSurveyService } from './ngx-survey.service';
 import { MatStepper } from '@angular/material/stepper';
 
+
 @Component({
   selector: 'ngx-survey',
   templateUrl: './ngx-survey.component.html',
@@ -29,6 +30,10 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit, OnDestroy {
 
     public selectedIndex: number = 0;
     public isMobile: boolean;
+
+    get submitDisabled(): boolean {
+        return !!this.form.find(section=>section.items.find(item=>item.busy));
+    }
 
     //private _bpSub: Subscription;
 

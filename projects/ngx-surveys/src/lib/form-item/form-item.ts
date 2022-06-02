@@ -37,6 +37,7 @@ export class FormItem {
     items?: FormItemOptionItem[];
     segments?: FormItemOptionItem[];
     isSectionValueItem?: boolean;
+    busy?:boolean;
 }
 
 export interface FormItemOptionItem {

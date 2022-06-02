@@ -131,6 +131,7 @@ export class FormItemFileComponent implements FormItemWidget, OnInit {
         if(!files.length){
             return;
         }
+        this.item.busy=true;
         files.forEach(file=>{
             file.uploading=true;
             file.progressSubject = new Observable(observer => {
@@ -151,9 +152,13 @@ export class FormItemFileComponent implements FormItemWidget, OnInit {
                             return obj;
                         });
                         console.log(this.item);
+                        this.item.busy=!!files.find(f=>f.uploading);
                         this.changes.emit(this.item);
                     }
                 })
+              },
+              err=> {
+                this.item.busy=!!files.find(f=>f.uploading);
               }
             );
         })
