@@ -13,7 +13,7 @@
          <mat-card-header class="section-header">
           <mat-card-title class="section-title">
             <div class="section-title-text">
-                <span [ngClass]="'section-style-'+section.sectionStyle">{{section.title}}</span>
+                <span [ngClass]="'section-style-'+section.sectionStyle" [innerHtml]="section.title"></span>
             </div>
 
             <button mat-icon-button class="form-item-actions-button" aria-label="Toggle menu"

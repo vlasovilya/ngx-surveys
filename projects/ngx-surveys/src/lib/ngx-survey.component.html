@@ -3,7 +3,7 @@
         <fieldset class="form-fieldset" *ngFor="let section of form">
             <ng-container *ngIf="service.isSectionVisible(form, section)">
                 <legend class="form-legend" *ngIf="section.title || section.subtitle">
-                    <span [ngClass]="'section-style-'+section.sectionStyle">{{section.title}}</span>
+                    <span [ngClass]="'section-style-'+section.sectionStyle" [innerHtml]="section.title"></span>
                     <span *ngIf="section.subtitle"><br /><small [innerHtml]="section.subtitle"></small></span>
                 </legend>
 
