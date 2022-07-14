@@ -18,7 +18,7 @@
                 </ammo-file-list-item-video>
             </div>
         </div>
-        <div *ngIf="!editable && !files.length">
+        <div *ngIf="!editable && !files?.length">
             No {{item.fileType}}s uploaded
         </div>
         <ngx-file-drop *ngIf="editable && (item.multiple || (!item.multiple && (!files || files.length<1)))"
