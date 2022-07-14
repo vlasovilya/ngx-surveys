@@ -19,7 +19,7 @@
             </div>
         </div>
         <div *ngIf="!editable && !files?.length">
-            No {{item.fileType}}s uploaded
+            No {{item.fileType==='video' ? 'Videos' : 'Photos'}} Submitted
         </div>
         <ngx-file-drop *ngIf="editable && (item.multiple || (!item.multiple && (!files || files.length<1)))"
             dropZoneLabel="Drop files here"
