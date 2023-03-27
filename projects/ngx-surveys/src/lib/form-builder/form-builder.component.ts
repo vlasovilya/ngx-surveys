@@ -31,14 +31,14 @@ export class FormBuilderComponent implements OnInit {
 
     @Input() allowMultiChoiseFieldsOnly:boolean=false;
     @Input() enableEditFieldValues:boolean=true;
-    @Input() showFieldNames:boolean=true;  
+    @Input() showFieldNames:boolean=true;
     @Input() readOnly:boolean=false;
 
     @ViewChildren('formFieldItem') formItemElements: QueryList<FormItemComponent>
 
     private _form;
     public formValues:any={};
-    
+
     public sortableSectionOptions:any={
         onUpdate: (event: any) => {
             //event;
@@ -79,7 +79,7 @@ export class FormBuilderComponent implements OnInit {
 
     openSectionDialog(section: FormSection): void {
         const dialogRef = this.dialog.open(DialogSectionEdit, {
-            width: '450px',
+            minWidth: '450px',
             data: {
                 params: {
                     readOnly: this.readOnly,
@@ -94,13 +94,13 @@ export class FormBuilderComponent implements OnInit {
                 section=_.extend(section, result);
                 this.changes.emit(this.form);
             }
-            
+
         });
     }
 
     openItemDialog(item: FormItem, section?: FormSection): void {
         const dialogRef = this.dialog.open(DialogItemEdit, {
-            width: '450px',
+            minWidth: '450px',
             data: {
                 params: {
                     multiChoiseFieldsOnly: this.allowMultiChoiseFieldsOnly,

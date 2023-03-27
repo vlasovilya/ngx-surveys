@@ -80,8 +80,8 @@ export class DialogItemEdit {
             buildField('string', {name: "buttonLabel", label: "Button Label", visibilityValuesInSection: ["file"], defaultValue:'Browse Files'}),
             */
             buildField('string', {name: "name", label: "Name", visibilityValuesInSection: !this.customFieldNamesAllowed ? ['none'] : undefined}, false),
-            buildField('string', {name: "label", label: "Label"}),
-            buildField('string', {name: "hint", label: "Hint"}),
+            buildField('text', {name: "label", label: "Label"}),
+            buildField('text', {name: "hint", label: "Hint"}),
             buildField('checkbox', {name: "required", label: "Required"}),
             buildField('checkbox', {name: "actionUpdatesSectionValue", label: "Action Updates Section Value", visibilityValuesInSection: [this.multiChoiseFieldTypes]}),
             buildField('checkbox', {name: "multiple", label: "Multiple Answers", visibilityValuesInSection: ["radio"]}),

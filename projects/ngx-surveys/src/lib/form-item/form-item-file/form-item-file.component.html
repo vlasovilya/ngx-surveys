@@ -1,5 +1,5 @@
 <div class="form-group">
-    <div class="col-xs-12 files-set">
+    <div class="col-xs-12 files-set" [ngClass]="{'files-upload-editable':editable}">
         <div class="files-set-title">{{item.label}}</div>
         <div [ngClass]="'files-list-'+item.fileType">
             <div class="file-item" *ngFor="let file of files">
@@ -21,7 +21,7 @@
         <div *ngIf="!editable && !files?.length">
             No {{item.fileType==='video' ? 'Videos' : 'Photos'}} Submitted
         </div>
-        <ngx-file-drop *ngIf="editable && (item.multiple || (!item.multiple && (!files || files.length<1)))"
+        <ngx-file-drop *ngIf="(item.multiple || (!item.multiple && (!files || files.length<1)))"
             dropZoneLabel="Drop files here"
             (onFileDrop)="onFileDrop($event)"
             (onFileOver)="fileOver(true)"
@@ -33,7 +33,7 @@
             [ngClass]="{'file-is-over':fileIsOver}"
         >
                 <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-                    <span *ngIf="!fileIsOver">
+                    <span *ngIf="!fileIsOver && editable">
                         <ng-container *ngIf="item.areaLabel"{{item.areaLabel}}></ng-container>
                         <ng-container *ngIf="!item.areaLabel"> Drag & Drop Files here <br />or </ng-container>
                     </span>
