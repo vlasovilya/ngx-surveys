@@ -1,9 +1,10 @@
 
 <mat-form-field class="example-full-width">
+    <label class="long-label-text" *ngIf="item.label.length>=100">{{item.label}}</label>
     <textarea matInput
         [disabled]="!editable"
         [attr.id]="item.name"
-        [placeholder]="item.label"
+        [placeholder]="item.label.length<100 ? item.label : ''"
         [(ngModel)]="item.value"
         (ngModelChange)="onValueChanges(item)"
         [errorStateMatcher]="matcher"

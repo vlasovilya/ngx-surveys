@@ -1,11 +1,12 @@
 
 <mat-form-field>
+    <label class="long-label-text" *ngIf="item.label.length>=100">{{item.label}}</label>
     <input #inputField
         matInput
         [type]="item.style || 'text'"
         [disabled]="!editable"
         [attr.id]="item.name"
-        [placeholder]="item.label"
+        [placeholder]="item.label.length<100 ? item.label : ''"
         [(ngModel)]="item.value"
         [minlength]="item.fieldValidation ? item.fieldValidation.minLength : undefined "
         (ngModelChange)="onValueChanges(item)"
