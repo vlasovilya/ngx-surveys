@@ -13,5 +13,7 @@
     <mat-error *ngIf="item.errors && item.errors.length">
       <div *ngFor="let error of item.errors">{{error.message}}</div>
     </mat-error>
-    <mat-hint align="start" *ngIf="!(item.errors && item.errors.length)"><strong>{{item.hint}}</strong> </mat-hint>
+    <mat-hint align="start" *ngIf="!(item.errors && item.errors.length) && item.hint?.length < 100"><strong>{{item.hint}}</strong> </mat-hint>
+
 </mat-form-field>
+<small class="long-hint" *ngIf="!(item.errors && item.errors.length) && item.hint?.length >= 100"><strong>{{item.hint}}</strong> </small>
