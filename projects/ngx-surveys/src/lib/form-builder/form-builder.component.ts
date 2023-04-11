@@ -247,6 +247,7 @@ export class FormBuilderComponent implements OnInit {
 
     removeSection(section: FormSection): void {
         this.form=this.form.filter((op, index)=>index!==this.form.indexOf(section));
+        this.changes.emit(this.form);
     }
 
     addSection(): void {
@@ -254,6 +255,7 @@ export class FormBuilderComponent implements OnInit {
         this.form.push(<FormSection> {
 
         });
+        this.changes.emit(this.form);
     }
 
 }
