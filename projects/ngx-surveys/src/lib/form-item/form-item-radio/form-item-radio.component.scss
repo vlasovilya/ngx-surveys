@@ -4,12 +4,19 @@
         border-bottom: 1px solid #eaeaea;
     }
 
-    .mat-list-text {
-        font-weight: 600;
-    }
 
     .mat-pseudo-checkbox {
         color: transparent;
+    }
+
+    .mat-list-single-selected-option {
+        .mat-list-text {
+            display: flex;
+            flex-direction: row!important;
+            &>span {
+                width: 100%;
+            }
+        }
     }
 
     .mat-pseudo-checkbox:after {

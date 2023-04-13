@@ -1,7 +1,7 @@
-<mat-selection-list #selectedOptions *ngIf="init" 
+<mat-selection-list #selectedOptions *ngIf="init"
     (selectionChange)="onSelectionChange($event)"
     [disabled]="!editable"
-    
+
     [multiple]="multiple"
 >
     <!--
@@ -12,6 +12,7 @@
         [selected]="isOptionSelected(option)"
         (click)="onOptionClick($event, option)"
     >
-        {{option.label}}
+        <span>{{option.label}}</span>
+        <mat-pseudo-checkbox *ngIf="!multiple && isOptionSelected(option)" class="mat-pseudo-checkbox mat-pseudo-checkbox-checked"></mat-pseudo-checkbox>
     </mat-list-option>
 </mat-selection-list>
