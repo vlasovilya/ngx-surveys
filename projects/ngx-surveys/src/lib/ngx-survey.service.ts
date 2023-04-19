@@ -234,7 +234,7 @@ export class NgxSurveyService {
                                 type: name,
                                 message: message
                             };
-                        } else if (!item.value) {
+                        } else if (!item.value || !item?.value?.length) {
                             res={
                                 type: 'require',
                                 message: errorMessages.require
