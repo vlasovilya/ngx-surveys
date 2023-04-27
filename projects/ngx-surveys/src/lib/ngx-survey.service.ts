@@ -223,8 +223,8 @@ export class NgxSurveyService {
                     }
                     break;
                 case "minLength":
-                    if (item.value === null || item.value === undefined || itemValue.length < param || isNumericError) {
-                        //console.log(isNumericError, param, item, rule, name);
+                    if (item.value === null || item.value === undefined || !item.value || (item.value?.length || 0) < param || isNumericError) {
+                        console.log(isNumericError, param, item, rule, name);
                         if (param > 1) {
                             message = errorMessages[name].replace('{value}', param);
                             if (item.keyboardType && item.keyboardType === 'number-pad') {
