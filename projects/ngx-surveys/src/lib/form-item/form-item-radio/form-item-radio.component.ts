@@ -38,7 +38,7 @@ export class FormItemRadioComponent implements FormItemWidget, OnInit {
             const valArr=(this.item.value.toString()).split(', ');
 
             selectedOptionObj=this.item.items.find(op=>op.optionValue===valArr[0]);
-            console.log(valArr, selectedOptionObj);
+            //console.log(valArr, selectedOptionObj);
             if (selectedOptionObj){
                 this.selectedOption=selectedOptionObj.optionValue;
                 this.explanationValue=valArr.slice(1, valArr.length).join(', ');
@@ -46,10 +46,10 @@ export class FormItemRadioComponent implements FormItemWidget, OnInit {
         }
         //console.log(this.item.value);
     }
-    
+
 
     onSelectionChange(value:string | string[]){
-        //console.log(value); 
+        //console.log(value);
         this.item.value=value;
         if (!Array.isArray(value)){
             this.selectedOption=value;

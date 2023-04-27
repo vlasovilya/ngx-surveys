@@ -74,8 +74,15 @@ export class NgxSurveyService {
                 visibilityValuesInTableConvert(item);
                 if (item.type === 'radio' && section.allowsMultipleSelection) {
                     item.multiple = true;
+                }
+                if (item.multiple && _.isString(item.value)) {
                     if (_.isString(item.value)) {
-                        item.value = JSON.parse(item.value);
+                        try {
+                            item.value = JSON.parse(item.value);
+                        }
+                        catch (err){
+                            console.log(err);
+                        }
                     }
                 }
                 if (formValues[item.name] !== undefined) {
@@ -224,7 +231,7 @@ export class NgxSurveyService {
                     break;
                 case "minLength":
                     if (item.value === null || item.value === undefined || !item.value || (item.value?.length || 0) < param || isNumericError) {
-                        console.log(isNumericError, param, item, rule, name);
+                        //console.log(isNumericError, param, item, rule, name);
                         if (param > 1) {
                             message = errorMessages[name].replace('{value}', param);
                             if (item.keyboardType && item.keyboardType === 'number-pad') {
@@ -287,6 +294,7 @@ export class NgxSurveyService {
         _.each(_.filter(form, (section)=>this.isSectionVisible(form, section)), (section)=>{
             _.each(_.filter(section.items, (item)=>this.isItemVisible(form, section, item)), (item)=>{
                 //value[item.name] = _.isArray(item.value) ? JSON.stringify(item.value) : item.value;
+
                 value[item.name] = item.value;
                 if (validateAll){
                     item.errors = this.getErrors(item);
