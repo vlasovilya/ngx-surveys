@@ -119,7 +119,9 @@ export class DialogItemEdit {
         if (!item.fieldValidations.rules){
             item.fieldValidations.rules=[];
         }
-        item.name=_.camelCase(item.label);
+        if (!item.name || !this.customFieldNamesAllowed){
+            item.name=_.camelCase(item.label);
+        }
         console.log(item);
         const minLengthRule=item.fieldValidations.rules.find(r=>r.minLength > 0);
         console.log(item, minLengthRule);

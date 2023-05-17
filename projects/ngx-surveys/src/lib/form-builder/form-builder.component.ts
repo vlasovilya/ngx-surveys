@@ -116,7 +116,7 @@ export class FormBuilderComponent implements OnInit {
             if (result && !this.readOnly){
                 item=_.extend(item, result);
                 const itemComponent=this.formItemElements.find(el=>el.item===item);
-                if (section){
+                if (section && !this.showFieldNames){
                     item.name=_.camelCase((section.name || '')+' '+item.name);
                 }
                 if (item.justAdded){
