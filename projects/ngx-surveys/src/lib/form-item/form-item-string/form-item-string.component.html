@@ -1,12 +1,12 @@
 
 <mat-form-field>
-    <label class="long-label-text" *ngIf="item.label.length>=100">{{item.label}}</label>
+    <label class="long-label-text" *ngIf="item.label.length>=maxLabelLength">{{item.label}}</label>
     <input #inputField
         matInput
         [type]="item.style || 'text'"
         [disabled]="!editable"
         [attr.id]="item.name"
-        [placeholder]="item.label.length<100 ? item.label : ''"
+        [placeholder]="item.label.length<maxLabelLength ? item.label : ''"
         [(ngModel)]="item.value"
         [minlength]="item.fieldValidation ? item.fieldValidation.minLength : undefined "
         (ngModelChange)="onValueChanges(item)"
@@ -16,8 +16,8 @@
     <mat-error *ngIf="item.errors && item.errors.length">
       <div *ngFor="let error of item.errors">{{error.message}}</div>
     </mat-error>
-    <mat-hint align="start" *ngIf="!(item.errors && item.errors.length) && item.hint?.length < 100"><strong>{{item.hint}}</strong> </mat-hint>
+    <mat-hint align="start" *ngIf="!(item.errors && item.errors.length) && item.hint?.length < maxLabelLength"><strong>{{item.hint}}</strong> </mat-hint>
 
 </mat-form-field>
-<small class="long-hint" *ngIf="!(item.errors && item.errors.length) && item.hint?.length >= 100"><strong>{{item.hint}}</strong> </small>
+<small class="long-hint" *ngIf="!(item.errors && item.errors.length) && item.hint?.length >= maxLabelLength"><strong>{{item.hint}}</strong> </small>
 

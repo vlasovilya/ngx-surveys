@@ -16,6 +16,7 @@ export class FormItemTextComponent implements FormItemWidget, OnInit {
     @Input() editable: boolean=true;
     @Output() changes = new EventEmitter<FormItemText>();
     matcher = new SurveyErrorStateMatcher();
+    maxLabelLength=60;
 
     constructor() { }
 
