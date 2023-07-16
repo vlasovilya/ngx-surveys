@@ -1,6 +1,6 @@
 
 <mat-form-field class="example-full-width">
-    <label class="long-label-text" *ngIf="item.label.length>=maxLabelLength">{{item.label}} <span *ngIf="item.required" class="required-asterix">*</span></label>
+    <label class="long-label-text" *ngIf="item.label.length>=maxLabelLength" [ngClass]="{'has-error':item.errors && item.errors.length}">{{item.label}} <span *ngIf="item.required" class="required-asterix">*</span></label>
     <textarea matInput
         [disabled]="!editable"
         [attr.id]="item.name"
