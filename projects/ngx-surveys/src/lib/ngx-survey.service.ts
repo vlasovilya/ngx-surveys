@@ -230,7 +230,7 @@ export class NgxSurveyService {
                     }
                     break;
                 case "minLength":
-                    if (item.value === null || item.value === undefined || !item.value || (item.value?.length || 0) < param || isNumericError) {
+                    if (!_.isObject(item.value) && (item.value === null || item.value === undefined || !item.value || (item.value?.length || 0) < param || isNumericError)) {
                         //console.log(isNumericError, param, item, rule, name);
                         if (param > 1) {
                             message = errorMessages[name].replace('{value}', param);
@@ -242,6 +242,7 @@ export class NgxSurveyService {
                                 message: message
                             };
                         } else if (!item.value || !item?.value?.length) {
+                            //console.log(item);
                             res={
                                 type: 'require',
                                 message: errorMessages.require
