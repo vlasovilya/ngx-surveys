@@ -8,6 +8,9 @@
         [(ngModel)]="item.value"
         (ngModelChange)="onValueChanges(item)"
         [errorStateMatcher]="matcher"
+        cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="1"
         [required]="item.required"
     ></textarea>
     <mat-error *ngIf="item.errors && item.errors.length">
