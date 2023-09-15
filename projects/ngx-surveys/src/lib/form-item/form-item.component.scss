@@ -1,6 +1,6 @@
 :host ::ng-deep {
 
-     label {
+     label, .label {
          color: rgba(0,0,0,.54);
          &.has-error {
              color: #f44336;

@@ -1,6 +1,6 @@
 <div class="form-group">
     <div class="col-xs-12 voice-recorder">
-        <div class="voice-recorder-title">{{item.label}}</div>
+        <div *ngIf="item.label" class="voice-recorder-title label" [ngClass]="{'has-error':item.errors && item.errors.length}">{{item.label}} <span *ngIf="item.required" class="required-asterix">*</span></div>
         <div class="audio-recorder">
             <audio #audio class="audio" style="display:none;" [src]="file?.url"></audio>
             <div class="main-screen">

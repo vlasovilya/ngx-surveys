@@ -1,6 +1,6 @@
 <div class="form-group">
     <div class="col-xs-12 files-set" [ngClass]="{'files-upload-editable':editable}">
-        <div class="files-set-title">{{item.label}}</div>
+        <div *ngIf="item.label" class="files-set-title label" [ngClass]="{'has-error':item.errors && item.errors.length}">{{item.label}} <span *ngIf="item.required" class="required-asterix">*</span></div>
         <div [ngClass]="'files-list-'+item.fileType">
             <div class="file-item" *ngFor="let file of files">
                 <ammo-file-list-item-image *ngIf="item.fileType!=='video'"
