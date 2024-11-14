@@ -131,7 +131,6 @@
       }
     }
   },
-  "defaultProject": "ngx-surveys",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
