@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
-import { MatSelectChange } from '@angular/material/select';
+import { MatLegacySelectChange as MatSelectChange } from '@angular/material/legacy-select';
 import { FormItemOptionItem } from '../../form-item';
 import { SurveyErrorStateMatcher } from '../../error-state.matcher';
 

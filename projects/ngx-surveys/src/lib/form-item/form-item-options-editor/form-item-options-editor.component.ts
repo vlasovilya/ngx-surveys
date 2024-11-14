@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import {
-  MatTableDataSource
-} from '@angular/material/table';
+  MatLegacyTableDataSource as MatTableDataSource
+} from '@angular/material/legacy-table';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ItemOptionStateMatcher } from '../error-state.matcher';
 import { FormItem, FormItemOptionItem, FormItemWidget, FormItemValidation, FormItemValidationRules } from '../form-item';
