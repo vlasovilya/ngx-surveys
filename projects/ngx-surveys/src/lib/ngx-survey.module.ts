@@ -49,7 +49,7 @@ import { DialogItemVisibility } from './dialogs/dialog-item-visibility/dialog-it
 import { NgxSurveyComponent } from './ngx-survey.component';
 import { NgxSurveyService } from './ngx-survey.service';
 import { NgxMaskModule } from 'ngx-mask';
-import { AngularResizeEventModule } from 'angular-resize-event';
+//import { AngularResizeEventModule } from 'angular-resize-event';
 import { RadioGroupComponent } from './form-item/form-item-radio/radio-group/radio-group.component';
 import { SelectionListComponent } from './form-item/form-item-radio/selection-list/selection-list.component';
 import { SelectComponent } from './form-item/form-item-radio/select/select.component';
@@ -103,7 +103,7 @@ const formItemComponents=[
         MatSlideToggleModule,
         MatStepperModule,
         NgxMaskModule.forRoot(),
-        AngularResizeEventModule,
+        //AngularResizeEventModule,
         NgxFileDropModule,
         MatProgressBarModule
     ],

@@ -156,7 +156,7 @@
     symbol-observable "4.0.0"
     yargs "17.6.2"
 
-"@angular/common@^15.0.0 || ^16.0.0", "@angular/common@^15.2.10", "@angular/common@>= 12.2.0 < 15", "@angular/common@>=10.0.0", "@angular/common@>=13.0.0", "@angular/common@15.2.10":
+"@angular/common@^15.0.0 || ^16.0.0", "@angular/common@^15.2.10", "@angular/common@>=10.0.0", "@angular/common@>=13.0.0", "@angular/common@15.2.10":
   version "15.2.10"
   resolved "https://registry.npmjs.org/@angular/common/-/common-15.2.10.tgz"
   integrity sha512-jdBn3fctkqoNrJn9VLsUHpcCEhCxWSczdsR+BBbD6T0oLl6vMrAVNjPwfBejnlgfWN1KoRU9kgOYsMxa5apIWQ==
@@ -191,7 +191,7 @@
   resolved "https://registry.npmjs.org/@angular/compiler/-/compiler-9.0.0.tgz"
   integrity sha512-ctjwuntPfZZT2mNj2NDIVu51t9cvbhl/16epc5xEwyzyDt76pX9UgwvY+MbXrf/C/FWwdtmNtfP698BKI+9leQ==
 
-"@angular/core@^15.0.0 || ^16.0.0", "@angular/core@^15.2.10", "@angular/core@>= 12.2.0 < 15", "@angular/core@>=10.0.0", "@angular/core@>=13.0.0", "@angular/core@15.2.10":
+"@angular/core@^15.0.0 || ^16.0.0", "@angular/core@^15.2.10", "@angular/core@>=10.0.0", "@angular/core@>=13.0.0", "@angular/core@15.2.10":
   version "15.2.10"
   resolved "https://registry.npmjs.org/@angular/core/-/core-15.2.10.tgz"
   integrity sha512-meGGidnitQJGDxYd9/LrqYiVlId+vGaLoiLgJdKBz+o2ZO6OmXQGuNw2VBqf17/Cc0/UjzrOY7+kILNFKkk/WQ==
@@ -2792,13 +2792,6 @@ all-contributors-cli@^5.10.0:
     pify "^4.0.1"
     request "^2.72.0"
     yargs "^12.0.5"
-
-angular-resize-event@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.npmjs.org/angular-resize-event/-/angular-resize-event-3.2.0.tgz"
-  integrity sha512-8Cx99afBcbcWAFihThuWwt0hB281eieE+2uPA+lwPAcITvvJwTEfd788m6dMwsfz2EoogrCafyF4+l0PDs8Gjw==
-  dependencies:
-    tslib "^2.3.0"
 
 ansi-align@^2.0.0:
   version "2.0.0"

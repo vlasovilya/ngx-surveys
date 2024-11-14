@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, AfterViewInit, OnDestroy, ElementRef } from '@angular/core';
 //import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { ResizedEvent } from 'angular-resize-event';
+//import { ResizedEvent } from 'angular-resize-event';
 //import { Subscription } from 'rxjs';
 import { NgxSurveyService } from './ngx-survey.service';
 import { MatStepper } from '@angular/material/stepper';
@@ -66,6 +66,11 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit, OnDestroy {
         //console.log(this.stepper);
     }
 
+    onResized(event){
+        //TODO
+    }
+
+    /*
     onResized(event: ResizedEvent) {
 
         if (event.newRect.width<600 && !this.isMobile){
@@ -77,7 +82,7 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit, OnDestroy {
         this.resized.emit(event);
         //this.width = event.newWidth;
         //this.height = event.newHeight;
-    }
+    }*/
 
     scrollToField(field) {
         let el = this.elRef.nativeElement.querySelector('#form_item_' + field.name);
