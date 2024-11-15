@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, forwardRef, Output, ViewChild, AfterViewInit } from '@angular/core';
 import { FormItem, SurveyErrorStateMatcher, FormItemWidget } from '../index';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { MatLegacyInput as MatInput } from '@angular/material/legacy-input';
+import { MatInput } from '@angular/material/input';
 import * as moment from "moment";
 
 export class FormItemDate extends FormItem {

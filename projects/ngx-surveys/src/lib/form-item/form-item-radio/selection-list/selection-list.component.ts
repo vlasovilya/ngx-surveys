@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Input, Output, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
-import { MatLegacySelectionList as MatSelectionList, MatLegacySelectionListChange as MatSelectionListChange } from '@angular/material/legacy-list';
+import { MatSelectionList, MatSelectionListChange } from '@angular/material/list';
 import { FormItemOptionItem } from '../../form-item';
 
 @Component({

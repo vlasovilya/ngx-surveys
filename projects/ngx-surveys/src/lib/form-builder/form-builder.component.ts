@@ -4,7 +4,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 import { DialogSectionEdit, DialogItemEdit, DialogItemVisibility } from '../dialogs/index';
 import { FormItem, FormSection, buildField, FormItemComponent } from '../form-item/index';
