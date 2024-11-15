@@ -1,7 +1,7 @@
 {
   "name": "ngx-surveys",
   "version": "0.9.19",
-  "description": "Angular 8+ survey / form builder",
+  "description": "Angular 18+ survey / form builder",
   "bugs": "https://github.com/vlasovilya/ngx-surveys/issues",
   "homepage": "https://github.com/vlasovilya/ngx-surveys#readme",
   "repository": {
@@ -12,11 +12,7 @@
   "author": "Ilya Vlasov",
   "private": true,
   "keywords": [
-    "angular 2",
-    "angular 4",
-    "angular 5",
-    "angular 6",
-    "angular 7",
+    "angular 18",
     "ngx",
     "ng2",
     "angular",

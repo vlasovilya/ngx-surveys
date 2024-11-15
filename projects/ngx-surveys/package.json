@@ -1,18 +1,14 @@
 {
   "name": "ngx-surveys",
-  "version": "0.9.19",
-  "description": "Angular 8+ survey / form builder",
+  "version": "0.10.0",
+  "description": "Angular 18+ survey / form builder",
   "bugs": "https://github.com/vlasovilya/ngx-surveys/issues",
   "homepage": "https://github.com/vlasovilya/ngx-surveys#readme",
   "repository": "https://github.com/vlasovilya/ngx-surveys.git",
   "license": "MIT",
   "author": "vlasovilya",
   "keywords": [
-    "angular 2",
-    "angular 4",
-    "angular 5",
-    "angular 6",
-    "angular 7",
+    "angular 18",
     "ngx",
     "ng2",
     "angular",
@@ -22,17 +18,16 @@
     "surveys"
   ],
   "peerDependencies": {
-    "@angular/core": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0",
-    "@angular/common": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0",
-    "@angular/forms": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0",
-    "@angular/material": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0",
-    "@angular/material-moment-adapter": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0"
+    "@angular/core": "^18.0.0",
+    "@angular/common": "^18.0.0",
+    "@angular/forms": "^18.0.0",
+    "@angular/material": "^18.0.0",
+    "@angular/material-moment-adapter": "^18.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0",
     "ngx-mask": "^13.1.12",
-    "ngx-file-drop": "^13.0.0",
-    "angular-resize-event": "^3.1.1",
+    "ngx-file-drop": "^16.0.0",
     "recordrtc": "^5.6.2",
     "wavesurfer.js": "^6.1.0"
   }
