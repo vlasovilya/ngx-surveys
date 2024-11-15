@@ -189,7 +189,7 @@
     symbol-observable "4.0.0"
     yargs "17.7.2"
 
-"@angular/common@^18.0.0 || ^19.0.0", "@angular/common@^18.2.12", "@angular/common@>=10.0.0", "@angular/common@>=13.0.0", "@angular/common@18.2.12":
+"@angular/common@^18.0.0 || ^19.0.0", "@angular/common@^18.2.12", "@angular/common@>=10.0.0", "@angular/common@>=14.0.0", "@angular/common@18.2.12":
   version "18.2.12"
   resolved "https://registry.npmjs.org/@angular/common/-/common-18.2.12.tgz"
   integrity sha512-gI5o8Bccsi8ow8Wk2vG4Tw/Rw9LoHEA9j8+qHKNR/55SCBsz68Syg310dSyxy+sApJO2WiqIadr5VP36dlSUFw==
@@ -222,7 +222,7 @@
   resolved "https://registry.npmjs.org/@angular/compiler/-/compiler-9.0.0.tgz"
   integrity sha512-ctjwuntPfZZT2mNj2NDIVu51t9cvbhl/16epc5xEwyzyDt76pX9UgwvY+MbXrf/C/FWwdtmNtfP698BKI+9leQ==
 
-"@angular/core@^18.0.0 || ^19.0.0", "@angular/core@^18.2.12", "@angular/core@>=10.0.0", "@angular/core@>=13.0.0", "@angular/core@18.2.12":
+"@angular/core@^18.0.0 || ^19.0.0", "@angular/core@^18.2.12", "@angular/core@>=10.0.0", "@angular/core@>=14.0.0", "@angular/core@18.2.12":
   version "18.2.12"
   resolved "https://registry.npmjs.org/@angular/core/-/core-18.2.12.tgz"
   integrity sha512-wCf/OObwS6bpM60rk6bpMpCRGp0DlMLB1WNAMtfcaPNyqimVV5Bm98mWRhkOuRyvU3fU7iHhM/10ePVaoyu9+A==
@@ -6182,12 +6182,12 @@ ng-packagr@^18.0.0, ng-packagr@^18.2.1:
   optionalDependencies:
     rollup "^4.18.0"
 
-ngx-file-drop@^13.0.0:
-  version "13.0.0"
-  resolved "https://registry.npmjs.org/ngx-file-drop/-/ngx-file-drop-13.0.0.tgz"
-  integrity sha512-1OF9ln2ZesfNxWEBXMpkkFpUuggejpZtNlGFuyaVAmXyYO4NlCHsOWrgfWB7d8SliHgePD/7s0e60IQs/zqr9g==
+ngx-file-drop@^16.0.0:
+  version "16.0.0"
+  resolved "https://registry.npmjs.org/ngx-file-drop/-/ngx-file-drop-16.0.0.tgz"
+  integrity sha512-33RPoZBAiMkV110Rzu3iOrzGcG5M20S4sAiwLzNylfJobu9qVw5XR83FhUelSeqJRoaDxXBRKAozYCSnUf2CNw==
   dependencies:
-    tslib "^2.0.0"
+    tslib "^2.3.0"
 
 ngx-mask@^13.1.12:
   version "13.1.12"

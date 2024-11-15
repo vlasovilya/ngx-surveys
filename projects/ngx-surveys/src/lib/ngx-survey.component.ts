@@ -24,7 +24,7 @@ export class NgxSurveyComponent implements OnInit, AfterViewInit, OnDestroy {
     @Output() valueChange = new EventEmitter<any>();
     @Output() stepChanged = new EventEmitter<any>();
     @Output() submit = new EventEmitter<any>();
-    @Output() resized = new EventEmitter<ResizedEvent>();
+    //@Output() resized = new EventEmitter<ResizedEvent>();
 
     @ViewChild('stepper', { static: false }) public stepper:MatStepper;
 

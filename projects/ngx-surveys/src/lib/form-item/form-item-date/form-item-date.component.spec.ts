@@ -51,7 +51,7 @@ describe('FormItemDateComponent', () => {
         item.title=title;
         fixture.detectChanges();
         const input=compiled.querySelector('input.mat-input-element');
-        const label=compiled.querySelector('.mat-form-field-label-wrapper > label.mat-form-field-label');
+        const label=compiled.querySelector('.mat-mdc-form-field-label-wrapper > label.mat-mdc-form-field-label');
         expect(input.getAttribute('data-placeholder')).toEqual(title);
         expect(label.textContent).toEqual(title);
     });
@@ -61,7 +61,7 @@ describe('FormItemDateComponent', () => {
         const hint='Test Date Placeholder';
         item.placeholder=hint;
         fixture.detectChanges();
-        expect(compiled.querySelector('.mat-form-field-hint-wrapper > mat-hint > strong').textContent).toEqual(hint);
+        expect(compiled.querySelector('.mat-mdc-form-field-hint-wrapper > mat-hint > strong').textContent).toEqual(hint);
     });
 
     it('should render datepicker button as a form field suffix', waitForAsync(() => {
@@ -69,7 +69,7 @@ describe('FormItemDateComponent', () => {
         const value='2000-01-20';
         item.value=value;
         fixture.detectChanges();
-        expect(compiled.querySelector('.mat-form-field-suffix > mat-datepicker-toggle > button')).not.toEqual(null);
+        expect(compiled.querySelector('.mat-mdc-form-field-suffix > mat-datepicker-toggle > button')).not.toEqual(null);
     }));
 
 
@@ -82,7 +82,7 @@ describe('FormItemDateComponent', () => {
             fixture.detectChanges();
             const input=compiled.querySelector('input.mat-input-element');
             expect(input.value).toEqual('1/20/2000');
-            expect(compiled.querySelector('.mat-form-field').classList).not.toContain('mat-form-field-invalid');
+            expect(compiled.querySelector('.mat-mdc-form-field').classList).not.toContain('mat-form-field-invalid');
         }, 500);
     }));
 
@@ -101,7 +101,7 @@ describe('FormItemDateComponent', () => {
             fixture.detectChanges();
             const input=compiled.querySelector('input.mat-input-element');
             expect(input.value).toEqual('1/20/2000');
-            expect(compiled.querySelector('.mat-form-field').classList).toContain('mat-form-field-invalid');
+            expect(compiled.querySelector('.mat-mdc-form-field').classList).toContain('mat-form-field-invalid');
             errors.forEach(err=>{
                 expect(compiled.querySelector('mat-error').children[errors.indexOf(err)].textContent).toEqual(err.message);
             });

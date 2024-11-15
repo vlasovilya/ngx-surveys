@@ -48,7 +48,7 @@ describe('FormItemTextComponent', () => {
         item.placeholder=placeholder;
         fixture.detectChanges();
         const input=compiled.querySelector('textarea');
-        const label=compiled.querySelector('.mat-form-field-label-wrapper > label.mat-form-field-label');
+        const label=compiled.querySelector('.mat-mdc-form-field-label-wrapper > label.mat-mdc-form-field-label');
         expect(input.getAttribute('data-placeholder')).toEqual(placeholder);
         expect(label.textContent).toEqual(placeholder);
     });
@@ -64,7 +64,7 @@ describe('FormItemTextComponent', () => {
             fixture.detectChanges();
             const input=compiled.querySelector('textarea');
             expect(input.value).toEqual(value);
-            expect(compiled.querySelector('.mat-form-field').classList).not.toContain('mat-form-field-invalid');
+            expect(compiled.querySelector('.mat-mdc-form-field').classList).not.toContain('mat-form-field-invalid');
         }, 500);
     }));
 
@@ -83,7 +83,7 @@ describe('FormItemTextComponent', () => {
             fixture.detectChanges();
             const input=compiled.querySelector('textarea');
             expect(input.value).toEqual(value);
-            expect(compiled.querySelector('.mat-form-field').classList).toContain('mat-form-field-invalid');
+            expect(compiled.querySelector('.mat-mdc-form-field').classList).toContain('mat-form-field-invalid');
             errors.forEach(err=>{
                 expect(compiled.querySelector('mat-error').children[errors.indexOf(err)].textContent).toEqual(err.message);
             });

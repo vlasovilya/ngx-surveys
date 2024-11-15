@@ -2,7 +2,7 @@ import { Component, OnInit, Input, EventEmitter, forwardRef, Output, ViewChild, 
 import { FormItem, SurveyErrorStateMatcher, FormItemWidget } from '../index';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
-import * as moment from "moment";
+import moment from "moment";
 
 export class FormItemDate extends FormItem {
 

@@ -48,7 +48,7 @@ describe('FormItemStringComponent', () => {
         item.title=title;
         fixture.detectChanges();
         const input=compiled.querySelector('input.mat-input-element');
-        const label=compiled.querySelector('.mat-form-field-label-wrapper > label.mat-form-field-label');
+        const label=compiled.querySelector('.mat-mdc-form-field-label-wrapper > label.mat-mdc-form-field-label');
         expect(input.getAttribute('data-placeholder')).toEqual(title);
         expect(label.textContent).toEqual(title);
     });
@@ -58,7 +58,7 @@ describe('FormItemStringComponent', () => {
         const hint='Test Date Placeholder';
         item.placeholder=hint;
         fixture.detectChanges();
-        expect(compiled.querySelector('.mat-form-field-hint-wrapper > mat-hint > strong').textContent).toEqual(hint);
+        expect(compiled.querySelector('.mat-mdc-form-field-hint-wrapper > mat-hint > strong').textContent).toEqual(hint);
     });
 
 
@@ -72,7 +72,7 @@ describe('FormItemStringComponent', () => {
             fixture.detectChanges();
             const input=compiled.querySelector('input.mat-input-element');
             expect(input.value).toEqual(value);
-            expect(compiled.querySelector('.mat-form-field').classList).not.toContain('mat-form-field-invalid');
+            expect(compiled.querySelector('.mat-mdc-form-field').classList).not.toContain('mat-form-field-invalid');
         }, 500);
     }));
 
@@ -91,7 +91,7 @@ describe('FormItemStringComponent', () => {
             fixture.detectChanges();
             const input=compiled.querySelector('input.mat-input-element');
             expect(input.value).toEqual(value);
-            expect(compiled.querySelector('.mat-form-field').classList).toContain('mat-form-field-invalid');
+            expect(compiled.querySelector('.mat-mdc-form-field').classList).toContain('mat-form-field-invalid');
             errors.forEach(err=>{
                 expect(compiled.querySelector('mat-error').children[errors.indexOf(err)].textContent).toEqual(err.message);
             });
