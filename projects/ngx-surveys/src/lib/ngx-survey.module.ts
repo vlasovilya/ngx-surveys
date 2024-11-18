@@ -61,6 +61,7 @@ import { FileSizePipe } from './pipes/file-size.pipe';
 import { DurationPipe } from './pipes/duration.pipe';
 import { FormItemVoiceComponent } from './form-item/form-item-voice/form-item-voice.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { FormItemLabelComponent } from './form-item/form-item-label/form-item-label.component';
 
 const formItemComponents=[
     FormItemStringComponent,
@@ -73,6 +74,7 @@ const formItemComponents=[
     FormItemSelectComponent,
     FormItemOptionsEditorComponent,
     FormItemCheckboxComponent,
+    FormItemLabelComponent,
 
     DialogSectionEdit,
     DialogItemEdit,

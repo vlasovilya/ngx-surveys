@@ -82,6 +82,7 @@ export class DialogItemEdit {
             buildField('string', {name: "name", label: "Name", visibilityValuesInSection: !this.customFieldNamesAllowed ? ['none'] : undefined}, false),
             buildField('text', {name: "label", label: "Label"}),
             buildField('text', {name: "hint", label: "Hint"}),
+            buildField('text', {name: "htmlContent", label: "Content", visibilityValuesInSection: ["label"]}),
             buildField('checkbox', {name: "required", label: "Required"}),
             buildField('checkbox', {name: "actionUpdatesSectionValue", label: "Action Updates Section Value", visibilityValuesInSection: [this.multiChoiseFieldTypes]}),
             buildField('checkbox', {name: "multiple", label: "Multiple Answers", visibilityValuesInSection: ["radio"]}),

@@ -202,6 +202,9 @@ export class NgxSurveyService {
         if (!validationObj) {
             //console.log('!validationObj', item);
         }
+        if (item.type==='label'){
+            return res;
+        }
 
         _.each(validationObj, (param, name) => {
             if (name === 'minCount') {

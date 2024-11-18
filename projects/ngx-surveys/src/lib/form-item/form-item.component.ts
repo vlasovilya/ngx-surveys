@@ -15,8 +15,14 @@ import { FormItemCheckbox, FormItemCheckboxComponent } from './form-item-checkbo
 import { Subscription } from 'rxjs';
 import { FormItemFile, FormItemFileComponent } from './form-item-file/form-item-file.component';
 import { FormItemVoice, FormItemVoiceComponent } from './form-item-voice/form-item-voice.component';
+import { FormItemLabel, FormItemLabelComponent } from './form-item-label/form-item-label.component';
 
 export const FormItemTypes={
+    label : {
+        component: FormItemLabelComponent,
+        model: FormItemLabel,
+        label: 'Label'
+    },
     'string' : {
         component: FormItemStringComponent,
         model: FormItemString,
@@ -109,7 +115,7 @@ export class FormItemComponent implements OnInit, OnDestroy, OnChanges {
 
     @Input() type: string;
     @Input() item: FormItem | FormItemString | FormItemRating | FormItemText | FormItemDate | FormItemSegments | FormItemRadio | FormItemNumericRating
-        | FormItemSelect | FormItemOptionsEditor | FormItemCheckbox | FormItemFile;
+        | FormItemSelect | FormItemOptionsEditor | FormItemCheckbox | FormItemFile | FormItemLabel;
     @Input() editable: boolean=true;
     @Input() isMobile: boolean=false;
     @Input() id: string;
